@@ -380,7 +380,7 @@ details.pf-d > .in{padding:0 16px 16px}
       </svg>
       <div>
         <h1>EcoSort GuideBot</h1>
-        <p id="placeLine" data-i18n="placeLine">สถานีแยกขยะอัจฉริยะ มาลัยฟาร์ม ชะอำ</p>
+        <p id="placeLine">สถานีแยกขยะอัจฉริยะ</p>
       </div>
     </div>
     <div class="top-actions">
@@ -418,7 +418,7 @@ details.pf-d > .in{padding:0 16px 16px}
       </svg>
       <div class="grow">
         <h2 data-i18n="botTitle">ถาม GuideBot</h2>
-        <p id="botSub" data-i18n="botSub">ไกด์ช่วยตอบเรื่องเที่ยวมาลัยฟาร์มและการแยกขยะ</p>
+        <p id="botSub">ไกด์ช่วยตอบเรื่องเที่ยวและการแยกขยะ</p>
       </div>
       <button class="rate-link" id="rateBtn" type="button" data-i18n="rate">ให้คะแนนระบบ</button>
     </div>
@@ -443,7 +443,7 @@ details.pf-d > .in{padding:0 16px 16px}
       <path d="M14.5 31.5c4-5.5 9-10 14.5-13" stroke="#2C7A50" stroke-width="2.2" fill="none" stroke-linecap="round"/>
     </svg>
     <h2>EcoSort GuideBot</h2>
-    <p>สถานีแยกขยะอัจฉริยะ ช่วยบอกว่าขยะชิ้นนี้ต้องทิ้งถังไหน พร้อมไกด์ตอบคำถามเรื่องเที่ยวชะอำ<br><span style="opacity:.8">Smart waste sorting station and eco-travel guide</span></p>
+    <p><span id="startLead">สถานีแยกขยะอัจฉริยะ ช่วยบอกว่าขยะชิ้นนี้ต้องทิ้งถังไหน</span><br><span id="startLeadEn" style="opacity:.8">Smart waste sorting station and eco-travel guide</span></p>
     <button class="big-btn" id="startBtn" type="button">แตะเพื่อเริ่มใช้งาน <small>Tap to start</small></button>
     <ul class="load-list" id="loadList" aria-live="polite"></ul>
   </div>
@@ -464,7 +464,7 @@ details.pf-d > .in{padding:0 16px 16px}
 <div class="overlay survey" id="survey" hidden>
   <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="svT">
     <h3 id="svT" data-i18n="svTitle">ช่วยให้คะแนนสถานีนี้หน่อย</h3>
-    <p data-i18n="svLead">ใช้เวลาไม่ถึง 30 วินาที ข้อมูลนี้ใช้ปรับปรุงโครงงานของนักเรียน</p>
+    <p data-i18n="svLead">ใช้เวลาไม่ถึง 30 วินาที ข้อมูลนี้ใช้ปรับปรุงสถานีให้ดียิ่งขึ้น</p>
     <div class="q"><span class="lbl" data-i18n="svWho" style="font:500 16px var(--f-display);margin-right:10px">ฉันคือ</span>
       <div class="seg" id="svWho"><button type="button" data-v="tourist" aria-pressed="true" data-i18n="svTourist">นักท่องเที่ยว</button><button type="button" data-v="staff" aria-pressed="false" data-i18n="svStaff">เจ้าหน้าที่/ผู้ดูแล</button></div>
     </div>
@@ -551,10 +551,10 @@ const DEFAULT_ITEMS = [
   { id: 'glass_bottle', th: 'ขวดแก้ว', en: 'Glass bottle', bin: 'yellow', tip: { th: 'วางเบา ๆ ระวังแตกนะคะ', en: 'Place it gently so it does not break.' }, kw: ['ขวดแก้ว', 'glass'] },
   { id: 'paper', th: 'กระดาษ/กล่องกระดาษ', en: 'Paper or cardboard', bin: 'yellow', tip: { th: 'ถ้าเปียกหรือเปื้อนอาหาร ให้ทิ้งถังสีน้ำเงินค่ะ', en: 'If it is wet or greasy, use the blue bin.' }, kw: ['กระดาษ', 'กล่องกระดาษ', 'ลัง', 'paper', 'cardboard', 'box'] },
   { id: 'foam', th: 'กล่องโฟม', en: 'Foam box', bin: 'blue', tip: { th: 'เทเศษอาหารลงถังสีเขียวก่อนนะคะ', en: 'Scrape food into the green bin first.' }, kw: ['โฟม', 'foam', 'styrofoam'] },
-  { id: 'snack_bag', th: 'ซองขนม/ถุงพลาสติก', en: 'Snack wrapper or plastic bag', bin: 'blue', tip: { th: 'ถุงพลาสติกอันตรายต่อสัตว์ในฟาร์ม ห้ามทิ้งในคอกนะคะ', en: 'Plastic bags can kill farm animals. Never drop them in the pens.' }, kw: ['ซองขนม', 'ถุงพลาสติก', 'ถุง', 'ซอง', 'wrapper', 'bag', 'snack'] },
+  { id: 'snack_bag', th: 'ซองขนม/ถุงพลาสติก', en: 'Snack wrapper or plastic bag', bin: 'blue', tip: { th: 'ถุงพลาสติกอันตรายต่อสัตว์ อย่าทิ้งลงพื้นหรือในธรรมชาตินะคะ', en: 'Plastic bags can kill animals. Never leave them on the ground.' }, kw: ['ซองขนม', 'ถุงพลาสติก', 'ถุง', 'ซอง', 'wrapper', 'bag', 'snack'] },
   { id: 'straw', th: 'หลอด/ช้อนพลาสติก', en: 'Straw or plastic cutlery', bin: 'blue', tip: { th: '', en: '' }, kw: ['หลอด', 'ช้อน', 'ส้อม', 'straw', 'spoon', 'fork'] },
   { id: 'tissue', th: 'กระดาษทิชชู่', en: 'Tissue', bin: 'blue', tip: { th: '', en: '' }, kw: ['ทิชชู่', 'ทิชชู', 'tissue', 'napkin'] },
-  { id: 'food', th: 'เศษอาหาร/เปลือกผลไม้', en: 'Food scraps', bin: 'green', tip: { th: 'อย่านำเศษอาหารไปให้สัตว์ในฟาร์มนะคะ', en: 'Please do not feed leftovers to the farm animals.' }, kw: ['เศษอาหาร', 'อาหาร', 'เปลือก', 'ผลไม้', 'ซังข้าวโพด', 'ข้าวโพด', 'ผัก', 'กล้วย', 'food', 'peel', 'fruit', 'corn', 'banana'] },
+  { id: 'food', th: 'เศษอาหาร/เปลือกผลไม้', en: 'Food scraps', bin: 'green', tip: { th: 'อย่านำเศษอาหารไปให้สัตว์นะคะ', en: 'Please do not feed leftovers to animals.' }, kw: ['เศษอาหาร', 'อาหาร', 'เปลือก', 'ผลไม้', 'ซังข้าวโพด', 'ข้าวโพด', 'ผัก', 'กล้วย', 'food', 'peel', 'fruit', 'corn', 'banana'] },
   { id: 'battery', th: 'ถ่านไฟฉาย/แบตเตอรี่', en: 'Battery', bin: 'orange', tip: { th: '', en: '' }, kw: ['ถ่าน', 'แบต', 'แบตเตอรี่', 'battery', 'หลอดไฟ', 'bulb', 'สเปรย์', 'spray', 'ไฟแช็ก', 'lighter'] },
   { id: 'mask', th: 'หน้ากากอนามัย', en: 'Face mask', bin: 'red', tip: { th: 'พับด้านที่สัมผัสหน้าเข้าด้านในก่อนทิ้งค่ะ', en: 'Fold the inside surface inwards first.' }, kw: ['หน้ากาก', 'แมส', 'mask', 'ผ้าอ้อม', 'diaper', 'พลาสเตอร์', 'plaster'] }
 ];
@@ -571,7 +571,18 @@ const ZS_MAP = {
   mask: [419, 529, 643, 691, 570, 845]
 };
 
-const DEFAULT_PROMPT = `คุณคือ "GuideBot" มัคคุเทศก์ AI ประจำสถานีแยกขยะอัจฉริยะ EcoSort ที่มาลัยฟาร์ม ต.เขาใหญ่ อ.ชะอำ จ.เพชรบุรี สร้างโดยนักเรียนสาขาวิชาการท่องเที่ยว วิทยาลัยการอาชีพวังไกลกังวล ๒
+// {place} {placeEn} {area} are filled in from the active place (Settings > สถานที่ติดตั้ง)
+const DEFAULT_PROMPT = `คุณคือ "GuideBot" มัคคุเทศก์ AI ประจำสถานีแยกขยะอัจฉริยะ EcoSort ที่{place} ({placeEn}) {area} สร้างโดยนักเรียนสาขาวิชาการท่องเที่ยว วิทยาลัยการอาชีพวังไกลกังวล ๒
+บุคลิก: เป็นมิตร สุภาพ อบอุ่นแบบไกด์ท้องถิ่น ใช้ภาษาง่าย เหมาะกับครอบครัวและเด็ก
+กติกาการตอบ:
+1. ตอบสั้น กระชับ ไม่เกิน 3 ประโยค ไม่ใช้ markdown ตาราง หรือเครื่องหมาย *
+2. ตอบเป็นภาษาเดียวกับคำถาม (ภาษาไทยให้ลงท้ายด้วย "ค่ะ")
+3. ตอบเฉพาะเรื่องเกี่ยวกับ{place} แหล่งท่องเที่ยวใกล้เคียง การท่องเที่ยวเชิงนิเวศ สิ่งแวดล้อม และการคัดแยกขยะ ถ้าถามเรื่องอื่นให้ปฏิเสธอย่างสุภาพแล้วชวนกลับมาเรื่องเที่ยวหรือแยกขยะ
+4. ใช้ "ข้อมูลสถานที่" ด้านล่างเป็นหลัก ถ้าไม่มีข้อมูลหรือไม่แน่ใจ เช่น ราคาหรือเวลาเปิด ให้บอกตามจริงและแนะนำให้สอบถามเจ้าหน้าที่ ห้ามแต่งข้อมูลขึ้นเอง
+5. เมื่อถามว่าขยะชิ้นใดทิ้งถังไหน ให้ตอบตาม "ระบบถังของสถานีนี้" เท่านั้น
+6. สอดแทรกการท่องเที่ยวอย่างรับผิดชอบเมื่อเหมาะสม เช่น ไม่ทิ้งขยะในธรรมชาติ ไม่ให้อาหารคนแก่สัตว์ และพกขวดน้ำส่วนตัว`;
+// earlier built-in prompts (a saved copy that still equals one of these is upgraded to DEFAULT_PROMPT)
+const LEGACY_PROMPTS = [`คุณคือ "GuideBot" มัคคุเทศก์ AI ประจำสถานีแยกขยะอัจฉริยะ EcoSort ที่มาลัยฟาร์ม ต.เขาใหญ่ อ.ชะอำ จ.เพชรบุรี สร้างโดยนักเรียนสาขาวิชาการท่องเที่ยว วิทยาลัยการอาชีพวังไกลกังวล ๒
 บุคลิก: เป็นมิตร สุภาพ อบอุ่นแบบไกด์ท้องถิ่น ใช้ภาษาง่าย เหมาะกับครอบครัวและเด็ก
 กติกาการตอบ:
 1. ตอบสั้น กระชับ ไม่เกิน 3 ประโยค ไม่ใช้ markdown ตาราง หรือเครื่องหมาย *
@@ -579,7 +590,7 @@ const DEFAULT_PROMPT = `คุณคือ "GuideBot" มัคคุเทศ�
 3. ตอบเฉพาะเรื่องการท่องเที่ยว มาลัยฟาร์ม แหล่งท่องเที่ยวในชะอำและเพชรบุรี การท่องเที่ยวเชิงนิเวศ สิ่งแวดล้อม และการคัดแยกขยะ ถ้าถามเรื่องอื่นให้ปฏิเสธอย่างสุภาพแล้วชวนกลับมาเรื่องเที่ยวหรือแยกขยะ
 4. ใช้ "ข้อมูลสถานที่" ด้านล่างเป็นหลัก ถ้าไม่มีข้อมูลหรือไม่แน่ใจ เช่น ราคาหรือเวลาเปิด ให้บอกตามจริงและแนะนำให้สอบถามเจ้าหน้าที่ ห้ามแต่งข้อมูลขึ้นเอง
 5. เมื่อถามว่าขยะชิ้นใดทิ้งถังไหน ให้ตอบตาม "ระบบถังของสถานีนี้" เท่านั้น
-6. สอดแทรกการท่องเที่ยวอย่างรับผิดชอบเมื่อเหมาะสม เช่น ไม่ให้อาหารคนแก่สัตว์ และไม่ทิ้งพลาสติกในคอกสัตว์`;
+6. สอดแทรกการท่องเที่ยวอย่างรับผิดชอบเมื่อเหมาะสม เช่น ไม่ให้อาหารคนแก่สัตว์ และไม่ทิ้งพลาสติกในคอกสัตว์`];
 
 const DEFAULT_KB = `[มาลัยฟาร์ม ชะอำ (Malai Farm Cha-am)]
 - ที่ตั้ง: 233 หมู่ 2 ถนนเพชรเกษม (ทางหลวงสายเอเชีย) ต.เขาใหญ่ อ.ชะอำ จ.เพชรบุรี อยู่ฝั่งตรงข้ามซานโตรินี่ พาร์ค ชะอำ ถ้ามาจากกรุงเทพฯ จะถึงก่อน Camel Republic
@@ -613,50 +624,90 @@ const DEFAULT_KB = `[มาลัยฟาร์ม ชะอำ (Malai Farm Cha
 - EcoSort GuideBot เป็นผลงานนวัตกรรมของนักเรียนสาขาวิชาการท่องเที่ยว วิทยาลัยการอาชีพวังไกลกังวล ๒ (62 หมู่ 6 ต.เขาใหญ่ อ.ชะอำ จ.เพชรบุรี โทร 032-899-931)
 - กล้อง AI ประมวลผลบนเครื่องนี้เท่านั้น ไม่ส่งภาพขึ้นอินเทอร์เน็ต และไม่บันทึกภาพของนักท่องเที่ยว`;
 
+const KB_ABOUT = `[เกี่ยวกับสถานีนี้]
+- EcoSort GuideBot เป็นผลงานนวัตกรรมของนักเรียนสาขาวิชาการท่องเที่ยว วิทยาลัยการอาชีพวังไกลกังวล ๒ (62 หมู่ 6 ต.เขาใหญ่ อ.ชะอำ จ.เพชรบุรี โทร 032-899-931)
+- กล้อง AI ประมวลผลบนเครื่องนี้เท่านั้น ไม่ส่งภาพขึ้นอินเทอร์เน็ต และไม่บันทึกภาพของนักท่องเที่ยว`;
+// starter knowledge for a new place: the blanks are left empty so GuideBot says it does not know instead of guessing
+function kbTemplate(name, o = {}) {
+  return `[${name || 'ชื่อสถานที่'}]
+- ที่ตั้ง: ${o.where || ''}
+- เวลาเปิด-ปิด: 
+- ค่าเข้า: 
+- จุดเด่นและกิจกรรม: ${o.high || ''}
+- สิ่งอำนวยความสะดวก (ห้องน้ำ ที่จอดรถ ร้านอาหาร): 
+- เบอร์ติดต่อ: 
+
+[ข้อปฏิบัติท่องเที่ยวเชิงนิเวศ]
+- ทิ้งขยะให้ถูกถังที่สถานี EcoSort และไม่ทิ้งขยะในธรรมชาติ
+- ไม่ให้อาหารคนแก่สัตว์ และไม่รบกวนสัตว์ป่า
+- พกขวดน้ำส่วนตัว ลดการใช้พลาสติกแบบใช้ครั้งเดียวทิ้ง
+
+[แหล่งท่องเที่ยวใกล้เคียง]
+${o.near || '- '}
+
+${KB_ABOUT}`;
+}
+const CHIPS_MALAI = {
+  th: ['ที่นี่มีสัตว์อะไรบ้าง', 'ให้อาหารสัตว์อย่างไรให้ปลอดภัย', 'แก้วกาแฟพลาสติกทิ้งถังไหน', 'ที่เที่ยวใกล้ ๆ แถวนี้', 'ท่องเที่ยวเชิงนิเวศคืออะไร', 'ค่าเข้าและเวลาเปิด'],
+  en: ['What animals are here?', 'How do I feed the animals safely?', 'Which bin for a plastic coffee cup?', 'What else is nearby?', 'What is ecotourism?', 'Entry fee and opening hours']
+};
+const CHIPS_GENERIC = {
+  th: ['ที่นี่มีอะไรน่าสนใจ', 'แก้วกาแฟพลาสติกทิ้งถังไหน', 'ที่เที่ยวใกล้ ๆ แถวนี้', 'เวลาเปิดและค่าเข้า', 'ท่องเที่ยวเชิงนิเวศคืออะไร', 'ทำไมต้องแยกขยะ'],
+  en: ['What is interesting here?', 'Which bin for a plastic coffee cup?', 'What else is nearby?', 'Opening hours and entry fee', 'What is ecotourism?', 'Why sort waste?']
+};
+// Places / organisations that use the station. The active one drives the header, greeting, GuideBot knowledge and the usage log.
+const DEFAULT_PLACES = [
+  { id: 'malai', th: 'มาลัยฟาร์ม', en: 'Malai Farm', areaTh: 'ชะอำ', areaEn: 'Cha-am', kb: DEFAULT_KB, chipsTh: CHIPS_MALAI.th.join('\n'), chipsEn: CHIPS_MALAI.en.join('\n') },
+  { id: 'khaonang', th: 'วนอุทยานเขานางพันธุรัตน์', en: 'Khao Nang Phanthurat Forest Park', areaTh: 'ชะอำ', areaEn: 'Cha-am', chipsTh: '', chipsEn: '',
+    kb: kbTemplate('วนอุทยานเขานางพันธุรัตน์ (Khao Nang Phanthurat Forest Park)', { where: 'อ.ชะอำ จ.เพชรบุรี', high: 'ภูเขารูปร่างคล้ายนางยักษ์ตามวรรณคดี มีเส้นทางเดินศึกษาธรรมชาติที่เดินเองได้' }) },
+  { id: 'chaam', th: 'ชายหาดชะอำ', en: 'Cha-am Beach', areaTh: 'ชะอำ', areaEn: 'Cha-am', chipsTh: '', chipsEn: '',
+    kb: kbTemplate('ชายหาดชะอำ (Cha-am Beach)', { where: 'อ.ชะอำ จ.เพชรบุรี', high: 'ชายหาดยอดนิยม เดินเล่น ปั่นจักรยาน และกินอาหารทะเล' }) }
+];
+
 // Offline answers (used when there is no internet or no API key)
 const FAQ = [
-  { k: ['สัตว์', 'animal', 'ตัวอะไร', 'อัลปากา', 'alpaca', 'อูฐ', 'แพะ', 'แกะ', 'goat', 'sheep', 'camel'],
+  { p: 'malai', k: ['สัตว์', 'animal', 'ตัวอะไร', 'อัลปากา', 'alpaca', 'อูฐ', 'แพะ', 'แกะ', 'goat', 'sheep', 'camel'],
     th: 'มาลัยฟาร์มมีสัตว์ให้ชมและให้อาหารหลายชนิด เช่น แพะ แกะ อัลปากา อูฐ ม้าแคระ กวาง กระต่าย ห่าน นกอีมู และปลาคาร์พ (บางชนิดอาจเปลี่ยนตามช่วงเวลา) ซื้อชุดอาหารสัตว์ของฟาร์มแล้วยื่นให้น้อง ๆ ได้เลยค่ะ',
     en: 'Malai Farm has goats, sheep, alpacas, camels, miniature horses, deer, rabbits, geese, emus and koi, among others (the line-up can change). Buy the farm\'s feed set and you can feed them up close.' },
-  { k: ['ค่าเข้า', 'ราคา', 'กี่บาท', 'เวลาเปิด', 'เปิดกี่โมง', 'ปิดกี่โมง', 'เปิดถึง', 'price', 'ticket', 'fee', 'open', 'hour', 'close', 'เบอร์', 'โทร', 'phone', 'contact'],
+  { p: 'malai', k: ['ค่าเข้า', 'ราคา', 'กี่บาท', 'เวลาเปิด', 'เปิดกี่โมง', 'ปิดกี่โมง', 'เปิดถึง', 'price', 'ticket', 'fee', 'open', 'hour', 'close', 'เบอร์', 'โทร', 'phone', 'contact'],
     th: 'มาลัยฟาร์มไม่เก็บค่าเข้า แต่ขอให้ซื้อชุดอาหารสัตว์แทน ประมาณ 100 บาท ส่วนเวลาเปิดตามรีวิวออนไลน์คือ จันทร์-ศุกร์ 08:00-17:00 น. และเสาร์-อาทิตย์ 09:00-18:00 น. ราคาและเวลาอาจเปลี่ยน สอบถามเจ้าหน้าที่หรือโทร 099-103-1768 ได้ค่ะ',
     en: 'Entry is free; instead you buy an animal-feed set (about 100 baht). Online reviews list the hours as Mon-Fri 08:00-17:00 and Sat-Sun 09:00-18:00, but please check with staff or call 099-103-1768, as these can change.' },
-  { k: ['ให้อาหาร', 'feed', 'ปลอดภัย', 'safe', 'กัด', 'bite'],
+  { p: 'malai', k: ['ให้อาหาร', 'feed', 'ปลอดภัย', 'safe', 'กัด', 'bite'],
     th: 'ให้อาหารเฉพาะชุดอาหารของฟาร์ม แบมือยื่นให้ช้า ๆ ไม่ให้ขนมหรืออาหารคน ดูแลเด็กเล็กใกล้ชิด และล้างมือหลังสัมผัสสัตว์ทุกครั้งค่ะ',
     en: 'Use only the farm\'s feed, offer it slowly on a flat palm, never give snacks or human food, keep an eye on small children, and wash your hands after touching the animals.' },
   { k: ['เชิงนิเวศ', 'ecotour', 'eco-tour', 'green tour', 'ยั่งยืน', 'sustainable', 'รักษ์โลก'],
     th: 'การท่องเที่ยวเชิงนิเวศคือการเที่ยวธรรมชาติอย่างรับผิดชอบ ไม่ทำลายสิ่งแวดล้อม และช่วยชุมชนท้องถิ่น ง่าย ๆ คือพกขวดน้ำส่วนตัว แยกขยะให้ถูกถัง และเคารพสัตว์กับธรรมชาติค่ะ',
     en: 'Ecotourism means visiting natural places responsibly: do no harm, support local people and learn along the way. Easy wins are carrying a refillable bottle, sorting your waste and respecting the animals.' },
-  { k: ['ใกล้', 'แถวนี้', 'ที่เที่ยว', 'ไปต่อ', 'nearby', 'near', 'around', 'else', 'attraction'],
+  { p: 'malai', k: ['ใกล้', 'แถวนี้', 'ที่เที่ยว', 'ไปต่อ', 'nearby', 'near', 'around', 'else', 'attraction'],
     th: 'ใกล้ ๆ มีซานโตรินี่ พาร์คฝั่งตรงข้าม Camel Republic ประมาณ 1 กม. สวิส ชีพ ฟาร์ม และวนอุทยานเขานางพันธุรัตประมาณ 2 กม. ถ้าชอบธรรมชาติแนะนำอุทยานสิ่งแวดล้อมนานาชาติสิรินธรที่มีป่าชายเลนค่ะ',
     en: 'Close by are Santorini Park (across the road), Camel Republic (about 1 km), Swiss Sheep Farm and Khao Nang Phanthurat Forest Park (about 2 km). Nature lovers will enjoy the mangrove trails at the Sirindhorn International Environmental Park.' },
-  { k: ['นางพันธุรัต', 'เขานาง', 'khao nang', 'forest park', 'เดินป่า', 'trail', 'hike'],
+  { p: 'malai', k: ['นางพันธุรัต', 'เขานาง', 'khao nang', 'forest park', 'เดินป่า', 'trail', 'hike'],
     th: 'วนอุทยานเขานางพันธุรัตอยู่ห่างไปประมาณ 2 กม. ภูเขามีรูปร่างคล้ายนางยักษ์ตามวรรณคดี และมีเส้นทางเดินศึกษาธรรมชาติที่เดินเองได้ค่ะ',
     en: 'Khao Nang Phanthurat Forest Park is about 2 km away. The mountain is said to look like a giantess from Thai literature, and it has a self-guided nature trail.' },
-  { k: ['สิรินธร', 'ป่าชายเลน', 'mangrove', 'sirindhorn', 'ดูนก', 'bird'],
+  { p: 'malai', k: ['สิรินธร', 'ป่าชายเลน', 'mangrove', 'sirindhorn', 'ดูนก', 'bird'],
     th: 'อุทยานสิ่งแวดล้อมนานาชาติสิรินธรเป็นแหล่งเรียนรู้ป่าชายเลน พลังงาน และสิ่งแวดล้อม มีเส้นทางศึกษาธรรมชาติและจุดดูนก อยู่ห่างไปประมาณ 25 กม. ค่ะ',
     en: 'The Sirindhorn International Environmental Park is a learning centre for mangroves, energy and the environment, with nature trails and bird-watching, about 25 km away.' },
-  { k: ['ทะเล', 'หาด', 'beach', 'sea'],
+  { p: 'malai', k: ['ทะเล', 'หาด', 'beach', 'sea'],
     th: 'หาดชะอำอยู่ห่างไปประมาณ 20 กม. เดินเล่น ปั่นจักรยาน และกินอาหารทะเลได้ อย่าลืมทิ้งขยะให้ถูกถังนะคะ',
     en: 'Cha-am Beach is about 20 km away, good for a stroll, cycling and seafood. Please put your rubbish in the right bins.' },
   { k: ['ทำไมต้องแยก', 'ทำไม', 'why', 'ประโยชน์', 'benefit'],
-    th: 'การแยกขยะตั้งแต่ต้นทางช่วยให้ขยะรีไซเคิลได้กลับไปใช้ใหม่ เศษอาหารกลายเป็นปุ๋ย และลดขยะที่ต้องฝังกลบ ทั้งยังช่วยลดงานของเจ้าหน้าที่ฟาร์มด้วยค่ะ',
-    en: 'Sorting at the source lets recyclables be reused, turns food scraps into compost and cuts landfill. It also saves the farm staff a lot of work.' },
+    th: 'การแยกขยะตั้งแต่ต้นทางช่วยให้ขยะรีไซเคิลได้กลับไปใช้ใหม่ เศษอาหารกลายเป็นปุ๋ย และลดขยะที่ต้องฝังกลบ ทั้งยังช่วยลดงานของเจ้าหน้าที่ด้วยค่ะ',
+    en: 'Sorting at the source lets recyclables be reused, turns food scraps into compost and cuts landfill. It also saves the staff a lot of work.' },
   { k: ['พลาสติก', 'plastic', 'สัตว์กิน'],
-    th: 'ถุงพลาสติกและหลอดอันตรายมากสำหรับสัตว์ในฟาร์ม เพราะสัตว์อาจกินเข้าไปจนป่วย ช่วยกันทิ้งลงถังให้ถูกและอย่าทิ้งในคอกสัตว์นะคะ',
-    en: 'Plastic bags and straws are dangerous for farm animals, which may swallow them. Please keep plastic out of the pens and put it in the right bin.' },
+    th: 'ถุงพลาสติกและหลอดอันตรายมากสำหรับสัตว์ เพราะสัตว์อาจกินเข้าไปจนป่วย ช่วยกันทิ้งลงถังให้ถูก และอย่าทิ้งลงพื้นหรือในธรรมชาตินะคะ',
+    en: 'Plastic bags and straws are dangerous for animals, which may swallow them. Please put plastic in the right bin and never leave it on the ground.' },
   { k: ['ทำงาน', 'กล้อง', 'camera', 'how does', 'ทำยังไง', 'ระบบ', 'ภาพ', 'privacy', 'ส่วนตัว', ' ai'],
     th: 'กล้องใช้ AI ที่ประมวลผลบนเครื่องนี้เพื่อดูว่าขยะเป็นชนิดไหน แล้วพูดบอกถังที่ถูกต้อง ภาพไม่ถูกส่งขึ้นอินเทอร์เน็ตและไม่ถูกบันทึกค่ะ',
     en: 'The camera runs AI on this device to recognise your item and tell you the right bin. Images are never uploaded or stored.' },
   { k: ['ใครทำ', 'ผู้จัดทำ', 'who made', 'who built', 'วิทยาลัย', 'college', 'นักเรียน', 'student'],
     th: 'สถานีนี้เป็นผลงานของนักเรียนสาขาวิชาการท่องเที่ยว วิทยาลัยการอาชีพวังไกลกังวล ๒ อ.ชะอำ จ.เพชรบุรี ค่ะ',
     en: 'This station was built by tourism students at Wang Klai Kangwon Industrial and Community Education College 2 in Cha-am.' },
-  { k: ['ห้องน้ำ', 'toilet', 'restroom', 'ที่จอด', 'parking', 'ร้านอาหาร', 'ร้านกาแฟ', 'กินข้าว', 'eat', 'drink', 'น้ำดื่ม', 'cafe'],
+  { p: 'malai', k: ['ห้องน้ำ', 'toilet', 'restroom', 'ที่จอด', 'parking', 'ร้านอาหาร', 'ร้านกาแฟ', 'กินข้าว', 'eat', 'drink', 'น้ำดื่ม', 'cafe'],
     th: 'ที่ฟาร์มมีอาหารและเครื่องดื่มจำหน่าย และมีที่จอดรถ ส่วนตำแหน่งห้องน้ำและร้านค้า สอบถามเจ้าหน้าที่ใกล้ ๆ ได้เลยค่ะ',
     en: 'The farm sells food and drinks and has parking. For toilets and shops, please ask a nearby staff member.' },
   { k: ['สวัสดี', 'หวัดดี', 'hello', 'hi '],
-    th: 'สวัสดีค่ะ ยินดีต้อนรับสู่มาลัยฟาร์ม ถามเรื่องสัตว์ ที่เที่ยวใกล้ ๆ หรือขยะชิ้นไหนทิ้งถังไหนก็ได้นะคะ',
-    en: 'Hello and welcome to Malai Farm! Ask me about the animals, nearby places, or which bin your rubbish goes in.' },
+    th: 'สวัสดีค่ะ ยินดีต้อนรับสู่{place} ถามเรื่องที่เที่ยว หรือขยะชิ้นไหนทิ้งถังไหนก็ได้นะคะ',
+    en: 'Hello and welcome to {place}! Ask me about this place, nearby spots, or which bin your rubbish goes in.' },
   { k: ['ขอบคุณ', 'thank'],
     th: 'ยินดีค่ะ ขอให้เที่ยวสนุก และขอบคุณที่ช่วยแยกขยะนะคะ',
     en: 'You\'re welcome! Enjoy your visit, and thanks for sorting your waste.' }
@@ -664,41 +715,41 @@ const FAQ = [
 
 const T = {
   th: {
-    placeLine: 'สถานีแยกขยะอัจฉริยะ มาลัยฟาร์ม ชะอำ', online: 'ออนไลน์', offline: 'ออฟไลน์', aiOn: 'AI กำลังดู',
+    placeLine: 'สถานีแยกขยะอัจฉริยะ', online: 'ออนไลน์', offline: 'ออฟไลน์', aiOn: 'AI กำลังดู',
     preparing: 'กำลังเตรียมกล้องและ AI…', hint: 'ยื่นขยะเข้ามาในกรอบ แล้วฟังว่าต้องทิ้งถังไหน',
-    botTitle: 'ถาม GuideBot', botSub: 'ไกด์ช่วยตอบเรื่องเที่ยวมาลัยฟาร์มและการแยกขยะ', botSubOff: 'ตอนนี้ออฟไลน์ ตอบจากคลังคำถามที่เตรียมไว้',
-    rate: 'ให้คะแนนระบบ', askPh: 'พิมพ์คำถาม เช่น ที่นี่มีสัตว์อะไรบ้าง', where: 'ทิ้งลง<b>{bin}</b> {type}',
-    greet: 'สวัสดีค่ะ ยินดีต้อนรับสู่มาลัยฟาร์ม ถามเรื่องสัตว์ ที่เที่ยวใกล้ ๆ หรือขยะชิ้นไหนทิ้งถังไหนก็ได้นะคะ',
-    chips: ['ที่นี่มีสัตว์อะไรบ้าง', 'ให้อาหารสัตว์อย่างไรให้ปลอดภัย', 'แก้วกาแฟพลาสติกทิ้งถังไหน', 'ที่เที่ยวใกล้ ๆ แถวนี้', 'ท่องเที่ยวเชิงนิเวศคืออะไร', 'ค่าเข้าและเวลาเปิด'],
+    botTitle: 'ถาม GuideBot', botSub: 'ไกด์ช่วยตอบเรื่อง{place}และการแยกขยะ', botSubOff: 'ตอนนี้ออฟไลน์ ตอบจากคลังคำถามที่เตรียมไว้',
+    rate: 'ให้คะแนนระบบ', askPh: 'พิมพ์คำถาม เช่น {ex}', where: 'ทิ้งลง<b>{bin}</b> {type}',
+    greet: 'สวัสดีค่ะ ยินดีต้อนรับสู่{place} ถามเรื่องที่เที่ยว หรือขยะชิ้นไหนทิ้งถังไหนก็ได้นะคะ',
+    startLead: 'สถานีแยกขยะอัจฉริยะ ช่วยบอกว่าขยะชิ้นนี้ต้องทิ้งถังไหน พร้อมไกด์ตอบคำถามเรื่อง{place}', kbTag: 'จากข้อมูลสถานที่ในเครื่อง',
     offlineTag: 'คำตอบจากคลังข้อมูลในเครื่อง',
-    offlineDefault: 'ขออภัยค่ะ ตอนนี้ตอบได้เฉพาะเรื่องมาลัยฟาร์ม ที่เที่ยวใกล้เคียง และการแยกขยะ ลองถามใหม่ หรือสอบถามเจ้าหน้าที่ได้เลยค่ะ',
+    offlineDefault: 'ขออภัยค่ะ ตอนนี้ตอบได้เฉพาะเรื่อง{place} ที่เที่ยวใกล้เคียง และการแยกขยะ ลองถามใหม่ หรือสอบถามเจ้าหน้าที่ได้เลยค่ะ',
     binsIntro: 'สถานีนี้มีถัง {n} ใบค่ะ',
     itemAns: '{item} ทิ้งลง{bin} ({type}) ค่ะ',
     basicMode: 'โหมดพื้นฐาน ยังไม่ได้สอน AI ประจำสถานี',
     dataMismatch: 'ข้อมูลที่สอนไว้ไม่ตรงกับโมเดล ผู้ดูแลกรุณาตรวจสอบ',
     notReady: 'กล้องยังไม่พร้อมแยกขยะ', notReadySub: 'ดูป้ายบนถัง หรือถาม GuideBot ได้เลย',
     camErr: 'เปิดกล้องไม่ได้', aiErr: 'โหลด AI ไม่สำเร็จ',
-    svTitle: 'ช่วยให้คะแนนสถานีนี้หน่อย', svLead: 'ใช้เวลาไม่ถึง 30 วินาที ข้อมูลนี้ใช้ปรับปรุงโครงงานของนักเรียน',
+    svTitle: 'ช่วยให้คะแนนสถานีนี้หน่อย', svLead: 'ใช้เวลาไม่ถึง 30 วินาที ข้อมูลนี้ใช้ปรับปรุงสถานีให้ดียิ่งขึ้น',
     svWho: 'ฉันคือ', svTourist: 'นักท่องเที่ยว', svStaff: 'เจ้าหน้าที่/ผู้ดูแล', svQ1: 'ใช้งานง่าย', svQ2: 'ช่วยให้แยกขยะได้ถูกต้องและได้ความรู้',
     svQ3: 'อยากให้มีสถานีแบบนี้ในที่เที่ยวอื่น ๆ', svSend: 'ส่งคะแนน', cancel: 'ยกเลิก', thanks: 'ขอบคุณสำหรับคะแนนค่ะ',
     faces: ['น้อยที่สุด', 'น้อย', 'ปานกลาง', 'มาก', 'มากที่สุด'], micErr: 'ฟังเสียงไม่ได้ ลองพิมพ์คำถามแทนนะคะ'
   },
   en: {
-    placeLine: 'Smart waste station, Malai Farm, Cha-am', online: 'Online', offline: 'Offline', aiOn: 'AI watching',
+    placeLine: 'Smart waste station', online: 'Online', offline: 'Offline', aiOn: 'AI watching',
     preparing: 'Starting camera and AI…', hint: 'Hold your item inside the frame and listen for the right bin',
-    botTitle: 'Ask GuideBot', botSub: 'Your guide to Malai Farm and waste sorting', botSubOff: 'Offline now, answering from saved questions',
-    rate: 'Rate this station', askPh: 'Ask something, e.g. What animals are here?', where: 'Use the <b>{bin}</b>: {type}',
-    greet: 'Hello and welcome to Malai Farm! Ask me about the animals, nearby places, or which bin your rubbish goes in.',
-    chips: ['What animals are here?', 'How do I feed the animals safely?', 'Which bin for a plastic coffee cup?', 'What else is nearby?', 'What is ecotourism?', 'Entry fee and opening hours'],
+    botTitle: 'Ask GuideBot', botSub: 'Your guide to {place} and waste sorting', botSubOff: 'Offline now, answering from saved questions',
+    rate: 'Rate this station', askPh: 'Ask something, e.g. {ex}', where: 'Use the <b>{bin}</b>: {type}',
+    greet: 'Hello and welcome to {place}! Ask me about this place, nearby spots, or which bin your rubbish goes in.',
+    startLead: 'Smart waste sorting station and eco-travel guide for {place}', kbTag: 'From on-device place notes',
     offlineTag: 'Answer from on-device notes',
-    offlineDefault: 'Sorry, right now I can only help with Malai Farm, nearby places and waste sorting. Try asking again, or ask a staff member.',
+    offlineDefault: 'Sorry, right now I can only help with {place}, nearby places and waste sorting. Try asking again, or ask a staff member.',
     binsIntro: 'This station has {n} bins.',
     itemAns: '{item} goes in the {bin} ({type}).',
     basicMode: 'Basic mode: station AI not trained yet',
     dataMismatch: 'Training data does not match the model. Staff, please check.',
     notReady: 'The camera is not ready to sort yet', notReadySub: 'Check the bin labels or ask GuideBot',
     camErr: 'Camera unavailable', aiErr: 'AI failed to load',
-    svTitle: 'Please rate this station', svLead: 'It takes under 30 seconds and helps the student project.',
+    svTitle: 'Please rate this station', svLead: 'It takes under 30 seconds and helps us improve the station.',
     svWho: 'I am a', svTourist: 'Visitor', svStaff: 'Staff member', svQ1: 'Easy to use', svQ2: 'Helped me sort correctly and learn something',
     svQ3: 'I would like stations like this at other places', svSend: 'Send rating', cancel: 'Cancel', thanks: 'Thank you for rating!',
     faces: ['Not at all', 'A little', 'Somewhat', 'Very', 'Extremely'], micErr: 'Could not hear you. Please type instead.'
@@ -714,7 +765,7 @@ const fmt = (s, v) => String(s).replace(/\{(\w+)\}/g, (_, k) => v[k] ?? '');
 const clone = o => JSON.parse(JSON.stringify(o));
 const now = () => performance.now();
 const L = () => S.lang === 'en' ? 'en' : 'th';
-const t = k => (T[L()][k] ?? T.th[k] ?? k);
+const t = k => { const s = T[L()][k] ?? T.th[k] ?? k; return typeof s === 'string' && s.includes('{') ? fillPlace(s, L()) : s; };
 const isThai = s => /[฀-๿]/.test(s);
 const pct = x => Math.round(x * 100) + '%';
 function debounce(fn, ms) { let h; return (...a) => { clearTimeout(h); h = setTimeout(() => fn(...a), ms); }; }
@@ -728,6 +779,8 @@ function f32ToB64(f) { const u = new Uint8Array(f.buffer, f.byteOffset, f.byteLe
 function b64ToF32(b) { const s = atob(b); const u = new Uint8Array(s.length); for (let i = 0; i < s.length; i++) u[i] = s.charCodeAt(i); return new Float32Array(u.buffer); }
 
 /* ---------------- settings ---------------- */
+// tips from earlier versions that only suit the farm (replaced when never edited)
+const OLD_TIPS = { snack_bag: 'ถุงพลาสติกอันตรายต่อสัตว์ในฟาร์ม ห้ามทิ้งในคอกนะคะ', food: 'อย่านำเศษอาหารไปให้สัตว์ในฟาร์มนะคะ' };
 const DEFAULTS = {
   lang: 'th', muted: false, pin: '1234',
   threshold: 75, stableFrames: 3, cooldown: 6, k: 7, minSim: 0, interval: 120,
@@ -739,7 +792,8 @@ const DEFAULTS = {
   readAnswers: true, showSurvey: true, idleReset: 90, autoFullscreen: true,
   apiKey: '', model: 'gemini-flash-latest', systemPrompt: DEFAULT_PROMPT, kb: DEFAULT_KB,
   bins: DEFAULT_BINS, items: DEFAULT_ITEMS, exported: false,
-  site: 'มาลัยฟาร์ม', sites: ['มาลัยฟาร์ม', 'วนอุทยานเขานางพันธุรัตน์', 'ชายหาดชะอำ'], tariff: ''
+  places: DEFAULT_PLACES, placeId: 'malai',
+  site: 'มาลัยฟาร์ม', sites: DEFAULT_PLACES.map(p => p.th), tariff: ''   // site/sites mirror the place names (used by logs and the efficiency tab)
 };
 const SKEY = 'ecosort.settings.v1';
 let S = loadSettings();
@@ -751,7 +805,49 @@ function loadSettings() {
   if (!Array.isArray(out.items) || !out.items.length) out.items = clone(DEFAULT_ITEMS);
   if (!out.items.find(i => i.id === BG)) out.items.unshift(clone(DEFAULT_ITEMS[0]));
   if (s.voiceVer !== 2) { if (!s.voiceRate || s.voiceRate === 1) out.voiceRate = 0.95; out.voiceTh = ''; out.voiceEn = ''; out.voiceVer = 2; }
+  return normalizeSettings(out, s);
+}
+function normalizeSettings(out, saved = {}) {
+  // places: build from older settings (one knowledge text + a list of site names) the first time
+  if (!Array.isArray(out.places) || !out.places.length || !Array.isArray(saved.places)) {
+    const base = Array.isArray(saved.places) && saved.places.length ? saved.places : clone(DEFAULT_PLACES);
+    if (!Array.isArray(saved.places) && typeof saved.kb === 'string' && saved.kb.trim()) { const m = base.find(p => p.id === 'malai'); if (m) m.kb = saved.kb; }
+    if (!Array.isArray(saved.places) && Array.isArray(saved.sites)) for (const nm of saved.sites) if (nm && !base.some(p => p.th === nm)) base.push(newPlace(nm));
+    out.places = base;
+    if (!Array.isArray(saved.places)) { const bySite = base.find(p => p.th === saved.site); out.placeId = (bySite || base[0]).id; }
+  }
+  out.places = out.places.filter(p => p && typeof p === 'object').map(p => Object.assign({ id: 'p' + Math.random().toString(36).slice(2, 8), th: 'สถานที่', en: '', areaTh: '', areaEn: '', kb: '', chipsTh: '', chipsEn: '' }, p));
+  if (!out.places.length) out.places = clone(DEFAULT_PLACES);
+  if (!out.places.some(p => p.id === out.placeId)) {
+    const bySite = out.places.find(p => p.th === saved.site);
+    out.placeId = (bySite || out.places[0]).id;
+  }
+  delete out.kb;
+  // GuideBot instructions that were never edited follow the new place-aware default
+  const sp = String(out.systemPrompt || '').trim();
+  if (!sp || LEGACY_PROMPTS.some(x => x.trim() === sp)) out.systemPrompt = DEFAULT_PROMPT;
+  // farm-only tips that were never edited become tips that suit any place
+  for (const it of out.items || []) { const nt = DEFAULT_ITEMS.find(d => d.id === it.id); if (nt && OLD_TIPS[it.id] && it.tip && it.tip.th === OLD_TIPS[it.id]) it.tip = clone(nt.tip); }
+  syncSites(out);
   return out;
+}
+function newPlace(name, extra = {}) {
+  return Object.assign({ id: 'p' + Date.now().toString(36) + Math.random().toString(36).slice(2, 5), th: name, en: '', areaTh: '', areaEn: '', kb: kbTemplate(name), chipsTh: '', chipsEn: '' }, extra);
+}
+function syncSites(o = S) { const p = o.places.find(x => x.id === o.placeId) || o.places[0]; o.placeId = p.id; o.site = p.th; o.sites = o.places.map(x => x.th); }
+const activePlace = () => S.places.find(p => p.id === S.placeId) || S.places[0];
+function placeName(lg = L(), p = activePlace()) { return (lg === 'en' && p.en ? p.en : p.th) || ''; }
+function placeArea(lg = L(), p = activePlace()) { return (lg === 'en' ? (p.areaEn || '') : (p.areaTh || '')).trim(); }
+// replaces {place} {placeEn} {area} {areaEn}; tidies empty brackets and spaces left by blank fields
+function fillPlace(str, lg = L(), p = activePlace()) {
+  const v = { place: placeName(lg, p), placeEn: p.en || '', placeTh: p.th || '', area: placeArea(lg, p), areaEn: p.areaEn || '', areaTh: p.areaTh || '' };
+  return String(str).replace(/\{(place|placeEn|placeTh|area|areaEn|areaTh)\}/g, (_, k) => v[k] || '').replace(/\(\s*\)/g, '').replace(/[ \t]{2,}/g, ' ').replace(/ +([,.!?])/g, '$1').replace(/[ \t]+$/gm, '');
+}
+function placeLineText(lg = L()) { const a = placeArea(lg), n = placeName(lg); return [T[lg].placeLine, n, a && a !== n ? a : ''].filter(Boolean).join(lg === 'en' ? ', ' : ' '); }
+function placeChips(lg = L()) {
+  const p = activePlace(); const raw = lg === 'en' ? p.chipsEn : p.chipsTh;
+  const list = String(raw || '').split(/\r?\n/).map(x => x.trim()).filter(Boolean);
+  return list.length ? list : CHIPS_GENERIC[lg];
 }
 const saveSettings = debounce(() => { try { localStorage.setItem(SKEY, JSON.stringify(S)); } catch (e) { console.warn(e); } }, 250);
 const itemById = id => S.items.find(i => i.id === id);
@@ -789,7 +885,7 @@ function logEvent(e) { DB.add('events', Object.assign({ t: Date.now(), site: S.s
 const state = {
   started: false, view: 'kiosk', stream: null, loopOn: false, wl: null, sw: null,
   lastChat: 0, busy: false, chat: [], thumbs: {}, evalRecs: [], evalTrue: null, testing: false,
-  lastPred: null, inferMs: [], adminTab: 'train', frames: 0, pfAuditing: false
+  lastPred: null, inferMs: [], adminTab: 'train', frames: 0, pfAuditing: false, prov: {}
 };
 const AI = { ready: false, id: null, src: null, fx: null, dim: 0, head: false, knn: null, dataOk: true, err: null, backend: '' };
 
@@ -797,7 +893,8 @@ const AI = { ready: false, id: null, src: null, fx: null, dim: 0, head: false, k
 function applyI18n() {
   document.documentElement.lang = L();
   $$('[data-i18n]').forEach(el => { el.textContent = t(el.dataset.i18n); });
-  $$('[data-i18n-ph]').forEach(el => { el.placeholder = t(el.dataset.i18nPh); });
+  $$('[data-i18n-ph]').forEach(el => { el.placeholder = fmt(t(el.dataset.i18nPh), { ex: placeChips()[0] || '' }); });
+  applyPlaceText();
   $('#langBtn').textContent = L() === 'th' ? 'EN' : 'ไทย';
   updateNet();
   $$('.faces').forEach(f => {
@@ -810,7 +907,21 @@ function renderBins() {
     `<div class="bin" data-bin="${esc(b.id)}" style="--c:${esc(b.color)};--ink-on:${inkOn(b.color)}"><svg class="i"><use href="#i-${esc(b.icon)}"/></svg><div class="type">${esc(b.type[L()])}</div><div class="name">${esc(b.name[L()])}</div><span class="arrow"></span></div>`).join('');
 }
 function renderChips() {
-  $('#chips').innerHTML = T[L()].chips.map(c => `<button type="button" class="chip">${esc(c)}</button>`).join('');
+  $('#chips').innerHTML = placeChips().map(c => `<button type="button" class="chip">${esc(c)}</button>`).join('');
+}
+// texts on the station screen that carry the place name
+function applyPlaceText() {
+  const pl = $('#placeLine'); if (pl) { pl.textContent = placeLineText(); pl.title = pl.textContent; }
+  const sl = $('#startLead'); if (sl) sl.textContent = fillPlace(T.th.startLead, 'th');
+  const se = $('#startLeadEn'); if (se) se.textContent = fillPlace(T.en.startLead, 'en');
+  const bs = $('#botSub'); if (bs) bs.textContent = navigator.onLine ? t('botSub') : t('botSubOff');
+}
+// called whenever the active place or its details change
+function applyPlace({ chat = true } = {}) {
+  syncSites(); saveSettings();
+  applyI18n(); renderChips();
+  if (chat) { if (!state.chat.length) resetChat(); }
+  const pv = $('#placePreview'); if (pv) pv.innerHTML = placePreviewHTML();
 }
 function updateNet() {
   const on = navigator.onLine;
@@ -1250,8 +1361,9 @@ function classCount(id) { return AI.knn ? (AI.knn.getClassExampleCount()[id] || 
 /* dataset persistence */
 async function datasetObject() {
   const ds = AI.knn.getClassifierDataset(); const data = {};
-  for (const [label, ten] of Object.entries(ds)) data[label] = { shape: ten.shape.slice(), v: await ten.data() };
-  return { modelId: AI.id, dim: AI.dim, savedAt: Date.now(), data, thumbs: state.thumbs };
+  const prov = {};
+  for (const [label, ten] of Object.entries(ds)) { data[label] = { shape: ten.shape.slice(), v: await ten.data() }; prov[label] = provFor(label).slice(); }
+  return { modelId: AI.id, dim: AI.dim, savedAt: Date.now(), data, thumbs: state.thumbs, prov };
 }
 async function restoreDataset(obj) {
   const ds = {};
@@ -1263,6 +1375,7 @@ async function restoreDataset(obj) {
   AI.knn.clearAllClasses();
   AI.knn.setClassifierDataset(ds);
   state.thumbs = obj.thumbs || {};
+  state.prov = obj.prov && typeof obj.prov === 'object' ? obj.prov : {};
   AI.dataOk = true;
 }
 let saveTimer = null;
@@ -1277,7 +1390,7 @@ async function exportModelFile() {
   const o = await datasetObject();
   const data = {};
   for (const [k, d] of Object.entries(o.data)) data[k] = { rows: d.shape[0], b64: f32ToB64(d.v) };
-  const out = { format: 'ecosort-model', version: 1, app: APP_VERSION, modelId: AI.id, modelLabel: AI.src.label, dim: AI.dim, exportedAt: new Date().toISOString(), items: S.items, bins: S.bins, thumbs: o.thumbs, data };
+  const out = { format: 'ecosort-model', version: 1, app: APP_VERSION, modelId: AI.id, modelLabel: AI.src.label, dim: AI.dim, exportedAt: new Date().toISOString(), items: S.items, bins: S.bins, thumbs: o.thumbs, prov: o.prov, data };
   download('ecosort-model.json', JSON.stringify(out));
   S.exported = true; saveSettings();
 }
@@ -1297,7 +1410,7 @@ async function importModelObj(obj, { silent = false, applyConfig = true } = {}) 
   }
   const data = {};
   for (const [k, d] of Object.entries(obj.data)) data[k] = { shape: [d.rows, obj.dim], v: b64ToF32(d.b64) };
-  await restoreDataset({ data, dim: obj.dim, thumbs: obj.thumbs });
+  await restoreDataset({ data, dim: obj.dim, thumbs: obj.thumbs, prov: obj.prov });
   await saveDatasetNow();
   updateModeBadge();
 }
@@ -1313,64 +1426,98 @@ async function tryDefaultModelFile() {
 
 
 /* ---------------- import: image datasets (ZIP / folder / photos) + waste list (CSV) ---------------- */
-const IMG_RE = /\.(jpe?g|png|webp|gif|bmp|heic|heif|avif)$/i;
-const isJunk = p => /(^|\/)(__MACOSX|\.[^/]*)(\/|$)/.test(p) || /thumbs\.db$|desktop\.ini$/i.test(p);
-const normName = x => String(x || '').toLowerCase().replace(/^\d+[\s._-]+/, '').replace(/[_\-.]+/g, ' ').replace(/\s+/g, ' ').trim();
-function classFromPath(path) { const parts = String(path || '').split('/').filter(Boolean); parts.pop(); return parts.length ? parts[parts.length - 1] : ''; }
+const IMG_RE = /\.(jpe?g|jfif|pjpeg|png|webp|gif|bmp|tiff?|heic|heif|avif)$/i;
+const isJunk = p => /(^|\/)(__MACOSX|\.[^/]*)(\/|$)/.test(p) || /(^|\/)(thumbs\.db|desktop\.ini)$/i.test(p);
+const normName = x => String(x || '').normalize('NFC').toLowerCase().replace(/^\d+[\s._-]+/, '').replace(/[_\-.]+/g, ' ').replace(/\s+/g, ' ').trim();
+// folder names that only say how a dataset is split or stored, not what is in the picture
+const SPLIT_DIRS = new Set(['train', 'training', 'trainset', 'train set', 'test', 'testing', 'testset', 'test set', 'val', 'valid', 'validation', 'eval', 'evaluation', 'dev',
+  'images', 'image', 'imgs', 'img', 'jpg', 'jpeg', 'png', 'photos', 'pictures', 'pics', 'data', 'dataset', 'datasets', 'dataset resized', 'resized', 'raw', 'all', 'samples', 'crops', 'cropped']);
+// class = nearest folder above the file that is not a split folder (train/test/val/images…)
+function classFromPath(path) {
+  const parts = String(path || '').replace(/\\/g, '/').split('/').filter(Boolean); parts.pop();
+  const direct = parts.length ? parts[parts.length - 1] : '';
+  while (parts.length && SPLIT_DIRS.has(normName(parts[parts.length - 1]))) parts.pop();
+  return parts.length ? { name: parts[parts.length - 1], generic: false } : { name: direct, generic: !!direct };
+}
+// folder names used by public waste datasets (TrashNet, Garbage Classification 12 / v2, Waste Classification Data, RealWaste, TACO crops, medical waste sets)
 const DATASET_ALIASES = [
-  [BG, ['background', 'bg', 'empty', 'none', 'nothing', 'no item', 'พื้นหลัง', 'ไม่มีขยะ']],
-  ['battery', ['battery', 'batteries']],
-  ['food', ['biological', 'organic', 'organics', 'food', 'food organics', 'food waste', 'vegetation', 'compost', 'biodegradable', 'bio']],
-  ['paper', ['cardboard', 'paper', 'carton', 'cardboard box', 'newspaper']],
-  ['glass_bottle', ['glass', 'brown glass', 'green glass', 'white glass', 'glass bottle', 'glass bottles']],
-  ['can', ['metal', 'can', 'cans', 'aluminium cans', 'aluminum cans', 'aluminium', 'aluminum', 'metal can', 'tin']],
-  ['pet_bottle', ['plastic', 'pet', 'pet bottle', 'pet bottles', 'plastic bottle', 'plastic bottles', 'bottle', 'bottles', 'hdpe milk bottles']],
-  ['plastic_cup', ['cup', 'cups', 'plastic cup', 'disposable cup']],
-  ['foam', ['styrofoam', 'foam', 'polystyrene']],
-  ['snack_bag', ['plastic bag', 'plastic bags', 'bag', 'wrapper', 'wrappers', 'snack', 'chips bag']],
-  ['straw', ['straw', 'straws', 'cutlery', 'plastic cutlery']],
-  ['tissue', ['tissue', 'tissues', 'napkin', 'paper towel']],
-  ['mask', ['mask', 'masks', 'face mask']]
+  [BG, ['background', 'bg', 'empty', 'none', 'nothing', 'no item', 'no object', 'พื้นหลัง', 'ไม่มีขยะ']],
+  ['battery', ['battery', 'batteries', 'battery waste', 'used batteries', 'ถ่าน', 'ถ่านไฟฉาย', 'แบตเตอรี่']],
+  ['food', ['biological', 'organic', 'organics', 'organic waste', 'o', 'food', 'food organics', 'food waste', 'food scraps', 'vegetation', 'compost', 'biodegradable', 'bio', 'fruit', 'fruits', 'vegetable', 'vegetables', 'leaves', 'leaf', 'garden waste', 'yard waste', 'green waste', 'เศษอาหาร', 'ขยะอินทรีย์']],
+  ['paper', ['cardboard', 'paper', 'carton', 'cardboard box', 'cardboard boxes', 'newspaper', 'newspapers', 'magazine', 'magazine paper', 'normal paper', 'office paper', 'corrugated carton', 'egg carton', 'paper bag', 'paper and cardboard', 'กระดาษ', 'ลังกระดาษ']],
+  ['glass_bottle', ['glass', 'brown glass', 'green glass', 'white glass', 'glass bottle', 'glass bottles', 'glass jar', 'glass jars', 'ขวดแก้ว']],
+  ['can', ['metal', 'can', 'cans', 'aluminium cans', 'aluminum cans', 'aluminium can', 'aluminum can', 'aluminium', 'aluminum', 'metal can', 'metal cans', 'tin', 'tin can', 'drink can', 'food can', 'soda can', 'beverage can', 'กระป๋อง']],
+  ['pet_bottle', ['plastic', 'pet', 'pet bottle', 'pet bottles', 'plastic bottle', 'plastic bottles', 'bottle', 'bottles', 'clear plastic bottle', 'other plastic bottle', 'water bottle', 'plastic water bottle', 'hdpe milk bottles', 'ขวดพลาสติก', 'ขวดน้ำ']],
+  ['plastic_cup', ['cup', 'cups', 'plastic cup', 'plastic cups', 'disposable cup', 'disposable plastic cup', 'แก้วพลาสติก']],
+  ['foam', ['styrofoam', 'foam', 'polystyrene', 'polystyrene foam', 'foam food container', 'foam cup', 'styrofoam cup', 'styrofoam container', 'โฟม', 'กล่องโฟม']],
+  ['snack_bag', ['plastic bag', 'plastic bags', 'bag', 'bags', 'wrapper', 'wrappers', 'snack', 'chips bag', 'chip bag', 'crisp packet', 'crisp packets', 'other plastic wrapper', 'plastic wrapper', 'food wrapper', 'candy wrapper', 'single use carrier bag', 'plastic film', 'garbage bag', 'ซองขนม', 'ถุงพลาสติก']],
+  ['straw', ['straw', 'straws', 'plastic straw', 'plastic straws', 'cutlery', 'plastic cutlery', 'plastic utensils', 'utensils', 'spoon', 'fork', 'หลอด', 'ช้อนพลาสติก']],
+  ['tissue', ['tissue', 'tissues', 'tissue paper', 'napkin', 'napkins', 'paper napkin', 'paper towel', 'ทิชชู่']],
+  ['mask', ['mask', 'masks', 'face mask', 'face masks', 'surgical mask', 'medical mask', 'หน้ากากอนามัย']]
 ];
+// folders that need a new list item; skip:true = mixed folders that are left out unless staff choose to add them
 const NEW_SUGGEST = [
-  [['trash', 'miscellaneous trash', 'general', 'general waste', 'residual', 'other', 'others', 'non recyclable'], { th: 'ขยะทั่วไปอื่น ๆ', en: 'Other general waste', bin: 'blue' }],
-  [['clothes', 'clothing', 'textile', 'textiles', 'textile trash'], { th: 'เสื้อผ้า/สิ่งทอ', en: 'Clothes and textiles', bin: 'blue' }],
+  [['trash', 'miscellaneous trash', 'general', 'general waste', 'residual', 'other', 'others', 'non recyclable', 'waste', 'garbage', 'mixed'], { th: 'ขยะทั่วไปอื่น ๆ', en: 'Other general waste', bin: 'blue', skip: true }],
+  [['r', 'recyclable', 'recyclables', 'recycle', 'recycling', 'recyclable waste'], { th: 'ขยะรีไซเคิลรวม', en: 'Mixed recyclables', bin: 'yellow', skip: true }],
+  [['clothes', 'clothing', 'textile', 'textiles', 'textile trash', 'fabric'], { th: 'เสื้อผ้า/สิ่งทอ', en: 'Clothes and textiles', bin: 'blue' }],
   [['shoes', 'shoe'], { th: 'รองเท้า', en: 'Shoes', bin: 'blue' }],
-  [['e waste', 'ewaste', 'electronics', 'electronic'], { th: 'ขยะอิเล็กทรอนิกส์', en: 'E-waste', bin: 'orange' }],
-  [['light bulb', 'light bulbs', 'bulb', 'lamp'], { th: 'หลอดไฟ', en: 'Light bulb', bin: 'orange' }],
-  [['medicine', 'pills', 'drugs'], { th: 'ยาหมดอายุ', en: 'Expired medicine', bin: 'orange' }],
-  [['spray', 'aerosol', 'spray can'], { th: 'กระป๋องสเปรย์', en: 'Spray can', bin: 'orange' }],
-  [['diaper', 'diapers'], { th: 'ผ้าอ้อมสำเร็จรูป', en: 'Diaper', bin: 'red' }]
+  [['cigarette', 'cigarettes', 'cigarette butt', 'cigarette butts'], { th: 'ก้นบุหรี่', en: 'Cigarette butt', bin: 'blue' }],
+  [['paper cup', 'paper cups'], { th: 'แก้วกระดาษ', en: 'Paper cup', bin: 'blue' }],
+  [['drink carton', 'milk carton', 'tetra pak', 'tetrapak', 'uht carton'], { th: 'กล่องนม/กล่องเครื่องดื่ม', en: 'Drink carton', bin: 'yellow' }],
+  [['e waste', 'ewaste', 'electronics', 'electronic', 'electronic waste'], { th: 'ขยะอิเล็กทรอนิกส์', en: 'E-waste', bin: 'orange' }],
+  [['light bulb', 'light bulbs', 'bulb', 'bulbs', 'lamp', 'fluorescent lamp'], { th: 'หลอดไฟ', en: 'Light bulb', bin: 'orange' }],
+  [['medicine', 'pills', 'drugs', 'expired medicine'], { th: 'ยาหมดอายุ', en: 'Expired medicine', bin: 'orange' }],
+  [['spray', 'aerosol', 'aerosols', 'spray can'], { th: 'กระป๋องสเปรย์', en: 'Spray can', bin: 'orange' }],
+  [['lighter', 'lighters'], { th: 'ไฟแช็ก', en: 'Lighter', bin: 'orange' }],
+  [['diaper', 'diapers', 'nappy', 'nappies'], { th: 'ผ้าอ้อมสำเร็จรูป', en: 'Diaper', bin: 'red' }],
+  [['gloves', 'glove', 'medical gloves', 'latex gloves', 'rubber gloves'], { th: 'ถุงมือยาง/ถุงมือแพทย์', en: 'Medical gloves', bin: 'red' }],
+  [['gauze', 'bandage', 'bandages', 'cotton', 'cotton swab', 'cotton swabs', 'plaster', 'plasters', 'band aid', 'dressing'], { th: 'ผ้าก๊อซ/สำลี/พลาสเตอร์ยา', en: 'Gauze, cotton or plasters', bin: 'red' }],
+  [['syringe', 'syringes', 'needle', 'needles', 'sharps'], { th: 'เข็ม/กระบอกฉีดยา', en: 'Syringes and needles', bin: 'red' }]
 ];
-function suggestMap(folder) {
+// dataset folders that hold several kinds of waste (shown with a note in the mapping table)
+// (organics, paper and glass folders are mixed too, but everything in them goes to the same bin)
+const MIXED_DIRS = { plastic: 'รวมพลาสติกหลายแบบ ทั้งขวด ถุง และกล่อง (ถุงเปื้อนต้องทิ้งถังน้ำเงิน) ควรตรวจภาพก่อน', metal: 'รวมโลหะหลายแบบ ควรตรวจภาพก่อน' };
+function suggestMap(folder, generic = false, { wantNew = false } = {}) {
   const n = normName(folder);
+  if (generic && !wantNew) return { mode: 'skip', why: 'split' };
   if (!n) return { mode: 'item', item: selItem };
-  for (const it of S.items) if ([it.id, it.th, it.en, ...(it.kw || [])].map(normName).includes(n)) return { mode: 'item', item: it.id };
-  for (const [id, al] of DATASET_ALIASES) if (al.includes(n) && itemById(id)) return { mode: 'item', item: id };
+  if (!wantNew) {
+    for (const it of S.items) if ([it.id, it.th, it.en, ...(it.kw || [])].map(normName).includes(n)) return { mode: 'item', item: it.id };
+    for (const [id, al] of DATASET_ALIASES) if (al.includes(n) && itemById(id)) return { mode: 'item', item: id };
+  }
   for (const [al, sug] of NEW_SUGGEST) if (al.includes(n)) {
     const ex = S.items.find(i => normName(i.th) === normName(sug.th) || normName(i.en) === normName(sug.en));
-    return ex ? { mode: 'item', item: ex.id } : { mode: 'new', th: sug.th, en: sug.en, bin: sug.bin };
+    if (ex && !wantNew) return { mode: 'item', item: ex.id };
+    const nw = { mode: 'new', th: sug.th, en: sug.en, bin: sug.bin };
+    return sug.skip && !wantNew ? { mode: 'skip', why: 'mixed' } : nw;
   }
-  return { mode: 'new', th: folder, en: folder, bin: 'blue' };
+  return { mode: 'new', th: folder || 'รายการใหม่', en: folder || 'New item', bin: 'blue' };
 }
 
 // --- minimal ZIP reader: reads the central directory, then only the entries it needs (low memory, ZIP64 aware)
 async function readSlice(file, a, b) { return new Uint8Array(await file.slice(a, b).arrayBuffer()); }
 const TD_UTF8 = new TextDecoder('utf-8', { fatal: true });
 let TD_TH; try { TD_TH = new TextDecoder('windows-874'); } catch { TD_TH = new TextDecoder('utf-8'); }
-function zipName(bytes, utf8) { if (utf8) return new TextDecoder().decode(bytes); try { return TD_UTF8.decode(bytes); } catch { return TD_TH.decode(bytes); } }
+function zipName(bytes, utf8) { let s; if (utf8) s = new TextDecoder().decode(bytes); else { try { s = TD_UTF8.decode(bytes); } catch { s = TD_TH.decode(bytes); } } return s.normalize('NFC').replace(/\\/g, '/'); }
 async function zipIndex(file) {
+  if (file.size < 22) throw new Error('ไฟล์นี้ไม่ใช่ ZIP หรือไฟล์เสียหาย');
   const tailLen = Math.min(file.size, 22 + 65535 + 20);
   const tail = await readSlice(file, file.size - tailLen, file.size), tv = new DataView(tail.buffer);
   let e = -1; for (let i = tail.length - 22; i >= 0; i--) if (tv.getUint32(i, true) === 0x06054b50) { e = i; break; }
-  if (e < 0) throw new Error('ไฟล์นี้ไม่ใช่ ZIP หรือไฟล์เสียหาย');
+  if (e < 0) throw new Error('ไฟล์นี้ไม่ใช่ ZIP หรือดาวน์โหลดมาไม่ครบ');
   let size = tv.getUint32(e + 12, true), off = tv.getUint32(e + 16, true);
   if ((size === 0xFFFFFFFF || off === 0xFFFFFFFF || tv.getUint16(e + 10, true) === 0xFFFF) && e >= 20 && tv.getUint32(e - 20, true) === 0x07064b50) {
     const z64 = Number(tv.getBigUint64(e - 12, true));
     const r = await readSlice(file, z64, z64 + 56), rv = new DataView(r.buffer);
     if (rv.getUint32(0, true) === 0x06064b50) { size = Number(rv.getBigUint64(40, true)); off = Number(rv.getBigUint64(48, true)); }
   }
-  const cd = await readSlice(file, off, off + size), v = new DataView(cd.buffer);
+  let cd = await readSlice(file, off, off + size), shift = 0;
+  if (size && (cd.length < 4 || new DataView(cd.buffer).getUint32(0, true) !== 0x02014b50)) {
+    // data in front of the ZIP (self-extracting archives, some downloads): the directory sits right before the end record
+    const cdAt = (file.size - tailLen) + e - size;
+    if (cdAt > 0 && cdAt !== off) { const c2 = await readSlice(file, cdAt, cdAt + size); if (c2.length >= 4 && new DataView(c2.buffer).getUint32(0, true) === 0x02014b50) { cd = c2; shift = cdAt - off; } }
+  }
+  const v = new DataView(cd.buffer);
   const out = []; let p = 0;
   while (p + 46 <= cd.length && v.getUint32(p, true) === 0x02014b50) {
     const flags = v.getUint16(p + 8, true), method = v.getUint16(p + 10, true);
@@ -1382,9 +1529,10 @@ async function zipIndex(file) {
       if (id === 1) { let q = x + 4; if (usize === 0xFFFFFFFF) { usize = Number(v.getBigUint64(q, true)); q += 8; } if (csize === 0xFFFFFFFF) { csize = Number(v.getBigUint64(q, true)); q += 8; } if (loff === 0xFFFFFFFF) loff = Number(v.getBigUint64(q, true)); }
       x += 4 + sz;
     }
-    if (!name.endsWith('/')) out.push({ name, method, csize, loff, enc: !!(flags & 1) });
+    if (!name.endsWith('/')) out.push({ name, method, csize, usize, loff: loff + shift, enc: !!(flags & 1) });
     p += 46 + nlen + xlen + clen;
   }
+  if (!out.length && p === 0 && size) throw new Error('อ่านสารบัญของ ZIP ไม่ได้ ไฟล์อาจเสียหาย');
   return out;
 }
 async function inflateRaw(u8) {
@@ -1394,87 +1542,174 @@ async function inflateRaw(u8) {
   if (!window.fflate) await loadScript(LIBS.fflate);
   return fflate.inflateSync(u8);
 }
-async function zipEntryData(file, e) {
+async function zipDataStart(file, e) {
   const h = await readSlice(file, e.loff, e.loff + 30), hv = new DataView(h.buffer);
   if (hv.getUint32(0, true) !== 0x04034b50) throw new Error('ZIP เสียหาย');
-  const start = e.loff + 30 + hv.getUint16(26, true) + hv.getUint16(28, true);
+  return e.loff + 30 + hv.getUint16(26, true) + hv.getUint16(28, true);
+}
+async function zipEntryData(file, e) {
+  const start = await zipDataStart(file, e);
   const comp = await readSlice(file, start, start + e.csize);
   if (e.method === 0) return comp;
   if (e.method === 8) return inflateRaw(comp);
   throw new Error('รูปแบบการบีบอัดนี้ไม่รองรับ');
 }
-const mimeOf = n => /\.png$/i.test(n) ? 'image/png' : /\.webp$/i.test(n) ? 'image/webp' : /\.gif$/i.test(n) ? 'image/gif' : /\.bmp$/i.test(n) ? 'image/bmp' : /\.hei[cf]$/i.test(n) ? 'image/heic' : /\.avif$/i.test(n) ? 'image/avif' : 'image/jpeg';
+// a ZIP stored inside a ZIP (e.g. a GitHub "Download ZIP" that contains dataset-resized.zip)
+async function zipEntryBlob(file, e) {
+  if (e.method === 0) { const start = await zipDataStart(file, e); return file.slice(start, start + e.csize); }   // no copy: read lazily from the outer file
+  return new Blob([await zipEntryData(file, e)]);
+}
+const mimeOf = n => /\.png$/i.test(n) ? 'image/png' : /\.webp$/i.test(n) ? 'image/webp' : /\.gif$/i.test(n) ? 'image/gif' : /\.bmp$/i.test(n) ? 'image/bmp' : /\.hei[cf]$/i.test(n) ? 'image/heic' : /\.avif$/i.test(n) ? 'image/avif' : /\.tiff?$/i.test(n) ? 'image/tiff' : 'image/jpeg';
+const ZIP_METHOD = { 1: 'Shrink', 6: 'Implode', 9: 'Deflate64', 12: 'BZIP2', 14: 'LZMA', 93: 'Zstandard', 95: 'XZ', 98: 'PPMd', 99: 'AES' };
 
 // --- decode any picture into a 224x224 centre crop (same framing as the camera)
 const impCanvas = document.createElement('canvas'); impCanvas.width = impCanvas.height = 224;
-async function decodeImage(blob) {
+async function decodeImage(blob, name = '') {
   try { return await createImageBitmap(blob); } catch {}
-  return new Promise((res, rej) => { const img = new Image(), url = URL.createObjectURL(blob); img.onload = () => { URL.revokeObjectURL(url); res(img); }; img.onerror = () => { URL.revokeObjectURL(url); rej(new Error('เปิดภาพไม่ได้')); }; img.src = url; });
+  return new Promise((res, rej) => {
+    const img = new Image(), url = URL.createObjectURL(blob);
+    img.onload = () => { URL.revokeObjectURL(url); res(img); };
+    img.onerror = () => { URL.revokeObjectURL(url); rej(new Error(/\.hei[cf]$/i.test(name) ? 'ภาพ HEIC เปิดได้เฉพาะบน iPad/iPhone (Safari)' : /\.tiff?$/i.test(name) ? 'ภาพ TIFF เปิดได้เฉพาะบน Safari' : 'เปิดภาพไม่ได้ (ไฟล์เสียหายหรือไม่ใช่ภาพ)')); };
+    img.src = url;
+  });
 }
-async function imageToCanvas(blob) {
-  const img = await decodeImage(blob);
+async function imageToCanvas(blob, name) {
+  const img = await decodeImage(blob, name);
   const w = img.width || img.naturalWidth, h = img.height || img.naturalHeight, side = Math.min(w, h);
+  if (!side || side < 32) { if (img.close) img.close(); throw new Error('ภาพเล็กเกินไป'); }
   const g = impCanvas.getContext('2d'); g.drawImage(img, (w - side) / 2, (h - side) / 2, side, side, 0, 0, 224, 224);
   if (img.close) img.close();
   return impCanvas;
 }
 function canvasThumb(c) { const t = document.createElement('canvas'); t.width = t.height = 96; t.getContext('2d').drawImage(c, 0, 0, 96, 96); return t.toDataURL('image/jpeg', 0.7); }
 
-const imp = { groups: null, file: null, skipped: 0, cap: 80, running: false, cancel: false, result: '' };
-function setImportGroups(groups, file, skipped) {
-  for (const g of groups.values()) g.map = g.forceItem ? { mode: 'item', item: g.forceItem } : suggestMap(g.name);
-  Object.assign(imp, { groups, file, skipped, result: '' });
-  const box = $('#impMap'); if (box) box.innerHTML = impMapHTML();
+// --- where each taught picture came from: '' camera, 'f…' photo picked by staff, 'z…' image from a dataset ZIP/folder
+function hash53(str) {
+  let h1 = 0xdeadbeef, h2 = 0x41c6ce57;
+  for (let i = 0; i < str.length; i++) { const c = str.charCodeAt(i); h1 = Math.imul(h1 ^ c, 2654435761); h2 = Math.imul(h2 ^ c, 1597334677); }
+  h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+  h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+  return (4294967296 * (2097151 & h2) + (h1 >>> 0)).toString(36);
 }
-async function scanZipFile(file) {
-  const box = $('#impMap'); if (box) box.innerHTML = '<p class="muted">กำลังอ่านรายชื่อไฟล์ใน ZIP…</p>';
-  const groups = new Map(); let skipped = 0;
-  for (const e of await zipIndex(file)) {
-    if (isJunk(e.name)) continue;
-    if (!IMG_RE.test(e.name) || e.enc) { skipped++; continue; }
-    const g = classFromPath(e.name);
-    if (!groups.has(g)) groups.set(g, { name: g, items: [] });
-    groups.get(g).items.push({ zip: e, name: e.name });
+function provFor(label) {
+  const n = classCount(label); let a = state.prov[label];
+  if (!Array.isArray(a)) a = [];
+  if (a.length < n) a = Array(n - a.length).fill('').concat(a); else if (a.length > n) a = a.slice(a.length - n);
+  state.prov[label] = a; return a;
+}
+function provCounts(label) { let ds = 0, ph = 0; for (const k of provFor(label)) { if (!k) continue; if (k[0] === 'z') ds++; else ph++; } return { ds, ph, n: classCount(label) }; }
+function datasetTotal() { if (!AI.knn) return 0; let n = 0; for (const l of Object.keys(AI.knn.getClassExampleCount())) n += provCounts(l).ds; return n; }
+function seenKeys() { const s = new Set(); for (const a of Object.values(state.prov || {})) if (Array.isArray(a)) for (const k of a) if (k) s.add(k); return s; }
+
+const imp = { groups: null, scan: null, cap: 80, running: false, cancel: false, result: '', last: null, test: '' };
+const impColl = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' });
+function newScan() { return { groups: new Map(), skipped: 0, enc: 0, methods: {}, nested: 0, nestedBig: [], files: [], kind: 'zip' }; }
+function addToGroup(sc, path, item) {
+  const c = classFromPath(path); const key = (c.generic ? '\u0000' : '') + (normName(c.name) || c.name);
+  if (!sc.groups.has(key)) sc.groups.set(key, { name: c.name, generic: c.generic, items: [] });
+  sc.groups.get(key).items.push(item);
+}
+async function scanZipInto(sc, zf, label, depth = 0) {
+  for (const e of await zipIndex(zf)) {
+    const name = e.name;
+    if (isJunk(name)) continue;
+    if (/\.zip$/i.test(name)) {
+      if (depth > 0 || e.enc || (e.method !== 0 && e.method !== 8)) { sc.skipped++; continue; }
+      if (e.method === 8 && e.usize > 400 * 1048576) { sc.nestedBig.push(name); continue; }
+      try { await scanZipInto(sc, await zipEntryBlob(zf, e), label + '>' + name, depth + 1); sc.nested++; } catch (err) { console.warn('nested zip', name, err); sc.skipped++; }
+      continue;
+    }
+    if (!IMG_RE.test(name)) { sc.skipped++; continue; }
+    if (e.enc) { sc.enc++; continue; }
+    if (e.method !== 0 && e.method !== 8) { const m = ZIP_METHOD[e.method] || ('แบบที่ ' + e.method); sc.methods[m] = (sc.methods[m] || 0) + 1; continue; }
+    addToGroup(sc, name, { zf, zip: e, name, key: 'z' + hash53(label + '|' + name) });
   }
-  if (!groups.size) throw new Error('ไม่พบไฟล์ภาพใน ZIP นี้');
-  setImportGroups(groups, file, skipped);
+}
+function zipEmptyReason(sc) {
+  const m = Object.keys(sc.methods);
+  if (m.length) return `ZIP นี้บีบอัดแบบ ${m.join(', ')} ซึ่งเบราว์เซอร์เปิดไม่ได้ ให้แตกไฟล์แล้วบีบอัดใหม่ด้วยโปรแกรมของเครื่อง (เช่น แอปไฟล์ > แตะค้าง > บีบอัด)`;
+  if (sc.enc) return 'ZIP นี้ตั้งรหัสผ่านไว้ ให้แตกไฟล์แล้วบีบอัดใหม่โดยไม่ใส่รหัสผ่าน';
+  if (sc.nestedBig.length) return `ZIP ที่ซ้อนอยู่ข้างใน (${sc.nestedBig[0]}) ใหญ่เกินกว่าจะเปิดในเครื่อง ให้แตก ZIP ชั้นนอกก่อน แล้วเลือก ZIP ข้างในโดยตรง`;
+  return 'ไม่พบไฟล์ภาพใน ZIP นี้';
+}
+async function scanZipFiles(files) {
+  const box = $('#impMap'); if (box) box.innerHTML = '<p class="muted">กำลังอ่านรายชื่อไฟล์ใน ZIP…</p>';
+  const sc = newScan(); const errs = [];
+  for (const f of files) {
+    try { await scanZipInto(sc, f, `${f.name}:${f.size}`); sc.files.push(f.name); }
+    catch (e) { errs.push(`${f.name}: ${e.message}`); }
+  }
+  if (!sc.groups.size) { if (box) box.innerHTML = ''; throw new Error(errs.length && !Object.keys(sc.methods).length && !sc.enc ? errs.join(' | ') : zipEmptyReason(sc)); }
+  if (errs.length) toast('อ่านบางไฟล์ไม่ได้: ' + errs.join(' | '), 6000);
+  setImportGroups(sc);
 }
 function scanFileList(files, forceItem) {
-  const groups = new Map(); let skipped = 0;
+  const sc = newScan(); sc.kind = forceItem ? 'photos' : 'folder';
   for (const f of files) {
-    const path = f.webkitRelativePath || f.name;
+    const path = String(f.webkitRelativePath || f.name).replace(/\\/g, '/');
     if (isJunk(path)) continue;
-    if (!(IMG_RE.test(f.name) || /^image\//.test(f.type))) { skipped++; continue; }
-    const g = forceItem ? '(รูปที่เลือก)' : classFromPath(path);
-    if (!groups.has(g)) groups.set(g, { name: g, items: [], forceItem });
-    groups.get(g).items.push({ file: f, name: f.name });
+    if (!(IMG_RE.test(f.name) || /^image\//.test(f.type))) { sc.skipped++; continue; }
+    const item = { file: f, name: path, key: (forceItem ? 'f' : 'z') + hash53(`${path}:${f.size}:${f.lastModified}`) };
+    if (forceItem) { if (!sc.groups.has('\u0001')) sc.groups.set('\u0001', { name: '(รูปที่เลือก)', items: [], forceItem }); sc.groups.get('\u0001').items.push(item); }
+    else addToGroup(sc, path, item);
   }
-  if (!groups.size) { toast('ไม่พบไฟล์ภาพ'); return; }
-  setImportGroups(groups, null, skipped);
+  if (!sc.groups.size) { toast('ไม่พบไฟล์ภาพ'); return; }
+  setImportGroups(sc);
+}
+function setImportGroups(sc) {
+  const seen = seenKeys();
+  for (const g of sc.groups.values()) {
+    g.items.sort((a, b) => impColl.compare(a.name, b.name));
+    g.done = g.items.reduce((n, it) => n + (seen.has(it.key) ? 1 : 0), 0);
+    g.map = g.forceItem ? { mode: 'item', item: g.forceItem } : suggestMap(g.name, g.generic);
+  }
+  Object.assign(imp, { groups: sc.groups, scan: sc, result: '', test: '', last: null });
+  const box = $('#impMap'); if (box) box.innerHTML = impMapHTML();
+}
+function impScanNote(sc, total, gs) {
+  const bits = [];
+  if (sc.files.length > 1) bits.push(`จาก ${sc.files.length} ไฟล์`);
+  if (sc.nested) bits.push(`รวม ZIP ที่ซ้อนอยู่ข้างใน ${sc.nested} ไฟล์`);
+  const warn = [];
+  if (sc.skipped) warn.push(`ข้ามไฟล์ที่ไม่ใช่ภาพ ${sc.skipped} ไฟล์`);
+  if (sc.enc) warn.push(`ข้ามภาพที่ติดรหัสผ่าน ${sc.enc} ไฟล์`);
+  for (const [m, n] of Object.entries(sc.methods)) warn.push(`ข้าม ${n} ภาพที่บีบอัดแบบ ${m} (เบราว์เซอร์เปิดไม่ได้ ให้บีบอัดใหม่)`);
+  if (sc.nestedBig.length) warn.push(`ข้าม ZIP ข้างในที่ใหญ่เกินไป: ${sc.nestedBig.join(', ')}`);
+  const done = gs.reduce((a, g) => a + g.done, 0);
+  return `<div class="note ok">พบภาพ ${total.toLocaleString()} ภาพ ใน ${gs.length} โฟลเดอร์${bits.length ? ' (' + bits.join(', ') + ')' : ''} ตรวจการจับคู่ด้านล่าง แล้วกดเริ่มนำเข้า${done ? `<br>ในไฟล์นี้มี ${done.toLocaleString()} ภาพที่เคยนำเข้าแล้ว ระบบจะข้ามให้อัตโนมัติ` : ''}</div>${warn.length ? `<div class="note">${esc(warn.join(' | '))}</div>` : ''}`;
 }
 function impMapHTML() {
-  if (imp.result && !imp.groups) return imp.result;
+  if (imp.result && !imp.groups) return imp.result + (imp.test || '');
   if (!imp.groups) return '';
   const gs = [...imp.groups.values()], total = gs.reduce((a, g) => a + g.items.length, 0);
   const binSel = (sel) => S.bins.map(b => `<option value="${esc(b.id)}" ${b.id === sel ? 'selected' : ''}>${esc(b.name.th)} (${esc(b.type.th)})</option>`).join('');
   const itemOpts = cur => S.items.map(it => `<option value="item:${esc(it.id)}" ${cur === 'item:' + it.id ? 'selected' : ''}>${esc(it.th)}</option>`).join('');
-  return `<div class="note ok">พบภาพ ${total} ภาพ ใน ${gs.length} โฟลเดอร์${imp.skipped ? ` (ข้ามไฟล์ที่ไม่ใช่ภาพ ${imp.skipped} ไฟล์)` : ''} ตรวจการจับคู่ด้านล่าง แล้วกดเริ่มนำเข้า</div>
-  <div class="field"><label for="impCap">จำนวนภาพสูงสุดต่อประเภท: <b id="impCapV">${imp.cap}</b> ภาพ</label>
-    <input type="range" id="impCap" min="10" max="300" step="10" value="${imp.cap}"><small>ระบบเลือกภาพกระจายทั่วทั้งโฟลเดอร์ ภาพมากขึ้นจะแม่นขึ้นแต่ใช้เวลานำเข้านานขึ้น</small></div>
+  return `${impScanNote(imp.scan || newScan(), total, gs)}
+  <div class="field"><label for="impCap">จำนวนภาพสูงสุดต่อโฟลเดอร์ในการนำเข้าครั้งนี้: <b id="impCapV">${imp.cap}</b> ภาพ</label>
+    <input type="range" id="impCap" min="10" max="300" step="10" value="${imp.cap}"><small>ระบบเลือกภาพกระจายทั่วทั้งโฟลเดอร์และข้ามภาพที่เคยนำเข้าแล้ว แนะนำ 50–100 ภาพต่อชนิด และควรมีภาพจากกล้องที่สถานีชนิดละ 30 ภาพขึ้นไปด้วย</small></div>
   <div class="table-wrap"><table class="cm imp"><tr><th class="rowh">โฟลเดอร์ในไฟล์</th><th>ภาพ</th><th>นำเข้าเป็น</th><th>ชื่อรายการใหม่ และถัง</th></tr>
   ${gs.map((g, i) => {
     const m = g.map, cur = m.mode === 'item' ? 'item:' + m.item : m.mode;
-    return `<tr data-g="${i}"><th class="rowh">${esc(g.name || '(ไม่มีโฟลเดอร์)')}</th><td>${g.items.length}</td>
+    const nn = normName(g.name);
+    const tag = g.generic ? '<br><small class="muted">ชื่อนี้บอกแค่การแบ่งชุดข้อมูล ไม่บอกชนิดขยะ เลือกเองได้</small>'
+      : (m.mode === 'skip' && m.why === 'mixed') ? '<br><small class="muted">รวมขยะหลายแบบ จึงข้ามไว้ก่อน เลือกเพิ่มเป็นรายการใหม่ได้</small>'
+      : MIXED_DIRS[nn] ? `<br><small class="muted">${MIXED_DIRS[nn]}</small>` : '';
+    return `<tr data-g="${i}"><th class="rowh">${esc(g.name || '(ไม่มีโฟลเดอร์)')}${tag}</th><td>${g.items.length.toLocaleString()}${g.done ? `<br><small class="muted">เคยนำเข้า ${g.done}</small>` : ''}</td>
       <td><select data-imp="mode"><option value="skip" ${cur === 'skip' ? 'selected' : ''}>ข้าม</option><option value="new" ${cur === 'new' ? 'selected' : ''}>+ เพิ่มเป็นรายการใหม่</option><optgroup label="รายการที่มีอยู่">${itemOpts(cur)}</optgroup></select></td>
       <td>${m.mode === 'new' ? `<div class="impnew"><input type="text" data-imp="th" value="${esc(m.th)}" placeholder="ชื่อไทย"><input type="text" data-imp="en" value="${esc(m.en)}" placeholder="ชื่ออังกฤษ"><select data-imp="bin">${binSel(m.bin)}</select></div>` : (m.mode === 'item' && itemById(m.item) ? `<span class="muted">${itemById(m.item).bin ? esc(binById(itemById(m.item).bin)?.name.th || '') : 'ไม่พูดแจ้งเตือน'}</span>` : '')}</td></tr>`;
   }).join('')}</table></div>
   <div class="inline" style="margin-top:12px"><button type="button" class="btn primary" data-act="impgo" ${AI.ready && AI.dataOk ? '' : 'disabled'}>เริ่มนำเข้า</button><button type="button" class="btn" data-act="impcancel">ยกเลิก</button></div>
   <div id="impProg"></div>`;
 }
+function impProgress(el, i, n, t0, label) {
+  if (!el) return; const sec = (now() - t0) / 1000;
+  el.innerHTML = `<p style="margin:10px 0 6px">${label} ${i.toLocaleString()} / ${n.toLocaleString()} ภาพ${sec > 2 && i < n ? ` (เหลือประมาณ ${Math.ceil((n - i) * sec / Math.max(1, i))} วินาที)` : ''}</p><div class="bar"><span class="track" style="grid-column:1/-1"><span class="fill" style="width:${(i / n * 100).toFixed(1)}%"></span></span></div><button type="button" class="btn small" data-act="impstop" style="margin-top:8px">หยุด</button>`;
+}
 async function runImport() {
   if (imp.running || !imp.groups) return;
   if (!AI.ready || !AI.dataOk) { toast('AI ยังไม่พร้อม'); return; }
   const gs = [...imp.groups.values()].filter(g => g.map.mode !== 'skip');
+  if (!gs.length) { toast('ทุกโฟลเดอร์ถูกตั้งเป็น "ข้าม"'); return; }
   let created = 0;
   for (const g of gs) {
     if (g.map.mode === 'new') {
@@ -1485,35 +1720,91 @@ async function runImport() {
     } else g.target = g.map.item;
   }
   saveSettings();
-  const jobs = [];
-  for (const g of gs) { if (!g.target || !itemById(g.target)) continue; const n = g.items.length, k = Math.min(imp.cap, n); for (let i = 0; i < k; i++) jobs.push({ g, it: g.items[Math.floor(i * n / k)] }); }
-  if (!jobs.length) { toast('ไม่มีภาพที่ต้องนำเข้า'); return; }
-  Object.assign(imp, { running: true, cancel: false }); state.importing = true;
-  const prog = () => $('#impProg');
-  let ok = 0, fail = 0; const t0 = now(), perItem = {};
-  for (let i = 0; i < jobs.length && !imp.cancel; i++) {
-    const { g, it } = jobs[i];
-    try {
-      const blob = it.file || new Blob([await zipEntryData(imp.file, it.zip)], { type: mimeOf(it.name) });
-      const c = await imageToCanvas(blob);
-      const out = infer(c);
-      try { AI.knn.addExample(out[0], g.target); } finally { out.forEach(x => x.dispose()); }
-      if (!state.thumbs[g.target]) state.thumbs[g.target] = canvasThumb(c);
-      ok++; perItem[g.target] = (perItem[g.target] || 0) + 1;
-    } catch (e) { fail++; console.warn('import', it.name, e.message); }
-    if (i % 4 === 0 || i === jobs.length - 1) {
-      const el = prog(), sec = (now() - t0) / 1000;
-      if (el) el.innerHTML = `<p style="margin:10px 0 6px">กำลังนำเข้า ${i + 1} / ${jobs.length} ภาพ${sec > 2 ? ` (เหลือประมาณ ${Math.ceil((jobs.length - i - 1) * sec / (i + 1))} วินาที)` : ''}</p><div class="bar"><span class="track" style="grid-column:1/-1"><span class="fill" style="width:${((i + 1) / jobs.length * 100).toFixed(1)}%"></span></span></div><button type="button" class="btn small" data-act="impstop" style="margin-top:8px">หยุด</button>`;
-      await sleep(0);
-    }
+  const seen = seenKeys(), jobs = []; let dup = 0;
+  for (const g of gs) {
+    if (!g.target || !itemById(g.target)) continue;
+    const cand = g.items.filter(it => !seen.has(it.key)); dup += g.items.length - cand.length;
+    const n = cand.length, k = Math.min(imp.cap, n);
+    for (let i = 0; i < k; i++) { const it = cand[Math.floor(i * n / k)]; seen.add(it.key); jobs.push({ g, it }); }
   }
-  state.importing = false; imp.running = false;
+  if (!jobs.length) { toast(dup ? 'ภาพในไฟล์นี้นำเข้าไปครบแล้ว' : 'ไม่มีภาพที่ต้องนำเข้า', 4000); return; }
+  Object.assign(imp, { running: true, cancel: false }); state.importing = true; keepAwake();
+  let ok = 0; const fails = []; const t0 = now(), perItem = {};
+  try {
+    for (let i = 0; i < jobs.length && !imp.cancel; i++) {
+      const { g, it } = jobs[i];
+      try {
+        const blob = it.file || new Blob([await zipEntryData(it.zf, it.zip)], { type: mimeOf(it.name) });
+        const c = await imageToCanvas(blob, it.name);
+        const out = infer(c), pv = provFor(g.target);
+        try { AI.knn.addExample(out[0], g.target); pv.push(it.key); } finally { out.forEach(x => x.dispose()); }
+        if (!state.thumbs[g.target]) state.thumbs[g.target] = canvasThumb(c);
+        ok++; perItem[g.target] = (perItem[g.target] || 0) + 1;
+      } catch (e) { fails.push({ name: it.name.split('/').pop(), msg: e.message }); console.warn('import', it.name, e.message); }
+      if (i % 4 === 0 || i === jobs.length - 1) { impProgress($('#impProg'), i + 1, jobs.length, t0, 'กำลังนำเข้า'); await sleep(0); }
+    }
+  } finally { state.importing = false; imp.running = false; }
   await saveDatasetNow();
   const lines = Object.entries(perItem).map(([id, n]) => `${itemById(id)?.th || id} +${n}`).join(', ');
-  imp.result = `<div class="note ok">นำเข้าแล้ว ${ok} ภาพ${fail ? ` (เปิดไม่ได้ ${fail} ภาพ)` : ''}${created ? ` และเพิ่มรายการใหม่ ${created} รายการ` : ''}${imp.cancel ? ' (หยุดก่อนครบ)' : ''}: ${esc(lines)}<br>อย่าลืมสอน "พื้นหลัง" และถ่ายขยะจริงเพิ่มด้วยกล้องที่จุดติดตั้ง แล้วลองแท็บทดสอบความแม่นยำ</div>`;
-  imp.groups = null; imp.file = null;
-  const box = $('#impMap'); if (box) box.innerHTML = imp.result;
+  const reasons = [...new Set(fails.map(f => f.msg))].slice(0, 3).join(' / ');
+  imp.result = `<div class="note ok">นำเข้าแล้ว ${ok.toLocaleString()} ภาพ${created ? ` และเพิ่มรายการใหม่ ${created} รายการ` : ''}${imp.cancel ? ' (หยุดก่อนครบ)' : ''}: ${esc(lines || '-')}${dup ? `<br>ข้ามภาพที่เคยนำเข้าแล้ว ${dup.toLocaleString()} ภาพ` : ''}<br>อย่าลืมสอน "พื้นหลัง" และถ่ายขยะจริงด้วยกล้องที่จุดติดตั้ง แล้ววัดผลในแท็บทดสอบความแม่นยำ</div>`
+    + (fails.length ? `<div class="note">เปิดไม่ได้ ${fails.length} ภาพ เช่น ${esc(fails.slice(0, 3).map(f => f.name).join(', '))} (${esc(reasons)})</div>` : '')
+    + (ok ? `<div class="inline"><button type="button" class="btn" data-act="imptest">ตรวจผลกับภาพในไฟล์ที่ยังไม่ได้ใช้สอน</button></div>` : '');
+  imp.last = { groups: gs.filter(g => g.target) }; imp.groups = null; imp.test = '';
+  const box = $('#impMap'); if (box) box.innerHTML = impMapHTML();
   refreshTrainUI(); updateModeBadge(); warmPhrases(true);
+}
+// quick check of the folder mapping: classify pictures from the same file that were not taught
+async function testHeldOut(per = 20) {
+  if (!imp.last || imp.running) return;
+  if (!AI.knn || !totalSamples()) { toast('ยังไม่มีข้อมูลที่สอน'); return; }
+  const seen = seenKeys(), jobs = [];
+  for (const g of imp.last.groups) {
+    if (!itemById(g.target)) continue;
+    const cand = g.items.filter(it => !seen.has(it.key)), n = cand.length, k = Math.min(per, n);
+    for (let i = 0; i < k; i++) jobs.push({ g, it: cand[Math.floor((i + 0.5) * n / k)] });
+  }
+  const show = html => { imp.test = html; const el = $('#impTest'); if (el) el.outerHTML = html; else { const b = $('#impMap'); if (b) b.insertAdjacentHTML('beforeend', html); } };
+  if (!jobs.length) { show('<div class="note" id="impTest">ไม่มีภาพเหลือให้ตรวจ เพราะนำเข้าไปครบทุกภาพแล้ว</div>'); return; }
+  show('<div id="impTest"></div>');
+  Object.assign(imp, { running: true, cancel: false }); state.importing = true; keepAwake();
+  const recs = [], t0 = now();
+  try {
+    for (let i = 0; i < jobs.length && !imp.cancel; i++) {
+      const { g, it } = jobs[i];
+      try {
+        const blob = it.file || new Blob([await zipEntryData(it.zf, it.zip)], { type: mimeOf(it.name) });
+        const c = await imageToCanvas(blob, it.name); const out = infer(c);
+        let p; try { p = await knnPredict(out[0]); } finally { out.forEach(x => x.dispose()); }
+        recs.push({ y: g.target, p: p.label });
+      } catch (e) { console.warn('heldout', it.name, e.message); }
+      if (i % 4 === 0 || i === jobs.length - 1) { impProgress($('#impTest'), i + 1, jobs.length, t0, 'กำลังตรวจ'); await sleep(0); }
+    }
+  } finally { state.importing = false; imp.running = false; }
+  const binOf = id => itemById(id)?.bin || null;
+  const by = {}; for (const r of recs) { const o = by[r.y] || (by[r.y] = { n: 0, item: 0, bin: 0, wrong: {} }); o.n++; if (r.p === r.y) o.item++; if (binOf(r.p) && binOf(r.p) === binOf(r.y)) o.bin++; if (r.p !== r.y) o.wrong[r.p] = (o.wrong[r.p] || 0) + 1; }
+  const tot = recs.length, ti = recs.filter(r => r.p === r.y).length, tb = recs.filter(r => binOf(r.p) && binOf(r.p) === binOf(r.y)).length;
+  const rows = Object.entries(by).map(([id, o]) => { const w = Object.entries(o.wrong).sort((a, b) => b[1] - a[1])[0]; return `<tr><th class="rowh">${esc(itemById(id)?.th || id)}</th><td>${o.n}</td><td>${pct(o.item / o.n)}</td><td>${pct(o.bin / o.n)}</td><td>${w ? esc(itemById(w[0])?.th || w[0]) + ' (' + w[1] + ')' : '-'}</td></tr>`; }).join('');
+  show(`<div id="impTest"><div class="note ok">ตรวจกับภาพในไฟล์ที่ไม่ได้ใช้สอน ${tot} ภาพ: ทายชนิดถูก <b>${tot ? pct(ti / tot) : '-'}</b> ทายถังถูก <b>${tot ? pct(tb / tot) : '-'}</b>${imp.cancel ? ' (หยุดก่อนครบ)' : ''}<br><small>ใช้ดูว่าจับคู่โฟลเดอร์ถูกและนำเข้าได้ผล ภาพจากชุดข้อมูลถ่ายต่างจากกล้องที่สถานี ผลนี้จึงใช้แทนการทดสอบความแม่นยำด้วยขยะจริง (คุณลักษณะข้อ 3) ไม่ได้</small></div>
+    <div class="table-wrap"><table class="cm"><tr><th class="rowh">รายการ</th><th>ภาพ</th><th>ถูกชนิด</th><th>ถูกถัง</th><th>ทายผิดเป็นบ่อยสุด</th></tr>${rows}</table></div></div>`);
+}
+// take dataset pictures back out (e.g. to compare accuracy with and without them)
+async function removeDatasetImages(only = null) {
+  const o = await datasetObject(); const data = {}; let removed = 0;
+  for (const [label, d] of Object.entries(o.data)) {
+    const rows = d.shape[0], dim = d.shape[1], pv = provFor(label);
+    if (only && label !== only) { data[label] = d; continue; }
+    const keep = []; for (let i = 0; i < rows; i++) if (!(pv[i] && pv[i][0] === 'z')) keep.push(i);
+    removed += rows - keep.length;
+    if (keep.length === rows) { data[label] = d; continue; }
+    if (!keep.length) { delete state.thumbs[label]; delete state.prov[label]; continue; }
+    const v = new Float32Array(keep.length * dim); keep.forEach((r, j) => v.set(d.v.subarray(r * dim, (r + 1) * dim), j * dim));
+    data[label] = { shape: [keep.length, dim], v }; state.prov[label] = keep.map(i => pv[i]);
+  }
+  if (!removed) return 0;
+  await restoreDataset({ data, dim: o.dim, thumbs: state.thumbs, prov: state.prov });
+  await saveDatasetNow(); updateModeBadge();
+  return removed;
 }
 function pickLocalFiles({ accept = '', multiple = false, dir = false }, cb) {
   const i = document.createElement('input'); i.type = 'file'; i.hidden = true;
@@ -1719,7 +2010,8 @@ function itemsPromptText() {
   return S.items.filter(i => i.id !== BG && binById(i.bin)?.on).map(i => `- ${i.th} (${i.en}) -> ${binById(i.bin).name.th}${i.tip?.th ? ' | ' + i.tip.th : ''}`).join('\n');
 }
 function systemText() {
-  return `${S.systemPrompt}\n\n[ระบบถังของสถานีนี้]\n${binsPromptText()}\n\n[ตัวอย่างขยะและถังที่ถูกต้อง]\n${itemsPromptText()}\n\n[ข้อมูลสถานที่]\n${S.kb}\n\nภาษาที่หน้าจอเลือกอยู่: ${L() === 'th' ? 'ไทย' : 'English'}`;
+  const p = activePlace();
+  return `${fillPlace(S.systemPrompt, 'th')}\n\n[สถานที่ติดตั้งสถานีนี้]\n${p.th}${p.en ? ' (' + p.en + ')' : ''}${p.areaTh ? ' ' + p.areaTh : ''}\n\n[ระบบถังของสถานีนี้]\n${binsPromptText()}\n\n[ตัวอย่างขยะและถังที่ถูกต้อง]\n${itemsPromptText()}\n\n[ข้อมูลสถานที่]\n${String(p.kb || '').trim() || '(ยังไม่มีข้อมูล ให้แนะนำให้สอบถามเจ้าหน้าที่)'}\n\nภาษาที่หน้าจอเลือกอยู่: ${L() === 'th' ? 'ไทย' : 'English'}`;
 }
 function cleanText(s) {
   return String(s).replace(/\*\*|__|`/g, '').replace(/^#+\s*/gm, '').replace(/^\s*[*-]\s+/gm, '• ').replace(/\*/g, '').trim();
@@ -1771,15 +2063,66 @@ function offlineAnswer(q) {
     for (const k of [it.th, it.en, ...String(it.th || '').split('/'), ...String(it.en || '').split(/\s+or\s+/), ...(it.kw || [])]) { const kk = String(k || '').toLowerCase(); if (kk.length > 1 && s.includes(kk) && kk.length > bs) { best = it; bs = kk.length; } }
   }
   const asksBin = /ทิ้ง|ถัง|แยก|bin|throw|dispose|recycl|put/.test(s);
+  const pid = activePlace().id;
   let fb = null, fs = 0;
-  for (const f of FAQ) { let sc = 0; for (const k of f.k) if (s.includes(k.toLowerCase())) sc += k.length; if (sc > fs) { fs = sc; fb = f; } }
+  for (const f of FAQ) { if (f.p && f.p !== pid) continue; let sc = 0; for (const k of f.k) if (s.includes(k.toLowerCase())) sc += k.length; if (sc > fs) { fs = sc; fb = f; } }
   const saved = S.lang; S.lang = lg;
   try {
     if (best && (asksBin || bs >= fs)) return itemAnswer(best);
-    if (fb) return fb[lg];
+    if (fb && (fb.p || fs >= 6)) return fillPlace(fb[lg], lg);
+    const kb = kbSearch(q, activePlace().kb);
+    if (kb && (!fb || kb.score >= fs)) return kb.text;
+    if (fb) return fillPlace(fb[lg], lg);
     if (asksBin) return binsSummary();
     return t('offlineDefault');
   } finally { S.lang = saved; }
+}
+// --- offline search in the place notes (works for any place the staff has filled in)
+const KB_STOP = new Set('ที่ ที่นี่ ตรงไหน มี ไหม มั้ย อะไร บ้าง ครับ ค่ะ คะ จ้า นะ หน่อย ได้ ไหน ยังไง อย่างไร กี่ คือ เป็น และ หรือ ของ ใน จะ ให้ กับ ไป มา ว่า นี้ นี่ ตรงนี้ แถวนี้ ขอ อยาก รู้ ช่วย บอก แนะนำ เรา ผม ฉัน หนู the a an is are was what where when how do does can could i you we here there to of in on at for any some please tell me about this that it and or with my your'.split(' '));
+const KB_SYN = [
+  [['น่าสนใจ', 'เด่น', 'กิจกรรม', 'ทำอะไร', 'เที่ยวอะไร', 'ไฮไลต์', 'interesting', 'highlight', 'activity', 'activities', 'do here', 'see'], ['จุดเด่น', 'กิจกรรม']],
+  [['เปิด', 'ปิด', 'กี่โมง', 'เวลา', 'open', 'close', 'hour', 'hours', 'time'], ['เวลาเปิด']],
+  [['ค่าเข้า', 'ราคา', 'บาท', 'ตั๋ว', 'เสียเงิน', 'ฟรี', 'fee', 'price', 'ticket', 'cost', 'free', 'entry'], ['ค่าเข้า', 'ราคา']],
+  [['ห้องน้ำ', 'สุขา', 'toilet', 'restroom', 'bathroom'], ['ห้องน้ำ', 'สิ่งอำนวยความสะดวก']],
+  [['จอดรถ', 'ที่จอด', 'parking', 'park the car'], ['ที่จอดรถ', 'สิ่งอำนวยความสะดวก']],
+  [['กิน', 'อาหาร', 'ร้าน', 'กาแฟ', 'น้ำดื่ม', 'eat', 'food', 'restaurant', 'cafe', 'coffee', 'drink'], ['ร้านอาหาร', 'อาหาร', 'สิ่งอำนวยความสะดวก']],
+  [['ใกล้', 'แถว', 'ไปต่อ', 'ที่เที่ยว', 'nearby', 'near', 'around', 'else'], ['ใกล้เคียง']],
+  [['อยู่ที่ไหน', 'ที่ตั้ง', 'เส้นทาง', 'ไปยังไง', 'address', 'where is', 'location', 'get there'], ['ที่ตั้ง']],
+  [['โทร', 'เบอร์', 'ติดต่อ', 'phone', 'call', 'contact'], ['เบอร์', 'โทร', 'ติดต่อ']],
+  [['สัตว์', 'animal', 'animals'], ['สัตว์']],
+  [['กฎ', 'ข้อห้าม', 'ปฏิบัติ', 'ห้าม', 'rule', 'rules', 'allowed'], ['ข้อปฏิบัติ']]
+];
+let KB_SEG = null; try { KB_SEG = new Intl.Segmenter('th', { granularity: 'word' }); } catch {}
+function kbTerms(q) {
+  const s = String(q || '').toLowerCase().normalize('NFC'); const out = new Set();
+  if (KB_SEG) { for (const g of KB_SEG.segment(s)) if (g.isWordLike && g.segment.trim().length > 1 && !KB_STOP.has(g.segment.trim())) out.add(g.segment.trim()); }
+  else s.split(/[\s,.!?]+/).forEach(w => { if (w.length > 1 && !KB_STOP.has(w)) out.add(w); });
+  for (const [keys, adds] of KB_SYN) if (keys.some(k => s.includes(k))) adds.forEach(a => out.add(a));
+  return [...out];
+}
+function kbSearch(q, kb) {
+  const terms = kbTerms(q); if (!terms.length || !kb) return null;
+  const secs = []; let cur = { title: '', lines: [] };
+  for (const raw of String(kb).split(/\r?\n/)) {
+    const ln = raw.trim(); if (!ln) continue;
+    const h = ln.match(/^\[(.+)\]$/);
+    if (h) { if (cur.title || cur.lines.length) secs.push(cur); cur = { title: h[1], lines: [] }; continue; }
+    const txt = ln.replace(/^[-•*]\s*/, ''); const val = txt.includes(':') ? txt.slice(txt.indexOf(':') + 1).trim() : txt;
+    if (val.length < 2) continue;   // a blank field such as "เวลาเปิด-ปิด:" means the staff has not filled it in
+    cur.lines.push(txt);
+  }
+  if (cur.title || cur.lines.length) secs.push(cur);
+  const score = x => { const v = x.toLowerCase(); let sc = 0; for (const tm of terms) if (v.includes(tm)) sc += Math.min(tm.length, 8); return sc; };
+  let best = null;
+  for (const sec of secs) {
+    const ts = score(sec.title);
+    if (ts >= 4 && sec.lines.length > 1 && (!best || ts > best.score)) best = { score: ts, text: sec.lines.slice(0, 4).join(' | ') };
+    for (const l of sec.lines) { const sc = score(l.includes(':') ? l.slice(0, l.indexOf(':')) : l) * 1.5 + score(l) * 0.5; if (sc >= 4 && (!best || sc > best.score)) best = { score: sc, text: l }; }
+  }
+  if (!best) return null;
+  let text = best.text.replace(/\s*\|\s*/g, ' / ');
+  if (isThai(text) && !/ค่ะ$|คะ$/.test(text)) text = text.replace(/\s+$/, '') + ' ค่ะ';
+  return { score: best.score, text };
 }
 function addMsg(role, text, tag) {
   const d = document.createElement('div'); d.className = 'msg ' + (role === 'user' ? 'user' : 'bot'); d.textContent = text;
@@ -1906,7 +2249,7 @@ function itemCardsHTML() {
     return `<button type="button" class="item-card" data-act="sel" data-id="${esc(it.id)}" aria-pressed="${it.id === selItem}">
       ${th ? `<img src="${th}" alt="">` : `<span class="ph"><svg class="i"><use href="#i-cam"/></svg></span>`}
       <span><span class="nm">${esc(it.th)}</span><br><span class="ct">${bin ? `<span class="dot" style="--c:${esc(bin.color)}"></span>${esc(bin.type.th)}` : 'ไม่พูดแจ้งเตือน'}</span>
-      <span class="ct ${low ? 'count-low' : ''}">${n} ภาพ</span></span></button>`;
+      <span class="ct ${low ? 'count-low' : ''}">${n} ภาพ</span>${n ? (pc => pc.ds ? `<span class="ct" style="white-space:nowrap">จากชุดข้อมูล ${pc.ds}</span>` : '')(provCounts(it.id)) : ''}</span></button>`;
   }).join('');
 }
 function selPanelHTML() {
@@ -1916,6 +2259,7 @@ function selPanelHTML() {
     ${isBg ? '<small>ถ่ายฉากที่ไม่มีขยะ: พื้นหลังจริง คนเดินผ่าน มือเปล่า ระบบจะเงียบเมื่อเห็นภาพแบบนี้</small>' : `<div class="inline"><select data-act="itembin">${binOptions(it.bin)}</select></div>`}</div>
     <div class="inline">
       <button type="button" class="btn small danger" data-act="clearclass">ล้างภาพของรายการนี้</button>
+      ${(pc => pc.ds ? `<button type="button" class="btn small" data-act="rmimpone">ลบเฉพาะภาพจากชุดข้อมูล (${pc.ds})</button>` : '')(provCounts(it.id))}
       ${isBg ? '' : '<button type="button" class="btn small danger" data-act="delitem">ลบรายการ</button>'}
     </div>`;
 }
@@ -1947,12 +2291,13 @@ function tabTrain() {
   </div>
   <h4>นำเข้าภาพสำหรับสอน AI</h4>
   <div class="panel">
-    <p class="muted" style="margin:0 0 12px">ใช้ไฟล์ ZIP ที่แยกโฟลเดอร์ตามชนิดขยะ เช่น <span class="mono">plastic/</span> <span class="mono">glass/</span> (ชุดข้อมูลจาก Kaggle หรือ TrashNet ใช้ได้ทันที) ระบบจับคู่ชื่อโฟลเดอร์กับรายการขยะให้อัตโนมัติ ชนิดที่ยังไม่มีจะเพิ่มเป็นรายการใหม่ หรือเลือกรูปจากคลังภาพเพื่อเพิ่มเข้ารายการที่เลือกอยู่</p>
+    <p class="muted" style="margin:0 0 12px">ใช้ไฟล์ ZIP ที่แยกโฟลเดอร์ตามชนิดขยะ เช่น <span class="mono">plastic/</span> <span class="mono">glass/</span> ชุดข้อมูลจาก Kaggle, Hugging Face, TrashNet, RealWaste หรือ ZIP ที่ดาวน์โหลดจาก GitHub ใช้ได้ทันที ระบบอ่านโฟลเดอร์ train/test/val ให้เอง เปิด ZIP ที่ซ้อนอยู่ข้างใน และเลือกได้หลายไฟล์พร้อมกัน จากนั้นจับคู่ชื่อโฟลเดอร์กับรายการขยะให้อัตโนมัติ ภาพที่เคยนำเข้าแล้วจะไม่ถูกนำเข้าซ้ำ หรือเลือกรูปจากคลังภาพเพื่อเพิ่มเข้ารายการที่เลือกอยู่</p>
     <div class="inline">
-      <button type="button" class="btn primary" data-act="impzip" ${AI.ready ? '' : 'disabled'}><svg class="i"><use href="#i-up"/></svg>เลือกไฟล์ ZIP</button>
+      <button type="button" class="btn primary" data-act="impzip" ${AI.ready ? '' : 'disabled'}><svg class="i"><use href="#i-up"/></svg>เลือกไฟล์ ZIP (เลือกได้หลายไฟล์)</button>
       ${canPickFolder() ? `<button type="button" class="btn" data-act="impdir" ${AI.ready ? '' : 'disabled'}>เลือกโฟลเดอร์</button>` : ''}
       <button type="button" class="btn" data-act="impimg" ${AI.ready ? '' : 'disabled'}>เลือกรูปหลายรูป (เข้ารายการที่เลือกอยู่)</button>
     </div>
+    <div id="impSum">${impSumHTML()}</div>
     <div id="impMap">${impMapHTML()}</div>
   </div>
   <h4>รายการขยะ (ไฟล์ CSV)</h4>
@@ -1980,8 +2325,13 @@ function tabTrain() {
     <p class="muted" style="margin:12px 0 0;font-size:15px">เคล็ดลับ: ตั้งชื่อไฟล์ที่ส่งออกว่า <span class="mono">ecosort-model.json</span> แล้ววางไว้ในรีโป GitHub ข้างไฟล์ index.html แท็บเล็ตเครื่องใหม่ที่เปิดครั้งแรกจะโหลดข้อมูลที่สอนไว้ให้อัตโนมัติ</p>
   </div>`;
 }
+function impSumHTML() {
+  const n = datasetTotal(); if (!n) return '';
+  return `<div class="inline" style="margin-top:10px"><span class="muted" style="font-size:15px">ตอนนี้มีภาพจากชุดข้อมูล ${n.toLocaleString()} ภาพ จากภาพที่สอนทั้งหมด ${totalSamples().toLocaleString()} ภาพ</span><button type="button" class="btn small danger" data-act="rmimpall">ลบภาพจากชุดข้อมูลทั้งหมด</button></div>`;
+}
 function refreshTrainUI() {
   if (state.adminTab !== 'train') return;
+  const sm = $('#impSum'); if (sm) sm.innerHTML = impSumHTML();
   const g = $('#itemGrid'); if (g) g.innerHTML = itemCardsHTML();
   const p = $('#selPanel'); if (p) p.innerHTML = selPanelHTML();
   const n = $('#totalN'); if (n) n.textContent = totalSamples();
@@ -2003,8 +2353,8 @@ function thumbFrom(video) {
 }
 function captureOne() {
   const video = srcVideo(); if (!AI.ready || !video.videoWidth) return;
-  const out = infer(video);
-  try { AI.knn.addExample(out[0], selItem); } finally { out.forEach(x => x.dispose()); }
+  const out = infer(video), prov = provFor(selItem);
+  try { AI.knn.addExample(out[0], selItem); prov.push(''); } finally { out.forEach(x => x.dispose()); }
   const n = classCount(selItem);
   if (n === 1 || n % 15 === 0) state.thumbs[selItem] = thumbFrom(video);
   const pv = $('#pv'); if (pv) { pv.classList.add('cap'); setTimeout(() => pv.classList.remove('cap'), 70); }
@@ -2035,6 +2385,7 @@ function tabEval() {
       <div class="field" style="margin-top:12px"><label for="evTrue">ขยะที่ถืออยู่จริงคือ</label>
         <select id="evTrue">${classes.map(c => `<option value="${esc(c.id)}" ${c.id === state.evalTrue ? 'selected' : ''}>${esc(c.th)}</option>`).join('')}</select></div>
       <button type="button" class="capture-btn" id="evBtn" ${knnUsable() ? '' : 'disabled'}>กดค้างเพื่อทดสอบ</button>
+      <p class="muted" style="margin:10px 0 0;font-size:15px">ผลที่ทดสอบตอนนี้จะบันทึกเป็นของ <b>${esc(S.site)}</b> (เปลี่ยนสถานที่ได้ที่ ตั้งค่าระบบ)</p>
       ${knnUsable() ? '' : '<p class="note">ต้องสอนพื้นหลังและขยะอย่างน้อย 1 ชนิดก่อนจึงจะทดสอบได้</p>'}
     </div>
     <div id="evalOut"></div>
@@ -2045,13 +2396,22 @@ async function evalTick() {
   const t0 = now(); const out = infer(video);
   let p; try { p = await knnPredict(out[0]); } finally { out.forEach(x => x.dispose()); }
   const ms = now() - t0;
-  state.evalRecs.push({ y: state.evalTrue, p: p.label, conf: +p.conf.toFixed(3), ms: Math.round(ms) });
+  state.evalRecs.push({ y: state.evalTrue, p: p.label, conf: +p.conf.toFixed(3), ms: Math.round(ms), site: S.site || '', t: Date.now() });
   const seen = $('#seen'); if (seen) seen.textContent = `ทาย: ${itemById(p.label)?.th || p.label} ${pct(p.conf)} | ${Math.round(ms)} ms | ${p.label === state.evalTrue ? 'ถูก' : 'ผิด'}`;
   if (state.evalRecs.length % 5 === 0) drawEval();
 }
+function evalSiteSel() {
+  const keys = siteKeys({ ev: [], sv: [] }), cur = state.evalSite ?? S.site;
+  return `<div class="field"><label for="evSite">แสดงผลของ</label><select id="evSite"><option value="*" ${cur === '*' ? 'selected' : ''}>ทุกสถานที่รวมกัน</option>${keys.map(k => `<option value="${esc(k)}" ${k === cur ? 'selected' : ''}>${esc(k)} (${state.evalRecs.filter(r => siteOf(r) === k).length} ภาพ)</option>`).join('')}</select></div>`;
+}
+function evalSiteTable() {
+  const rows = siteKeys({ ev: [], sv: [] }).map(k => { const x = state.evalRecs.filter(r => siteOf(r) === k); return x.length ? `<tr><th class="rowh">${esc(k)}</th><td>${x.length}</td><td>${pct(x.filter(r => r.y === r.p).length / x.length)}</td><td>${Math.round(x.reduce((a, r) => a + r.ms, 0) / x.length)} ms</td></tr>` : ''; }).join('');
+  return rows ? `<h4>ความแม่นยำแยกตามสถานที่</h4><div class="table-wrap"><table class="cm"><tr><th class="rowh">สถานที่</th><th>ภาพ</th><th>ถูกต้อง</th><th>เวลาเฉลี่ย</th></tr>${rows}</table></div>` : '';
+}
 function drawEval() {
   const box = $('#evalOut'); if (!box) return;
-  const R = state.evalRecs;
+  const fs = state.evalSite ?? S.site;
+  const R = fs === '*' ? state.evalRecs : state.evalRecs.filter(r => siteOf(r) === fs);
   const labels = [...new Set([...S.items.filter(i => classCount(i.id) > 0).map(i => i.id), ...R.map(r => r.y), ...R.map(r => r.p)])].filter(Boolean);
   const M = {}; labels.forEach(a => { M[a] = {}; labels.forEach(b => M[a][b] = 0); });
   R.forEach(r => { if (M[r.y] && r.p in M[r.y]) M[r.y][r.p]++; });
@@ -2063,7 +2423,7 @@ function drawEval() {
   const rowsUsed = labels.filter(a => labels.some(b => M[a][b] > 0));
   const colsUsed = labels.filter(b => labels.some(a => M[a][b] > 0)) ;
   const perClass = rowsUsed.map(a => { const tot = labels.reduce((s, b) => s + M[a][b], 0); return `<tr><th class="rowh">${esc(nm(a))}</th><td>${tot}</td><td>${tot ? pct(M[a][a] / tot) : '-'}</td></tr>`; }).join('');
-  box.innerHTML = `
+  box.innerHTML = `${evalSiteSel()}
     <div class="kpis">
       <div class="kpi"><b>${R.length ? (acc * 100).toFixed(1) + '%' : '-'}</b><span>ความแม่นยำรวม (Accuracy)</span></div>
       <div class="kpi"><b>${R.length}</b><span>ภาพที่ทดสอบ</span></div>
@@ -2075,12 +2435,13 @@ function drawEval() {
     ${rowsUsed.map(a => `<tr><th class="rowh">${esc(nm(a))}</th>${colsUsed.map(b => { const v = M[a][b]; const a2 = v / maxCell; const bg = a === b ? `rgba(44,122,80,${0.12 + a2 * 0.6})` : (v ? `rgba(180,35,24,${0.08 + a2 * 0.5})` : '#fff'); return `<td class="${a === b ? 'diag' : ''}" style="background:${bg};color:${a2 > 0.55 ? '#fff' : 'inherit'}">${v || ''}</td>`; }).join('')}</tr>`).join('')}
     </table></div>
     <h4>ความแม่นยำรายชนิด (Recall)</h4>
-    <div class="table-wrap"><table class="cm"><tr><th class="rowh">ชนิด</th><th>จำนวน</th><th>ถูกต้อง</th></tr>${perClass}</table></div>` : '<p class="muted">ยังไม่มีผลทดสอบ</p>'}
+    <div class="table-wrap"><table class="cm"><tr><th class="rowh">ชนิด</th><th>จำนวน</th><th>ถูกต้อง</th></tr>${perClass}</table></div>` : '<p class="muted">ยังไม่มีผลทดสอบของสถานที่นี้</p>'}
+    ${evalSiteTable()}
     <div class="inline" style="margin-top:14px">
-      <button type="button" class="btn" data-act="evcsv" ${R.length ? '' : 'disabled'}><svg class="i"><use href="#i-down"/></svg>ส่งออก CSV</button>
-      <button type="button" class="btn danger" data-act="evclear" ${R.length ? '' : 'disabled'}>ล้างผลทดสอบ</button>
+      <button type="button" class="btn" data-act="evcsv" ${state.evalRecs.length ? '' : 'disabled'}><svg class="i"><use href="#i-down"/></svg>ส่งออก CSV (ทุกสถานที่)</button>
+      <button type="button" class="btn danger" data-act="evclear" ${R.length ? '' : 'disabled'}>ล้างผลทดสอบ${fs === '*' ? 'ทั้งหมด' : 'ของ ' + esc(fs)}</button>
     </div>`;
-  DB.set('evalRecs', R).catch(() => {});
+  DB.set('evalRecs', state.evalRecs).catch(() => {});
 }
 
 /* ----- bins tab ----- */
@@ -2123,11 +2484,11 @@ function tabBot() {
     <label class="switch"><span>อ่านคำตอบออกเสียง<small>GuideBot พูดคำตอบด้วยเสียงภาษาไทย/อังกฤษ</small></span><input type="checkbox" data-set="readAnswers" ${S.readAnswers ? 'checked' : ''}></label>
   </div>
   <h4>คำสั่งระบบ (System Instructions)</h4>
-  <div class="field"><textarea id="sysPrompt" rows="10">${esc(S.systemPrompt)}</textarea><small>ระบบจะต่อท้ายข้อมูลถังขยะ รายการขยะ และข้อมูลสถานที่ให้อัตโนมัติ</small></div>
+  <div class="field"><textarea id="sysPrompt" rows="10">${esc(S.systemPrompt)}</textarea><small>ระบบจะต่อท้ายข้อมูลถังขยะ รายการขยะ และข้อมูลสถานที่ให้อัตโนมัติ เขียน {place} {placeEn} {area} แทนชื่อสถานที่ได้ ระบบจะใส่ชื่อสถานที่ที่ใช้งานอยู่ให้เอง</small></div>
   <div class="inline"><button type="button" class="btn small" data-act="resetprompt">คืนค่าเริ่มต้น</button></div>
   <h4>ข้อมูลสถานที่ (Knowledge)</h4>
-  <div class="field"><textarea id="kb" rows="16">${esc(S.kb)}</textarea><small>แก้ไขให้ตรงกับข้อมูลจริงของมาลัยฟาร์ม เช่น เวลาเปิด ราคา จุดบริการ GuideBot จะใช้ข้อมูลนี้ตอบ</small></div>
-  <div class="inline"><button type="button" class="btn small" data-act="resetkb">คืนค่าเริ่มต้น</button></div>`;
+  <div class="note ok">GuideBot ตอบโดยใช้ข้อมูลของ <b>${esc(activePlace().th)}</b> ซึ่งเป็นสถานที่ที่ใช้งานอยู่ตอนนี้ แก้ไขข้อมูล เพิ่ม หรือเปลี่ยนสถานที่ได้ที่แท็บ "ตั้งค่าระบบ"</div>
+  <div class="inline"><button type="button" class="btn" data-act="gotoplaces">แก้ไขข้อมูลสถานที่</button></div>`;
 }
 
 /* ----- stats tab ----- */
@@ -2138,7 +2499,9 @@ function tabStats() {
 }
 async function loadStats() {
   const box = $('#statsOut'); if (!box) return;
-  const [ev, sv] = await Promise.all([DB.all('events').catch(() => []), DB.all('survey').catch(() => [])]);
+  const [evAll, svAll] = await Promise.all([DB.all('events').catch(() => []), DB.all('survey').catch(() => [])]);
+  const keys = siteKeys({ ev: evAll, sv: svAll }), fs = state.statSite || '*';
+  const ev = fs === '*' ? evAll : evAll.filter(e => siteOf(e) === fs), sv = fs === '*' ? svAll : svAll.filter(r => siteOf(r) === fs);
   const sorts = ev.filter(e => e.type === 'sort'), chats = ev.filter(e => e.type === 'chat');
   const today = new Date(); today.setHours(0, 0, 0, 0);
   const todayN = sorts.filter(e => e.t >= today.getTime()).length;
@@ -2151,6 +2514,8 @@ async function loadStats() {
   const avg = (arr, k) => arr.length ? (arr.reduce((a, r) => a + (r[k] || 0), 0) / arr.length) : 0;
   const groups = [['ทั้งหมด', sv], ['นักท่องเที่ยว', sv.filter(r => r.who === 'tourist')], ['เจ้าหน้าที่', sv.filter(r => r.who === 'staff')]];
   box.innerHTML = `
+  <div class="grid2" style="align-items:end"><div class="field"><label for="statSite">แสดงผลของ</label><select id="statSite"><option value="*" ${fs === '*' ? 'selected' : ''}>ทุกสถานที่รวมกัน</option>${keys.map(k => `<option value="${esc(k)}" ${k === fs ? 'selected' : ''}>${esc(k)}</option>`).join('')}</select></div>
+    <p class="muted" style="margin:0 0 14px;font-size:15px">บันทึกใหม่จะเข้าที่ <b>${esc(S.site)}</b> เปลี่ยนสถานที่ได้ที่ ตั้งค่าระบบ</p></div>
   <div class="kpis">
     <div class="kpi"><b>${todayN}</b><span>แยกขยะวันนี้ (ครั้ง)</span></div>
     <div class="kpi"><b>${sorts.length}</b><span>แยกขยะทั้งหมด</span></div>
@@ -2167,6 +2532,7 @@ async function loadStats() {
     <div class="table-wrap"><table class="cm" style="margin-top:10px"><tr><th class="rowh">กลุ่ม</th><th>จำนวน</th><th>ใช้งานง่าย</th><th>ประโยชน์ที่ได้รับ</th><th>ความตั้งใจใช้</th></tr>
     ${groups.map(([n, g]) => `<tr><th class="rowh">${n}</th><td>${g.length}</td><td>${g.length ? avg(g, 'ease').toFixed(2) : '-'}</td><td>${g.length ? avg(g, 'useful').toFixed(2) : '-'}</td><td>${g.length ? avg(g, 'intent').toFixed(2) : '-'}</td></tr>`).join('')}
     </table></div></div>
+  <div class="panel"><strong>เปรียบเทียบแยกตามสถานที่</strong>${siteTableHTML(bySite({ ev: evAll, sv: svAll }), S.site)}</div>
   <div class="inline">
     <button type="button" class="btn" data-act="evcsv2" ${ev.length ? '' : 'disabled'}><svg class="i"><use href="#i-down"/></svg>ส่งออกบันทึกการใช้งาน (CSV)</button>
     <button type="button" class="btn" data-act="svcsv" ${sv.length ? '' : 'disabled'}><svg class="i"><use href="#i-down"/></svg>ส่งออกแบบประเมิน (CSV)</button>
@@ -2179,8 +2545,40 @@ function rangeField(key, label, min, max, step, unit, help) {
   return `<div class="field"><label for="r_${key}">${label}: <b data-val="${key}">${S[key]}${unit}</b></label><input type="range" id="r_${key}" data-set="${key}" data-unit="${unit}" min="${min}" max="${max}" step="${step}" value="${S[key]}">${help ? `<small>${help}</small>` : ''}</div>`;
 }
 function sw(key, label, help) { return `<label class="switch"><span>${label}${help ? `<small>${help}</small>` : ''}</span><input type="checkbox" data-set="${key}" ${S[key] ? 'checked' : ''}></label>`; }
+function placePreviewHTML() {
+  return `<div class="note ok" style="font-size:15px;margin-top:0"><b>ตัวอย่างบนหน้าจอสถานี</b><br>${esc(placeLineText('th'))}<br>${esc(fillPlace(T.th.greet, 'th'))}<br><span style="opacity:.75">${esc(placeLineText('en'))}</span></div>`;
+}
+function placeSecHTML() {
+  const p = activePlace(), builtIn = DEFAULT_PLACES.some(d => d.id === p.id);
+  return `<h4 id="placeSec">สถานที่ติดตั้งและหน่วยงานที่ใช้งาน</h4>
+  <div class="panel">
+    <div class="field"><label for="placeSel">สถานที่ที่สถานีนี้ใช้งานอยู่ตอนนี้</label>
+      <div class="inline"><select id="placeSel" style="max-width:420px">${S.places.map(x => `<option value="${esc(x.id)}" ${x.id === p.id ? 'selected' : ''}>${esc(x.th)}</option>`).join('')}</select>
+        <button type="button" class="btn" data-act="placeadd">+ เพิ่มสถานที่หรือหน่วยงาน</button>
+        ${S.places.length > 1 ? '<button type="button" class="btn danger" data-act="placedel">ลบรายการนี้</button>' : ''}</div>
+      <small>เมื่อย้ายสถานีไปติดตั้งที่ใหม่ ให้เลือกตรงนี้ ชื่อบนหน้าจอ คำทักทาย คำถามแนะนำ ข้อมูลที่ GuideBot ใช้ตอบ และบันทึกการใช้งานจะเปลี่ยนตามทันที</small></div>
+    <div class="grid2">
+      <div class="field"><label for="plTh">ชื่อสถานที่ท่องเที่ยวหรือหน่วยงาน (ไทย)</label><input type="text" id="plTh" data-place="th" value="${esc(p.th)}" maxlength="80" placeholder="เช่น มาลัยฟาร์ม, อบต.เขาใหญ่, โรงเรียน…"></div>
+      <div class="field"><label for="plEn">ชื่อภาษาอังกฤษ</label><input type="text" id="plEn" data-place="en" value="${esc(p.en)}" maxlength="80" placeholder="e.g. Malai Farm"></div>
+      <div class="field"><label for="plAreaTh">อำเภอหรือพื้นที่ (ไม่บังคับ)</label><input type="text" id="plAreaTh" data-place="areaTh" value="${esc(p.areaTh)}" maxlength="60" placeholder="เช่น ชะอำ"></div>
+      <div class="field"><label for="plAreaEn">อำเภอหรือพื้นที่ (อังกฤษ)</label><input type="text" id="plAreaEn" data-place="areaEn" value="${esc(p.areaEn)}" maxlength="60" placeholder="e.g. Cha-am"></div>
+    </div>
+    <div id="placePreview">${placePreviewHTML()}</div>
+    <div class="grid2" style="margin-top:12px">
+      <div class="field"><label for="plChipsTh">คำถามแนะนำบนหน้าจอ (ไทย บรรทัดละ 1 คำถาม)</label><textarea id="plChipsTh" data-place="chipsTh" rows="6" placeholder="${esc(CHIPS_GENERIC.th.join('\n'))}">${esc(p.chipsTh)}</textarea><small>เว้นว่างไว้เพื่อใช้คำถามทั่วไปที่เหมาะกับทุกสถานที่</small></div>
+      <div class="field"><label for="plChipsEn">คำถามแนะนำ (อังกฤษ)</label><textarea id="plChipsEn" data-place="chipsEn" rows="6" placeholder="${esc(CHIPS_GENERIC.en.join('\n'))}">${esc(p.chipsEn)}</textarea></div>
+    </div>
+    <div class="field"><label for="plKb">ข้อมูลสถานที่สำหรับ GuideBot</label><textarea id="plKb" data-place="kb" rows="16">${esc(p.kb)}</textarea>
+      <small>กรอกข้อมูลจริง เช่น ที่ตั้ง เวลาเปิด ค่าเข้า จุดเด่น ห้องน้ำ เบอร์ติดต่อ บรรทัดที่ยังว่างหลังเครื่องหมาย : ถือว่ายังไม่มีข้อมูล GuideBot จะแนะนำให้ถามเจ้าหน้าที่แทนการเดา ใช้ทั้งตอนออนไลน์ (Gemini) และออฟไลน์ (ค้นจากข้อความนี้ในเครื่อง)</small></div>
+    <div class="inline"><button type="button" class="btn small" data-act="placekbreset">${builtIn ? 'คืนค่าข้อมูลตัวอย่าง' : 'ใส่แบบฟอร์มข้อมูลเปล่า'}</button></div>
+    <div class="field" style="margin-top:14px"><label for="plAsk">ลองถามแบบไม่ใช้อินเทอร์เน็ต</label>
+      <div class="inline"><input type="text" id="plAsk" placeholder="เช่น เวลาเปิดกี่โมง, ที่นี่มีอะไรน่าสนใจ"><button type="button" class="btn" data-act="placeask">ลองถาม</button></div>
+      <small>ดูว่าตอนเน็ตหลุด GuideBot จะตอบจากข้อมูลด้านบนว่าอย่างไร</small><div id="plAskOut"></div></div>
+  </div>`;
+}
 function tabSettings() {
   return `<h3>ตั้งค่าระบบ</h3>
+  <div id="placeWrap">${placeSecHTML()}</div>
   <h4>เสียงพูด</h4>
   <div class="panel">
     ${sw('cloudVoice', 'ใช้เสียงผู้หญิงคุณภาพสูงจาก Gemini (แนะนำ)', 'เสียงเดียวกันทั้งภาษาไทยและอังกฤษ น่าฟังเท่ากันทุกเครื่อง ใช้ API Key เดียวกับ GuideBot ระบบสร้างเสียงประกาศเก็บไว้ในเครื่อง จึงเล่นได้ทันทีแม้ไม่มีเน็ต')}
@@ -2205,7 +2603,7 @@ function tabSettings() {
   </div>
   <h4>การตรวจจับ</h4>
   <div class="panel grid2">
-    <div>${rangeField('threshold', 'ความมั่นใจขั้นต่ำก่อนพูดแจ้งเตือน', 50, 95, 1, '%', 'ตามโครงงานใช้ 75%')}
+    <div>${rangeField('threshold', 'ความมั่นใจขั้นต่ำก่อนพูดแจ้งเตือน', 50, 95, 1, '%', 'ค่าที่ใช้ทดสอบคือ 75%')}
     ${rangeField('stableFrames', 'ต้องเห็นซ้ำติดกันกี่เฟรม', 1, 8, 1, '', 'กันการพูดผิดจากภาพที่กระพริบ')}
     ${rangeField('cooldown', 'เว้นระยะก่อนพูดชิ้นเดิมซ้ำ', 2, 20, 1, ' วิ', 'กันเสียงพูดซ้ำซ้อน')}</div>
     <div>${rangeField('k', 'ค่า K ของ KNN', 1, 15, 1, '', 'จำนวนภาพที่ใกล้ที่สุดที่ใช้โหวต')}
@@ -2307,20 +2705,26 @@ function bindAdmin() {
     const act = b.dataset.act;
     try {
       if (act === 'sel') { selItem = b.dataset.id; refreshTrainUI(); const info = $('#capInfo'); if (info) info.textContent = `${itemById(selItem).th}: ${classCount(selItem)} ภาพ`; }
-      else if (act === 'clearclass') { if (classCount(selItem) && confirm(`ล้างภาพทั้งหมดของ "${itemById(selItem).th}"?`)) { AI.knn.clearClass(selItem); delete state.thumbs[selItem]; refreshTrainUI(); scheduleSave(); updateModeBadge(); } }
-      else if (act === 'delitem') { const it = itemById(selItem); if (it && it.id !== BG && confirm(`ลบรายการ "${it.th}"?`)) { if (classCount(it.id)) AI.knn.clearClass(it.id); delete state.thumbs[it.id]; S.items = S.items.filter(x => x.id !== it.id); selItem = BG; saveSettings(); refreshTrainUI(); scheduleSave(); } }
+      else if (act === 'clearclass') { if (classCount(selItem) && confirm(`ล้างภาพทั้งหมดของ "${itemById(selItem).th}"?`)) { AI.knn.clearClass(selItem); delete state.thumbs[selItem]; delete state.prov[selItem]; refreshTrainUI(); scheduleSave(); updateModeBadge(); } }
+      else if (act === 'delitem') { const it = itemById(selItem); if (it && it.id !== BG && confirm(`ลบรายการ "${it.th}"?`)) { if (classCount(it.id)) AI.knn.clearClass(it.id); delete state.thumbs[it.id]; delete state.prov[it.id]; S.items = S.items.filter(x => x.id !== it.id); selItem = BG; saveSettings(); refreshTrainUI(); scheduleSave(); } }
       else if (act === 'additem') {
         const th = $('#niTh').value.trim(); if (!th) { toast('ใส่ชื่อภาษาไทยก่อน'); return; }
         const tip = $('#niTip').value.trim();
         const it = { id: 'c' + Date.now().toString(36), th, en: $('#niEn').value.trim() || th, bin: $('#niBin').value, tip: { th: tip, en: '' }, kw: $('#niKw').value.split(',').map(s => s.trim()).filter(Boolean) };
         S.items.push(it); selItem = it.id; saveSettings(); refreshTrainUI(); ['#niTh', '#niEn', '#niTip', '#niKw'].forEach(s => $(s).value = ''); toast('เพิ่ม "' + th + '" แล้ว เริ่มเก็บภาพได้เลย');
       }
-      else if (act === 'impzip') { pickLocalFiles({ accept: '.zip,application/zip,application/x-zip-compressed' }, files => scanZipFile(files[0])); }
+      else if (act === 'impzip') { pickLocalFiles({ accept: '.zip,application/zip,application/x-zip-compressed', multiple: true }, files => scanZipFiles(files)); }
+      else if (act === 'imptest') { await testHeldOut(20); }
+      else if (act === 'rmimpone' || act === 'rmimpall') {
+        const one = act === 'rmimpone' ? selItem : null, n = one ? provCounts(one).ds : datasetTotal();
+        if (!n || !confirm(`ลบภาพจากชุดข้อมูล ${n} ภาพ${one ? ` ของ "${itemById(one)?.th}"` : ' ทุกรายการ'}? ภาพจากกล้องและรูปที่ถ่ายเองยังอยู่ครบ`)) return;
+        const r = await removeDatasetImages(one); refreshTrainUI(); toast(`ลบแล้ว ${r} ภาพ`);
+      }
       else if (act === 'impdir') { pickLocalFiles({ dir: true, multiple: true }, files => scanFileList(files)); }
       else if (act === 'impimg') { const target = selItem; pickLocalFiles({ accept: 'image/*', multiple: true }, files => scanFileList(files, target)); }
       else if (act === 'impgo') { await runImport(); }
       else if (act === 'impstop') { imp.cancel = true; }
-      else if (act === 'impcancel') { Object.assign(imp, { groups: null, file: null, result: '' }); $('#impMap').innerHTML = ''; }
+      else if (act === 'impcancel') { Object.assign(imp, { groups: null, scan: null, result: '', test: '', last: null }); $('#impMap').innerHTML = ''; }
       else if (act === 'csvexport') { exportWasteCSV(); }
       else if (act === 'csvimport') {
         pickLocalFiles({ accept: '.csv,text/csv,text/plain' }, async files => {
@@ -2332,28 +2736,47 @@ function bindAdmin() {
       else if (act === 'savenow') { await saveDatasetNow(); toast('บันทึกแล้ว'); }
       else if (act === 'export') { await exportModelFile(); toast('ส่งออกไฟล์ ecosort-model.json แล้ว'); }
       else if (act === 'import') { pickFile(async obj => { await importModelObj(obj); toast('นำเข้าโมเดลแล้ว ' + totalSamples() + ' ภาพ'); showTab('train'); }); }
-      else if (act === 'clearall') { if (confirm('ล้างข้อมูลที่สอนทั้งหมด? (ควรส่งออกไฟล์สำรองก่อน)')) { AI.knn.clearAllClasses(); state.thumbs = {}; AI.dataOk = true; await DB.del('dataset').catch(() => {}); await saveDatasetNow(); showTab('train'); updateModeBadge(); } }
-      else if (act === 'evcsv') { download('ecosort-accuracy-test.csv', csv([['true', 'predicted', 'true_name', 'predicted_name', 'confidence', 'ms', 'correct'], ...state.evalRecs.map(r => [r.y, r.p, itemById(r.y)?.th, itemById(r.p)?.th, r.conf, r.ms, r.y === r.p ? 1 : 0])]), 'text/csv'); }
-      else if (act === 'evclear') { if (confirm('ล้างผลทดสอบทั้งหมด?')) { state.evalRecs = []; drawEval(); } }
+      else if (act === 'clearall') { if (confirm('ล้างข้อมูลที่สอนทั้งหมด? (ควรส่งออกไฟล์สำรองก่อน)')) { AI.knn.clearAllClasses(); state.thumbs = {}; state.prov = {}; AI.dataOk = true; await DB.del('dataset').catch(() => {}); await saveDatasetNow(); showTab('train'); updateModeBadge(); } }
+      else if (act === 'evcsv') { download('ecosort-accuracy-test.csv', csv([['time', 'site', 'true', 'predicted', 'true_name', 'predicted_name', 'confidence', 'ms', 'correct'], ...state.evalRecs.map(r => [r.t ? dstr(r.t) : '', r.site || '', r.y, r.p, itemById(r.y)?.th, itemById(r.p)?.th, r.conf, r.ms, r.y === r.p ? 1 : 0])]), 'text/csv'); }
+      else if (act === 'evclear') {
+        const fs = state.evalSite ?? S.site;
+        if (confirm(fs === '*' ? 'ล้างผลทดสอบทั้งหมดทุกสถานที่?' : `ล้างผลทดสอบของ "${fs}"? (ผลของสถานที่อื่นยังอยู่)`)) { state.evalRecs = fs === '*' ? [] : state.evalRecs.filter(r => siteOf(r) !== fs); drawEval(); }
+      }
       else if (act === 'binup' || act === 'bindown') { const i = +b.closest('.bin-row').dataset.i, j = act === 'binup' ? i - 1 : i + 1; [S.bins[i], S.bins[j]] = [S.bins[j], S.bins[i]]; saveSettings(); renderBins(); showTab('bins'); }
       else if (act === 'binreset') { if (confirm('คืนค่าถังทั้ง 5 ใบเป็นค่าเริ่มต้น?')) { S.bins = clone(DEFAULT_BINS); saveSettings(); renderBins(); showTab('bins'); } }
       else if (act === 'showkey') { const k = $('#apiKey'); k.type = k.type === 'password' ? 'text' : 'password'; b.textContent = k.type === 'password' ? 'แสดง' : 'ซ่อน'; }
       else if (act === 'listmodels') { await listModels(); }
       else if (act === 'testbot') { await testBot(); }
       else if (act === 'resetprompt') { S.systemPrompt = DEFAULT_PROMPT; $('#sysPrompt').value = DEFAULT_PROMPT; saveSettings(); }
-      else if (act === 'resetkb') { S.kb = DEFAULT_KB; $('#kb').value = DEFAULT_KB; saveSettings(); }
+      else if (act === 'gotoplaces') { showTab('settings'); setTimeout(() => $('#placeSec')?.scrollIntoView({ block: 'start' }), 30); }
+      else if (act === 'placeadd') {
+        let n = S.places.length + 1, name = 'สถานที่ใหม่ ' + n; while (S.places.some(x => x.th === name)) name = 'สถานที่ใหม่ ' + (++n);
+        const np = newPlace(name); S.places.push(np); S.placeId = np.id; applyPlace({ chat: false }); rerenderPlaces(); if (!state.chat.length) resetChat();
+        const i = $('#plTh'); if (i) { i.focus(); i.select(); } toast('เพิ่มแล้ว ตั้งชื่อและกรอกข้อมูลสถานที่ได้เลย');
+      }
+      else if (act === 'placedel') {
+        const p = activePlace(); if (S.places.length < 2) return;
+        if (!confirm(`ลบ "${p.th}" ออกจากรายการ? (บันทึกการใช้งานเดิมยังอยู่ในเครื่อง)`)) return;
+        S.places = S.places.filter(x => x.id !== p.id); S.placeId = S.places[0].id; applyPlace(); rerenderPlaces(); if (!state.chat.length) resetChat();
+      }
+      else if (act === 'placekbreset') {
+        const p = activePlace(), d = DEFAULT_PLACES.find(x => x.id === p.id), kb = d ? d.kb : kbTemplate(p.th + (p.en ? ` (${p.en})` : ''));
+        if (String(p.kb || '').trim() && p.kb !== kb && !confirm('แทนที่ข้อมูลสถานที่ที่กรอกไว้?')) return;
+        p.kb = kb; const ta = $('#plKb'); if (ta) ta.value = kb; saveSettings();
+      }
+      else if (act === 'placeask') { const q = $('#plAsk').value.trim(); if (!q) return; $('#plAskOut').innerHTML = `<p class="note" style="margin-top:8px">${esc(offlineAnswer(q))}</p>`; }
       else if (act === 'evcsv2') { const ev = await DB.all('events'); download('ecosort-usage-log.csv', csv([['time', 'site', 'type', 'item', 'item_name', 'bin', 'confidence', 'latency_ms', 'mode', 'online', 'lang'], ...ev.map(e => [dstr(e.t), e.site || '', e.type, e.item || '', itemById(e.item)?.th || '', e.bin || '', e.conf ?? '', e.ms ?? '', e.mode || '', e.online ?? '', e.lang || ''])]), 'text/csv'); }
       else if (act === 'svcsv') { const sv = await DB.all('survey'); download('ecosort-survey.csv', csv([['time', 'site', 'respondent', 'ease_of_use', 'usefulness', 'intention', 'lang'], ...sv.map(r => [dstr(r.t), r.site || '', r.who, r.ease, r.useful, r.intent, r.lang])]), 'text/csv'); }
       else if (act === 'clearstats') { if (confirm('ล้างสถิติและแบบประเมินทั้งหมด? (ควรส่งออก CSV ก่อน)')) { await DB.clear('events'); await DB.clear('survey'); loadStats(); } }
-      else if (act === 'testvoice') { say('สวัสดีค่ะ ยินดีต้อนรับสู่มาลัยฟาร์ม ขวดน้ำพลาสติก ทิ้งลงถังสีเหลือง ขยะรีไซเคิลค่ะ เทน้ำออกให้หมดก่อนนะคะ ขอบคุณที่ช่วยกันแยกขยะค่ะ', { lang: 'th', force: true, kind: 'test' }); }
-      else if (act === 'testvoiceen') { say('Hello and welcome to Malai Farm. Plastic bottle: please use the yellow bin for recyclables. Thank you for sorting your waste.', { lang: 'en', force: true, kind: 'test' }); }
+      else if (act === 'testvoice') { say(`สวัสดีค่ะ ยินดีต้อนรับสู่${placeName('th')} ขวดน้ำพลาสติก ทิ้งลงถังสีเหลือง ขยะรีไซเคิลค่ะ เทน้ำออกให้หมดก่อนนะคะ ขอบคุณที่ช่วยกันแยกขยะค่ะ`, { lang: 'th', force: true, kind: 'test' }); }
+      else if (act === 'testvoiceen') { say(`Hello and welcome to ${placeName('en')}. Plastic bottle: please use the yellow bin for recyclables. Thank you for sorting your waste.`, { lang: 'en', force: true, kind: 'test' }); }
       else if (act === 'gvoice') {
         S.ttsVoice = b.dataset.v; saveSettings();
         $$('.vchip').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
         ttsQ.list = []; ttsQ.set.clear(); updateTTSStatus();
         if (!S.apiKey) { toast('ใส่ Gemini API Key ในแท็บ GuideBot ก่อนจึงจะฟังเสียงนี้ได้', 4500); return; }
         if (!S.cloudVoice) { S.cloudVoice = true; saveSettings(); const c = $('[data-set="cloudVoice"]'); if (c) c.checked = true; }
-        say('สวัสดีค่ะ ยินดีต้อนรับสู่มาลัยฟาร์มค่ะ Hello and welcome to Malai Farm.', { lang: 'th', force: true, kind: 'test' });
+        say(`สวัสดีค่ะ ยินดีต้อนรับสู่${placeName('th')}ค่ะ Hello and welcome to ${placeName('en')}.`, { lang: 'th', force: true, kind: 'test' });
       }
       else if (act === 'ttsbuild') {
         if (!S.apiKey) { toast('ใส่ Gemini API Key ในแท็บ GuideBot ก่อน', 4500); return; }
@@ -2366,7 +2789,7 @@ function bindAdmin() {
       else if (act === 'fullscreen') { goFullscreen(); }
       else if (act === 'savepin') { const p = $('#newPin').value.trim(); if (!/^\d{4,6}$/.test(p)) { toast('PIN ต้องเป็นตัวเลข 4-6 หลัก'); return; } S.pin = p; saveSettings(); $('#newPin').value = ''; toast('บันทึก PIN ใหม่แล้ว'); }
       else if (act === 'exportset') { const o = clone(S); delete o.apiKey; delete o.pin; download('ecosort-settings.json', JSON.stringify({ format: 'ecosort-settings', version: 1, settings: o }, null, 2)); }
-      else if (act === 'importset') { pickFile(obj => { if (obj.format !== 'ecosort-settings') throw new Error('ไม่ใช่ไฟล์การตั้งค่า EcoSort'); const keep = { apiKey: S.apiKey, pin: S.pin }; S = Object.assign(clone(DEFAULTS), obj.settings, keep); saveSettings(); renderBins(); applyI18n(); showTab('settings'); toast('นำเข้าการตั้งค่าแล้ว'); }); }
+      else if (act === 'importset') { pickFile(obj => { if (obj.format !== 'ecosort-settings') throw new Error('ไม่ใช่ไฟล์การตั้งค่า EcoSort'); const keep = { apiKey: S.apiKey, pin: S.pin }; S = normalizeSettings(Object.assign(clone(DEFAULTS), obj.settings, keep), obj.settings || {}); saveSettings(); renderBins(); applyI18n(); renderChips(); if (!state.chat.length) resetChat(); showTab('settings'); toast('นำเข้าการตั้งค่าแล้ว'); }); }
       else if (act.startsWith('pf')) { await perfAct(act, b); }
       else if (act === 'factory') { if (confirm('ล้างข้อมูลทั้งหมดในเครื่องนี้ รวมถึงการสอน AI สถิติ และการตั้งค่า?') && confirm('ยืนยันอีกครั้ง: ข้อมูลจะหายถาวร')) { localStorage.removeItem(SKEY); await Promise.all([DB.del('dataset'), DB.clear('events'), DB.clear('survey'), DB.del('evalRecs'), DB.clear('tts'), DB.del('perf'), DB.del('uptime')]).catch(() => {}); location.reload(); } }
     } catch (err) { console.error(err); toast('ผิดพลาด: ' + (err.message || err), 5000); }
@@ -2395,22 +2818,53 @@ function bindAdmin() {
     if (el.id === 'apiKey') { S.apiKey = el.value.trim(); saveSettings(); updateNet(); }
     if (el.id === 'model') { S.model = el.value.trim(); saveSettings(); }
     if (el.id === 'sysPrompt') { S.systemPrompt = el.value; saveSettings(); }
-    if (el.id === 'kb') { S.kb = el.value; saveSettings(); }
+    if (el.dataset.place) {
+      const p = activePlace(), k = el.dataset.place; p[k] = el.value;
+      if (k === 'kb') { saveSettings(); return; }
+      if (k === 'th') { saveSettings(); applyI18n(); renderChips(); if (!state.chat.length) resetChat(); const pv = $('#placePreview'); if (pv) pv.innerHTML = placePreviewHTML(); return; }   // names are synced on "change"
+      applyPlace();
+    }
   });
   main.addEventListener('change', e => {
     const el = e.target;
     if (perfInput(el, true)) return;
     if (el.dataset.set === 'tariff' && state.adminTab === 'perf') loadPerf({ soft: true });
+    if (el.id === 'placeSel') { S.placeId = el.value; applyPlace({ chat: false }); rerenderPlaces(); if (!state.chat.length) resetChat(); toast('ใช้งานที่ ' + activePlace().th); return; }
+    if (el.dataset.place === 'th') {
+      const p = activePlace(), old = S.site; let nm = el.value.replace(/\s+/g, ' ').trim();
+      if (!nm) nm = old || 'สถานที่';
+      if (S.places.some(x => x !== p && x.th === nm)) { let i = 2; while (S.places.some(x => x !== p && x.th === `${nm} ${i}`)) i++; nm = `${nm} ${i}`; toast('มีชื่อนี้อยู่แล้ว จึงเติมเลขต่อท้าย'); }
+      p.th = nm; el.value = nm; applyPlace({ chat: false });
+      const opt = $(`#placeSel option[value="${CSS.escape(p.id)}"]`); if (opt) opt.textContent = nm;
+      if (old && old !== nm) renameSite(old, nm);
+      return;
+    }
     if (el.dataset.act === 'itembin') { const it = itemById(selItem); if (it) { it.bin = el.value; saveSettings(); refreshTrainUI(); } }
     if (el.id === 'camSel') { S.cameraId = el.value; saveSettings(); startCamera().catch(err => toast(camErrorText(err), 5000)); }
     if (el.id === 'modelSize') { S.modelSize = el.value; saveSettings(); }
     if (el.id === 'evTrue') state.evalTrue = el.value;
+    if (el.id === 'evSite') { state.evalSite = el.value; drawEval(); }
+    if (el.id === 'statSite') { state.statSite = el.value; loadStats(); }
     if (el.dataset.imp === 'mode' && imp.groups) {
       const g = [...imp.groups.values()][+el.closest('tr').dataset.g];
-      if (g) { const v = el.value; if (v === 'skip') g.map = { mode: 'skip' }; else if (v === 'new') { const sg = suggestMap(g.name); g.map = sg.mode === 'new' ? sg : { mode: 'new', th: g.name || 'รายการใหม่', en: g.name || 'New item', bin: 'blue' }; } else g.map = { mode: 'item', item: v.slice(5) }; $('#impMap').innerHTML = impMapHTML(); }
+      if (g) { const v = el.value; if (v === 'skip') g.map = { mode: 'skip' }; else if (v === 'new') { const sg = suggestMap(g.name, g.generic, { wantNew: true }); g.map = sg.mode === 'new' ? sg : { mode: 'new', th: g.name || 'รายการใหม่', en: g.name || 'New item', bin: 'blue' }; } else g.map = { mode: 'item', item: v.slice(5) }; $('#impMap').innerHTML = impMapHTML(); }
     }
-    if (el.dataset.set && el.tagName === 'SELECT') { S[el.dataset.set] = el.value; saveSettings(); if (/^voice/.test(el.dataset.set)) fillVoiceSelects(); if (el.dataset.set === 'site' && state.adminTab === 'perf') loadPerf(); }
+    if (el.dataset.set && el.tagName === 'SELECT') {
+      S[el.dataset.set] = el.value; saveSettings(); if (/^voice/.test(el.dataset.set)) fillVoiceSelects();
+      if (el.dataset.set === 'site') { const pl = S.places.find(x => x.th === el.value); if (pl) { S.placeId = pl.id; applyPlace(); } if (state.adminTab === 'perf') loadPerf(); }
+    }
   });
+}
+function rerenderPlaces() { const w = $('#placeWrap'); if (w) w.innerHTML = placeSecHTML(); }
+// keep earlier records (usage log, survey, efficiency data) attached to a place when it is renamed
+async function renameSite(oldName, newName) {
+  if (!oldName || oldName === newName) return;
+  try { perfRenameSite(oldName, newName); } catch (e) { console.warn(e); }
+  for (const st of ['events', 'survey']) {
+    try {
+      await DB.run(st, 'readwrite', s => { const r = s.openCursor(); r.onsuccess = () => { const c = r.result; if (!c) return; if (c.value && c.value.site === oldName) c.update(Object.assign({}, c.value, { site: newName })); c.continue(); }; return null; });
+    } catch (e) { console.warn(e); }
+  }
 }
 function pickFile(cb) {
   const inp = $('#filePick'); inp.value = '';
@@ -2437,7 +2891,7 @@ async function testBot() {
   out.innerHTML = '<p class="muted">กำลังทดสอบ…</p>';
   const t0 = now();
   try {
-    const r = await askGemini([{ role: 'user', text: 'แนะนำมาลัยฟาร์มสั้น ๆ หนึ่งประโยค' }]);
+    const r = await askGemini([{ role: 'user', text: `แนะนำ${activePlace().th}สั้น ๆ หนึ่งประโยค` }]);
     out.innerHTML = `<p class="note ok">เชื่อมต่อสำเร็จด้วย ${esc(r.model)} (${((now() - t0) / 1000).toFixed(1)} วินาที)<br>${esc(r.text)}</p>`;
     if (r.model !== S.model) out.innerHTML += `<p class="note">โมเดล "${esc(S.model)}" ใช้ไม่ได้ ระบบใช้ ${esc(r.model)} แทน แนะนำให้เปลี่ยนในช่องโมเดล</p>`;
   } catch (e) { out.innerHTML = `<p class="note err">ไม่สำเร็จ: ${esc(e.message)}</p>`; }
@@ -2450,7 +2904,7 @@ async function reloadModel() {
   if (m.id !== AI.id) {
     if (AI.fx) AI.fx.dispose();
     Object.assign(AI, { id: m.id, src: m.src, fx: m.fx, dim: m.dim, head: m.head });
-    AI.knn.clearAllClasses(); state.thumbs = {}; AI.dataOk = true;
+    AI.knn.clearAllClasses(); state.thumbs = {}; state.prov = {}; AI.dataOk = true;
     await saveDatasetNow();
   }
   toast('ใช้ ' + AI.src.label + ' แล้ว'); showTab('settings'); updateModeBadge();
@@ -2510,6 +2964,26 @@ var BADGE = { pass: 'ผ่าน', fail: 'ไม่ผ่าน', wip: 'ยั�
 var badge = (s, txt) => `<span class="pf-b ${s}">${txt || BADGE[s]}</span>`;
 var sitesList = () => (Array.isArray(S.sites) && S.sites.length ? S.sites : ['มาลัยฟาร์ม']);
 var siteOpts = sel => sitesList().map(s => `<option value="${esc(s)}" ${s === sel ? 'selected' : ''}>${esc(s)}</option>`).join('');
+// ---- results per place: every usage log, survey and accuracy record carries the place name it was made at
+var NOSITE = 'ไม่ระบุสถานที่';
+var siteOf = r => (r && r.site) || NOSITE;
+function siteKeys(ctx) {
+  const s = [...sitesList()]; const add = r => { const k = siteOf(r); if (!s.includes(k)) s.push(k); };
+  (ctx.ev || []).forEach(add); (ctx.sv || []).forEach(add); (state.evalRecs || []).forEach(add);
+  return s;
+}
+function bySite(ctx) {
+  return siteKeys(ctx).map(site => {
+    const ev = (ctx.ev || []).filter(e => siteOf(e) === site), sv = (ctx.sv || []).filter(r => siteOf(r) === site), R = (state.evalRecs || []).filter(r => siteOf(r) === site);
+    const sorts = ev.filter(e => e.type === 'sort'), ok = R.filter(r => r.y === r.p).length;
+    return { site, sorts: sorts.length, chats: ev.filter(e => e.type === 'chat').length, lat: stat(sorts.filter(e => e.ms > 0).map(e => e.ms)), sat: satStats(sv), svN: sv.length, evalN: R.length, acc: R.length ? ok / R.length : null };
+  }).filter(r => sitesList().includes(r.site) || r.sorts || r.chats || r.svN || r.evalN);
+}
+function siteTableHTML(rows, cur) {
+  const xs = st => st ? `${st.m.toFixed(2)} <small>(${st.sd.toFixed(2)})</small>` : '-';
+  return `<div class="table-wrap"><table class="cm pf-tbl"><tr><th class="rowh">สถานที่</th><th>คัดแยก (ครั้ง)</th><th>เวลาตอบสนองเฉลี่ย (วินาที)</th><th>ความแม่นยำ (ภาพที่ทดสอบ)</th><th>ถาม GuideBot (ครั้ง)</th><th>พึงพอใจ นักท่องเที่ยว x̄ (S.D.)</th><th>n</th><th>พึงพอใจ ผู้ดูแล x̄</th><th>n</th></tr>
+  ${rows.map(r => `<tr><th class="rowh">${esc(r.site)}${r.site === cur ? ' <small class="muted">(ตอนนี้)</small>' : ''}</th><td>${r.sorts.toLocaleString()}</td><td>${r.lat ? f1(r.lat.m / 1000, 2) : '-'}</td><td>${r.acc == null ? '-' : f1(r.acc * 100) + '%'}${r.evalN ? ` <small>(${r.evalN})</small>` : ''}</td><td>${r.chats}</td><td>${xs(r.sat.tourist.all)}</td><td>${r.sat.tourist.n}</td><td>${r.sat.staff.all ? r.sat.staff.all.m.toFixed(2) : '-'}</td><td>${r.sat.staff.n}</td></tr>`).join('')}</table></div>`;
+}
 
 /* ---------- continuous-operation log (heartbeat every minute while the station runs) ---------- */
 var UP = { data: null, framesAt: 0, wasRunning: false, errors: 0, timer: 0 };
@@ -2620,9 +3094,11 @@ function perfSpecs(ctx) {
     const c30 = Object.values(by).filter(o => o.n >= 30).length;
     const status = !R.length ? 'na' : acc >= 0.85 ? (c30 >= 12 ? 'pass' : 'wip') : (c30 >= 12 ? 'fail' : 'wip');
     const rows = Object.entries(by).sort((a, b) => a[1].ok / a[1].n - b[1].ok / b[1].n).map(([id, o]) => `<tr><th class="rowh">${esc(itemById(id)?.th || id)}</th><td>${o.n}</td><td>${o.ok}</td><td>${f1(o.ok / o.n * 100)}</td></tr>`).join('');
+    const perSite = siteKeys({ ev: [], sv: [] }).map(sn => { const x = R.filter(r => siteOf(r) === sn); return x.length ? `${esc(sn)} ร้อยละ ${f1(x.filter(r => r.y === r.p).length / x.length * 100)} (${x.length} ภาพ)` : ''; }).filter(Boolean);
     out.push({ k: 's3', no: 3, name: 'ความแม่นยำในการจำแนกไม่ต่ำกว่าร้อยละ 85', crit: '≥ ร้อยละ 85', status,
       result: R.length ? `ร้อยละ ${f1(acc * 100)} (${R.length} ภาพ)` : '-',
       info: `<p class="muted">ดึงผลจากแท็บ "ทดสอบความแม่นยำ" ใช้ขยะชิ้นจริงที่ไม่เคยใช้สอน ชนิดละไม่น้อยกว่า 30 ภาพ อย่างน้อย 12 ชนิด (ทดสอบครบ ${c30}/12 ชนิด)</p>
+        ${perSite.length ? `<p>แยกตามสถานที่: ${perSite.join(' | ')}</p>` : ''}
         ${rows ? `<div class="table-wrap"><table class="cm"><tr><th class="rowh">ชนิด (เรียงจากต่ำไปสูง)</th><th>ทดสอบ</th><th>ถูกต้อง</th><th>ร้อยละ</th></tr>${rows}</table></div>` : ''}`,
       form: `<div class="inline"><button type="button" class="btn" data-act="pftab" data-tab="eval">ไปที่ทดสอบความแม่นยำ</button></div>` });
   }
@@ -2733,6 +3209,8 @@ function energySumHTML(en) {
     <tr><th class="rowh">พลังงานต่อการคัดแยก 1 ครั้ง (Wh)</th><td>${cell(s.whPer, 3)}</td><td>${b ? cell(b.whPer, 3) : '-'}</td></tr>
     <tr><th class="rowh">ค่าไฟฟ้าต่อการคัดแยก 1 ครั้ง (บาท)</th><td>${baht(s.bahtPer)}</td><td>${b ? baht(b.bahtPer) : '-'}</td></tr>
     <tr><th class="rowh">ค่าไฟฟ้าต่อวัน (บาท)</th><td>${cell(s.bahtDay, 2)}</td><td>${b ? cell(b.bahtDay, 2) : '-'}</td></tr></table></div>
+    ${en.perSite.filter(p => p.n).length > 1 ? `<div class="table-wrap"><table class="cm pf-tbl"><tr><th class="rowh">แยกตามสถานที่ (ค่าเฉลี่ยต่อวัน)</th><th>วันที่วัด</th><th>ชม./วัน</th><th>Wh/วัน</th><th>คัดแยก/วัน</th><th>Wh/ครั้ง</th></tr>
+      ${en.perSite.filter(p => p.n).map(p => `<tr><th class="rowh">${esc(p.site)}</th><td>${p.n}</td><td>${cell(p.hours)}</td><td>${cell(p.whDay, 1)}</td><td>${cell(p.sorts, 0)}</td><td>${p.whDay != null && p.sorts ? f1(p.whDay / p.sorts, 3) : '-'}</td></tr>`).join('')}</table></div>` : ''}
     ${en.tariff == null ? '<p class="note">ใส่ค่าไฟฟ้าต่อหน่วยด้านบนก่อน ระบบจึงจะคำนวณเป็นบาทได้</p>' : ''}
     ${ratio ? `<p class="note ok">สถานีใช้พลังงานน้อยกว่า${esc(PF.base.name || 'เครื่องเปรียบเทียบ')} ${f1(ratio)} เท่า</p>` : ''}`;
 }
@@ -2806,7 +3284,7 @@ function perfEff(ctx, en) {
     { no: 4, name: 'นำไปใช้งานจริงพร้อมแบบรับรอง', crit: '3 แห่ง', result: `${certN} แห่ง`, status: certN >= 3 ? 'pass' : certN ? 'wip' : 'na' },
     { no: 5, name: 'ให้ความรู้ผ่าน GuideBot', crit: 'มีการถามตอบในทุกพื้นที่', result: `${totalChats} ครั้ง (${chatSites}/${sitesList().length} แห่ง)`, status: !totalChats ? 'na' : chatSites >= sitesList().length ? 'pass' : 'wip' }
   ];
-  return { au, rows, sat, chats, days, okDays, certN };
+  return { au, rows, sat, chats, days, okDays, certN, sites: bySite(ctx) };
 }
 function effTableHTML(eff) {
   return `<div class="table-wrap"><table class="cm pf-tbl"><tr><th class="rowh">ประเด็น</th><th>เกณฑ์</th><th>ผล</th><th>บรรลุ</th></tr>
@@ -2818,7 +3296,16 @@ function satHTML(eff) {
     ${row(`ความพึงพอใจของนักท่องเที่ยว (n = ${s.tourist.n})`, s.tourist.all)}
     ${row('&nbsp;&nbsp;– ด้านความง่ายในการใช้งาน', s.tourist.dims[0])}${row('&nbsp;&nbsp;– ด้านประโยชน์ในการคัดแยกขยะและความรู้', s.tourist.dims[1])}${row('&nbsp;&nbsp;– ด้านความตั้งใจใช้และแนะนำผู้อื่น', s.tourist.dims[2])}
     ${row(`ความพึงพอใจของผู้ดูแลสถานที่ (n = ${s.staff.n})`, s.staff.all)}</table></div>
+    ${satSiteHTML(eff.sites)}
     <p class="muted">คำนวณจากแบบประเมินบนหน้าจอสถานี (ปุ่มดาว) S.D. แบบตัวอย่าง (n − 1) แปลความหมายตามเกณฑ์ 4.51–5.00 มากที่สุด 3.51–4.50 มาก 2.51–3.50 ปานกลาง</p>`;
+}
+// tourists' satisfaction per place, by aspect
+function satSiteHTML(sites) {
+  const rows = (sites || []).filter(r => r.svN);
+  if (!rows.length) return '';
+  const m = st => st ? st.m.toFixed(2) : '-';
+  return `<p style="margin:12px 0 4px"><b>ความพึงพอใจของนักท่องเที่ยว แยกตามสถานที่</b></p><div class="table-wrap"><table class="cm pf-tbl"><tr><th class="rowh">สถานที่</th><th>n</th><th>ความง่าย</th><th>ประโยชน์</th><th>ความตั้งใจใช้</th><th>รวม x̄</th><th>S.D.</th><th>ระดับ</th><th>ผู้ดูแล x̄ (n)</th></tr>
+    ${rows.map(r => { const t = r.sat.tourist; return `<tr><th class="rowh">${esc(r.site)}</th><td>${t.n}</td><td>${m(t.dims[0])}</td><td>${m(t.dims[1])}</td><td>${m(t.dims[2])}</td><td>${m(t.all)}</td><td>${t.all ? t.all.sd.toFixed(2) : '-'}</td><td>${t.all ? levelTH(t.all.m) : '-'}</td><td>${r.sat.staff.all ? r.sat.staff.all.m.toFixed(2) + ' (' + r.sat.staff.n + ')' : '-'}</td></tr>`; }).join('')}</table></div>`;
 }
 function effHTML(ctx, eff) {
   const a = PF.adraft;
@@ -2839,7 +3326,11 @@ function effHTML(ctx, eff) {
   <h4>3.3 ความพึงพอใจ</h4>
   <div id="pfSat">${satHTML(eff)}</div>
   <h4>3.4 ตารางการหาประสิทธิผล</h4>
-  <div id="pfEffTbl">${effTableHTML(eff)}</div>`;
+  <div id="pfEffTbl">${effTableHTML(eff)}</div>
+  <h4>3.5 สรุปผลแยกตามสถานที่ทดลอง</h4>
+  <p class="muted" style="margin-top:0">บันทึกการใช้งาน แบบประเมิน และผลทดสอบความแม่นยำ ผูกกับสถานที่ที่เลือกไว้ใน ตั้งค่าระบบ ตอนที่เกิดขึ้น ตอนนี้บันทึกใหม่จะเข้าที่ <b>${esc(S.site)}</b></p>
+  <div id="pfSiteTbl">${siteTableHTML(eff.sites, S.site)}</div>
+  ${(() => { const n = ctx.ev.filter(e => !e.site).length + ctx.sv.filter(r => !r.site).length + (state.evalRecs || []).filter(r => !r.site).length; return n ? `<div class="note">มีข้อมูลเก่า ${n.toLocaleString()} รายการที่บันทึกก่อนระบบแยกสถานที่ <div class="inline" style="margin-top:8px"><button type="button" class="btn small" data-act="pfassign">กำหนดให้เป็นของ ${esc(S.site)}</button></div></div>` : ''; })()}`;
 }
 
 /* ---------- page ---------- */
@@ -2881,7 +3372,7 @@ async function loadPerf({ soft = false } = {}) {
     set('pfLive', energyLive(ctx)); set('pfEnergyTbl', energyTableHTML(P.en)); set('pfEnergySum', energySumHTML(P.en));
     const openA = $('#pfAuditTbl details[open]');
     set('pfAuditTbl', auditTableHTML(P.eff.au)); if (openA) { const d = $('#pfAuditTbl details'); if (d) d.open = true; }
-    set('pfSat', satHTML(P.eff)); set('pfEffTbl', effTableHTML(P.eff));
+    set('pfSat', satHTML(P.eff)); set('pfEffTbl', effTableHTML(P.eff)); set('pfSiteTbl', siteTableHTML(P.eff.sites, S.site));
     return;
   }
   const open = new Set($$('#pfOut details[open]').map(d => d.dataset.k));
@@ -2889,7 +3380,7 @@ async function loadPerf({ soft = false } = {}) {
   box.innerHTML = `
   <div class="panel"><div class="pf-form">
     <div class="field"><label>สถานที่ที่ติดตั้งเครื่องนี้ตอนนี้</label><select data-set="site">${siteOpts(S.site)}</select><small>บันทึกการใช้งานใหม่จะผูกกับสถานที่นี้</small></div>
-    <div class="field" style="grid-column:span 2"><label>รายชื่อสถานที่ทดลองใช้ (คั่นด้วย ,)</label><input type="text" id="pfSites" value="${esc(sitesList().join(', '))}"></div>
+    <div class="field" style="grid-column:span 2"><label>สถานที่ทดลองใช้ ${sitesList().length} แห่ง</label><div class="inline"><span class="muted" style="font-size:15px">${esc(sitesList().join(', '))}</span><button type="button" class="btn small" data-act="gotoplaces">เพิ่มหรือแก้ไขสถานที่</button></div></div>
     <div class="field"><label>ค่าไฟฟ้าต่อหน่วย (บาท/kWh)</label><input type="number" inputmode="decimal" step="0.01" data-set="tariff" value="${esc(S.tariff ?? '')}" placeholder="ดูจากบิลค่าไฟ"></div>
   </div><div id="pfKpis">${kpisHTML(P)}</div></div>
   <h4>1. ตารางการหาประสิทธิภาพ (คุณลักษณะเฉพาะ 7 ข้อ)</h4>
@@ -2948,6 +3439,8 @@ function perfReportHTML(P, ctx) {
   ${T('อัตราการทิ้งขยะผิดถังก่อนและหลังติดตั้งสถานี', ['พื้นที่ทดลอง', 'ก่อนติดตั้ง (ร้อยละ)', 'หลังติดตั้ง (ร้อยละ)', 'ลดลง (จุดร้อยละ)'], [...P.eff.au.per.map(p => [esc(p.site), f1(p.b.pct), f1(p.a.pct), f1(p.drop)]), ['<b>รวม</b>', `<b>${f1(P.eff.au.b)}</b>`, `<b>${f1(P.eff.au.a)}</b>`, `<b>${f1(P.eff.au.drop)}</b>`]])}
   ${T('ตารางการหาประสิทธิผลของสถานีในการใช้งานจริง', ['ประเด็น', 'เกณฑ์', 'ผล', 'บรรลุ'], P.eff.rows.map(r => [`${r.no}. ${r.name}`, r.crit, r.result, st(r.status)]))}
   ${T('ความพึงพอใจของผู้ใช้', ['รายการ', 'x̄', 'S.D.', 'ระดับ'], [['นักท่องเที่ยว (n = ' + P.eff.sat.tourist.n + ')', P.eff.sat.tourist.all], ['– ด้านความง่ายในการใช้งาน', P.eff.sat.tourist.dims[0]], ['– ด้านประโยชน์ในการคัดแยกขยะและความรู้', P.eff.sat.tourist.dims[1]], ['– ด้านความตั้งใจใช้และแนะนำผู้อื่น', P.eff.sat.tourist.dims[2]], ['ผู้ดูแลสถานที่ (n = ' + P.eff.sat.staff.n + ')', P.eff.sat.staff.all]].map(([l, s]) => [l, s ? s.m.toFixed(2) : '-', s ? s.sd.toFixed(2) : '-', s ? levelTH(s.m) : '-']))}
+  ${(() => { const rs = P.eff.sites.filter(r => r.svN); const m = st => st ? st.m.toFixed(2) : '-'; return rs.length ? T('ความพึงพอใจของนักท่องเที่ยว จำแนกตามสถานที่', ['สถานที่', 'n', 'ความง่าย', 'ประโยชน์', 'ความตั้งใจใช้', 'รวม x̄', 'S.D.', 'ระดับ'], rs.map(r => { const t = r.sat.tourist; return [esc(r.site), t.n, m(t.dims[0]), m(t.dims[1]), m(t.dims[2]), m(t.all), t.all ? t.all.sd.toFixed(2) : '-', t.all ? levelTH(t.all.m) : '-']; })) : ''; })()}
+  ${T('สรุปผลแยกตามสถานที่ทดลอง', ['สถานที่', 'คัดแยก (ครั้ง)', 'เวลาตอบสนองเฉลี่ย (วินาที)', 'ความแม่นยำ (ร้อยละ)', 'ภาพที่ทดสอบ', 'ถาม GuideBot (ครั้ง)', 'แบบประเมิน (ฉบับ)'], P.eff.sites.map(r => [esc(r.site), r.sorts, r.lat ? f1(r.lat.m / 1000, 2) : '-', r.acc == null ? '-' : f1(r.acc * 100), r.evalN, r.chats, r.svN]))}
   ${days.length ? T('บันทึกการทำงานต่อเนื่อง', ['วันที่', 'สถานที่', 'เวลา', 'ชม.', 'ค้าง', 'หยุด', 'ผล'], days.map(d => [thDate(d.date), esc(d.site || '-'), `${hhmm(d.start)}–${hhmm(d.end)}`, f1(d.hours), d.stalls, d.gaps, d.ok8 ? 'ครบ 8 ชม.' : d.ok ? 'ไม่ถึง 8 ชม.' : 'มีค้าง/หยุด'])) : ''}
   </div>`;
 }
@@ -3027,10 +3520,27 @@ async function perfAct(act, b) {
     });
     return;
   }
+  if (act === 'pfassign') {
+    const site = S.site; if (!confirm(`กำหนดข้อมูลเก่าที่ไม่ระบุสถานที่ทั้งหมดให้เป็นของ "${site}"?`)) return;
+    for (const st of ['events', 'survey']) {
+      try { await DB.run(st, 'readwrite', o => { const r = o.openCursor(); r.onsuccess = () => { const c = r.result; if (!c) return; if (c.value && !c.value.site) c.update(Object.assign({}, c.value, { site })); c.continue(); }; return null; }); } catch (e) { console.warn(e); }
+    }
+    (state.evalRecs || []).forEach(r => { if (!r.site) r.site = site; }); DB.set('evalRecs', state.evalRecs).catch(() => {});
+    const up = await upData(); let ch = false; Object.values(up).forEach(d => { if (d && !d.site) { d.site = site; ch = true; } }); if (ch) DB.set('uptime', up).catch(() => {});
+    toast('กำหนดสถานที่ให้ข้อมูลเก่าแล้ว'); loadPerf(); return;
+  }
   if (act === 'pfreset') {
     if (!confirm('ล้างข้อมูลการทดสอบในแท็บนี้ทั้งหมด? (บันทึกพลังงาน ผลสุ่มตรวจ ผลทดสอบข้อ 1, 5, 7 และบันทึกการทำงานต่อเนื่อง) ควรสำรองข้อมูลก่อน')) return;
     PF = PF_DEFAULT(); UP.data = {}; await Promise.all([DB.set('perf', PF), DB.set('uptime', {})]).catch(() => {}); loadPerf(); return;
   }
+}
+// a place was renamed in Settings: move its efficiency records to the new name
+function perfRenameSite(o, n) {
+  const fix = r => { if (r && r.site === o) r.site = n; };
+  (PF.energy || []).forEach(fix); (PF.audits || []).forEach(fix); fix(PF.draft); fix(PF.adraft);
+  if (PF.certs && Object.prototype.hasOwnProperty.call(PF.certs, o)) { PF.certs[n] = PF.certs[o]; delete PF.certs[o]; }
+  savePF();
+  upData().then(d => { let ch = false; Object.values(d || {}).forEach(x => { if (x && x.site === o) { x.site = n; ch = true; } }); if (ch) DB.set('uptime', d).catch(() => {}); });
 }
 function perfInput(el, isChange) {
   if (el.dataset.pf) {
