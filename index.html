@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
 <title>EcoSort GuideBot | สถานีแยกขยะอัจฉริยะ มาลัยฟาร์ม ชะอำ</title>
-<meta name="description" content="ระบบคัดแยกขยะอัจฉริยะผสานแชตบอตแนะนำการท่องเที่ยวเชิงนิเวศ (EcoSort GuideBot) วิทยาลัยการอาชีพวังไกลกังวล ๒">
+<meta name="description" content="สถานีคัดแยกขยะอัจฉริยะผสานแชตบอตแนะนำการท่องเที่ยวเชิงนิเวศ (EcoSort GuideBot) วิทยาลัยการอาชีพวังไกลกังวล ๒">
 <meta name="theme-color" content="#163A2B">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -309,6 +309,36 @@ svg.i{width:1.2em;height:1.2em;flex:none;fill:none;stroke:currentColor;stroke-wi
 .impnew{display:flex;gap:6px;flex-wrap:wrap}
 .impnew input{width:150px}
 
+/* ---------- performance tab ---------- */
+.pf-form{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:4px 12px}
+.pf-form .field{margin-bottom:10px}
+.field input[type=date],.field input[type=time]{width:100%;min-height:46px;padding:8px 12px;border-radius:10px;border:1.5px solid var(--line);background:#fff;font-size:16px;font-family:var(--f-body)}
+.pf-b{display:inline-flex;align-items:center;padding:3px 11px;border-radius:999px;font:500 13.5px var(--f-display);white-space:nowrap}
+.pf-b.pass{background:#E3F2E8;color:#1f5e3a}
+.pf-b.fail{background:#FBE3E0;color:#8a2216}
+.pf-b.wip{background:#FFF1D6;color:#7a520c}
+.pf-b.na{background:#EEF0EE;color:#5d665f}
+details.pf-d{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-md);margin-bottom:10px}
+details.pf-d > summary{cursor:pointer;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;gap:12px;font:500 16px var(--f-display);list-style:none}
+details.pf-d > summary::-webkit-details-marker{display:none}
+details.pf-d > summary::before{content:"▸";color:var(--muted);margin-right:-4px}
+details.pf-d[open] > summary::before{content:"▾"}
+details.pf-d > summary > span:first-child{flex:1}
+details.pf-d > .in{padding:0 16px 16px}
+.pf-tbl th,.pf-tbl td{text-align:left;vertical-align:top}
+.pf-tbl td.c{text-align:center}
+.pf-tbl th.pf-wrap{white-space:normal;min-width:240px}
+.pf-list{margin:6px 0 10px;padding-left:20px}
+.pf-list li{margin:3px 0}
+.pf-voice{margin-bottom:0}
+#printArea{display:none}
+@media print{
+  html,body{height:auto!important;overflow:visible!important;background:#fff!important}
+  body > *:not(#printArea){display:none!important}
+  #printArea{display:block!important}
+  @page{size:A4;margin:14mm}
+}
+
 </style>
 </head>
 <body>
@@ -328,6 +358,7 @@ svg.i{width:1.2em;height:1.2em;flex:none;fill:none;stroke:currentColor;stroke-wi
   <symbol id="i-test" viewBox="0 0 24 24"><path d="M9 3h6M10 3v6L4.5 19a2 2 0 0 0 1.8 3h11.4a2 2 0 0 0 1.8-3L14 9V3"/><path d="M7 15h10"/></symbol>
   <symbol id="i-bins" viewBox="0 0 24 24"><rect x="2" y="7" width="6" height="14" rx="1.5"/><rect x="9" y="7" width="6" height="14" rx="1.5"/><rect x="16" y="7" width="6" height="14" rx="1.5"/><path d="M2 4h20"/></symbol>
   <symbol id="i-bot" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="12" rx="3"/><path d="M12 4v4M8.5 13h.01M15.5 13h.01M9 17h6"/></symbol>
+  <symbol id="i-gauge" viewBox="0 0 24 24"><path d="M3.5 18.5a9.5 9.5 0 1 1 17 0"/><path d="m12 14 4.5-4.5"/><circle cx="12" cy="14" r="1.6"/></symbol>
   <symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 15v3M12 10v8M17 6v12"/></symbol>
   <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></symbol>
   <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
@@ -450,6 +481,7 @@ svg.i{width:1.2em;height:1.2em;flex:none;fill:none;stroke:currentColor;stroke-wi
     <h2>ผู้ดูแลสถานี</h2>
     <button type="button" data-tab="train"><svg class="i"><use href="#i-cam"/></svg>สอน AI</button>
     <button type="button" data-tab="eval"><svg class="i"><use href="#i-test"/></svg>ทดสอบความแม่นยำ</button>
+    <button type="button" data-tab="perf"><svg class="i"><use href="#i-gauge"/></svg>หาประสิทธิภาพ</button>
     <button type="button" data-tab="bins"><svg class="i"><use href="#i-bins"/></svg>ถังขยะ</button>
     <button type="button" data-tab="bot"><svg class="i"><use href="#i-bot"/></svg>GuideBot</button>
     <button type="button" data-tab="stats"><svg class="i"><use href="#i-chart"/></svg>สถิติและแบบประเมิน</button>
@@ -703,7 +735,8 @@ const DEFAULTS = {
   cameraId: '', facing: 'user', mirror: true, modelSize: 'standard',
   readAnswers: true, showSurvey: true, idleReset: 90, autoFullscreen: true,
   apiKey: '', model: 'gemini-flash-latest', systemPrompt: DEFAULT_PROMPT, kb: DEFAULT_KB,
-  bins: DEFAULT_BINS, items: DEFAULT_ITEMS, exported: false
+  bins: DEFAULT_BINS, items: DEFAULT_ITEMS, exported: false,
+  site: 'มาลัยฟาร์ม', sites: ['มาลัยฟาร์ม', 'วนอุทยานเขานางพันธุรัตน์', 'ชายหาดชะอำ'], tariff: ''
 };
 const SKEY = 'ecosort.settings.v1';
 let S = loadSettings();
@@ -747,13 +780,13 @@ const DB = {
   all(st) { return this.run(st, 'readonly', s => s.getAll()); },
   clear(st) { return this.run(st, 'readwrite', s => s.clear()); }
 };
-function logEvent(e) { DB.add('events', Object.assign({ t: Date.now() }, e)).catch(() => {}); }
+function logEvent(e) { DB.add('events', Object.assign({ t: Date.now(), site: S.site || '' }, e)).catch(() => {}); }
 
 /* ---------------- state ---------------- */
 const state = {
   started: false, view: 'kiosk', stream: null, loopOn: false, wl: null, sw: null,
   lastChat: 0, busy: false, chat: [], thumbs: {}, evalRecs: [], evalTrue: null, testing: false,
-  lastPred: null, inferMs: [], adminTab: 'train'
+  lastPred: null, inferMs: [], adminTab: 'train', frames: 0, pfAuditing: false
 };
 const AI = { ready: false, id: null, src: null, fx: null, dim: 0, head: false, knn: null, dataOk: true, err: null, backend: '' };
 
@@ -1197,6 +1230,7 @@ async function predictFrame() {
   if (!AI.ready || !video.videoWidth) return null;
   const tCap = now();
   const out = infer(video);
+  state.frames++; state.lastFrameAt = Date.now();
   let pred = null;
   try {
     if (knnUsable()) pred = await knnPredict(out[0]);
@@ -1587,7 +1621,7 @@ async function loop() {
   try {
     const idleAdmin = state.view === 'admin' && !['train', 'eval'].includes(state.adminTab);
     const talking = (state.view === 'kiosk' && isSpeaking()) || state.importing;
-    if (!document.hidden && AI.ready && state.stream && !idleAdmin && !talking) {
+    if (!document.hidden && AI.ready && state.stream && !idleAdmin && !talking && !state.pfAuditing) {
       if (state.testing) await evalTick();
       else {
         const p = await predictFrame();
@@ -1792,7 +1826,7 @@ function openSurvey() {
   $('#svSend').disabled = true; $('#survey').hidden = false;
 }
 async function sendSurvey() {
-  await DB.add('survey', { t: Date.now(), who: sv.who, ease: sv.ease, useful: sv.useful, intent: sv.intent, lang: L() }).catch(() => {});
+  await DB.add('survey', { t: Date.now(), who: sv.who, ease: sv.ease, useful: sv.useful, intent: sv.intent, lang: L(), site: S.site || '' }).catch(() => {});
   $('#survey').hidden = true; toast(t('thanks'));
 }
 
@@ -1835,10 +1869,11 @@ function showTab(tab) {
   state.adminTab = tab;
   $$('.admin-nav [data-tab]').forEach(b => b.setAttribute('aria-current', String(b.dataset.tab === tab)));
   const main = $('#adminMain');
-  main.innerHTML = ({ train: tabTrain, eval: tabEval, bins: tabBins, bot: tabBot, stats: tabStats, settings: tabSettings }[tab] || tabTrain)();
+  main.innerHTML = ({ train: tabTrain, eval: tabEval, perf: tabPerf, bins: tabBins, bot: tabBot, stats: tabStats, settings: tabSettings }[tab] || tabTrain)();
   main.scrollTop = 0;
   const pv = $('#pvVideo'); if (pv && state.stream) { pv.srcObject = state.stream; pv.play().catch(() => {}); applyMirror(); }
   if (tab === 'stats') loadStats();
+  if (tab === 'perf') loadPerf();
   if (tab === 'settings') fillSettingsAsync();
   if (tab === 'eval') drawEval();
 }
@@ -1989,7 +2024,7 @@ function tabEval() {
   const classes = S.items.filter(i => classCount(i.id) > 0);
   if (!state.evalTrue || !classes.find(c => c.id === state.evalTrue)) state.evalTrue = classes[0]?.id || BG;
   return `<h3>ทดสอบความแม่นยำ</h3>
-  <p class="lead">ใช้ขยะชิ้นจริงที่ไม่เคยใช้ตอนสอน เลือกคำตอบที่ถูกต้อง แล้วกดค้างให้ AI ทาย ผลจะถูกเก็บเป็น Confusion Matrix โดยไม่เพิ่มเข้าโมเดล เป้าหมายของโครงงาน: ความแม่นยำรวมไม่ต่ำกว่า 85% และเวลาตอบสนองน้อยกว่า 1 วินาที</p>
+  <p class="lead">ใช้ขยะชิ้นจริงที่ไม่เคยใช้ตอนสอน เลือกคำตอบที่ถูกต้อง แล้วกดค้างให้ AI ทาย ผลจะถูกเก็บเป็น Confusion Matrix โดยไม่เพิ่มเข้าโมเดล เกณฑ์ตามคุณลักษณะเฉพาะ: ความแม่นยำรวมไม่ต่ำกว่า 85% (ชนิดละอย่างน้อย 30 ภาพ) ผลจะแสดงในแท็บ "หาประสิทธิภาพ" ด้วย</p>
   ${aiNotice()}
   <div class="train-grid">
     <div>
@@ -2304,8 +2339,8 @@ function bindAdmin() {
       else if (act === 'testbot') { await testBot(); }
       else if (act === 'resetprompt') { S.systemPrompt = DEFAULT_PROMPT; $('#sysPrompt').value = DEFAULT_PROMPT; saveSettings(); }
       else if (act === 'resetkb') { S.kb = DEFAULT_KB; $('#kb').value = DEFAULT_KB; saveSettings(); }
-      else if (act === 'evcsv2') { const ev = await DB.all('events'); download('ecosort-usage-log.csv', csv([['time', 'type', 'item', 'item_name', 'bin', 'confidence', 'latency_ms', 'mode', 'online', 'lang'], ...ev.map(e => [dstr(e.t), e.type, e.item || '', itemById(e.item)?.th || '', e.bin || '', e.conf ?? '', e.ms ?? '', e.mode || '', e.online ?? '', e.lang || ''])]), 'text/csv'); }
-      else if (act === 'svcsv') { const sv = await DB.all('survey'); download('ecosort-survey.csv', csv([['time', 'respondent', 'ease_of_use', 'usefulness', 'intention', 'lang'], ...sv.map(r => [dstr(r.t), r.who, r.ease, r.useful, r.intent, r.lang])]), 'text/csv'); }
+      else if (act === 'evcsv2') { const ev = await DB.all('events'); download('ecosort-usage-log.csv', csv([['time', 'site', 'type', 'item', 'item_name', 'bin', 'confidence', 'latency_ms', 'mode', 'online', 'lang'], ...ev.map(e => [dstr(e.t), e.site || '', e.type, e.item || '', itemById(e.item)?.th || '', e.bin || '', e.conf ?? '', e.ms ?? '', e.mode || '', e.online ?? '', e.lang || ''])]), 'text/csv'); }
+      else if (act === 'svcsv') { const sv = await DB.all('survey'); download('ecosort-survey.csv', csv([['time', 'site', 'respondent', 'ease_of_use', 'usefulness', 'intention', 'lang'], ...sv.map(r => [dstr(r.t), r.site || '', r.who, r.ease, r.useful, r.intent, r.lang])]), 'text/csv'); }
       else if (act === 'clearstats') { if (confirm('ล้างสถิติและแบบประเมินทั้งหมด? (ควรส่งออก CSV ก่อน)')) { await DB.clear('events'); await DB.clear('survey'); loadStats(); } }
       else if (act === 'testvoice') { say('สวัสดีค่ะ ยินดีต้อนรับสู่มาลัยฟาร์ม ขวดน้ำพลาสติก ทิ้งลงถังสีเหลือง ขยะรีไซเคิลค่ะ เทน้ำออกให้หมดก่อนนะคะ ขอบคุณที่ช่วยกันแยกขยะค่ะ', { lang: 'th', force: true, kind: 'test' }); }
       else if (act === 'testvoiceen') { say('Hello and welcome to Malai Farm. Plastic bottle: please use the yellow bin for recyclables. Thank you for sorting your waste.', { lang: 'en', force: true, kind: 'test' }); }
@@ -2329,12 +2364,14 @@ function bindAdmin() {
       else if (act === 'savepin') { const p = $('#newPin').value.trim(); if (!/^\d{4,6}$/.test(p)) { toast('PIN ต้องเป็นตัวเลข 4-6 หลัก'); return; } S.pin = p; saveSettings(); $('#newPin').value = ''; toast('บันทึก PIN ใหม่แล้ว'); }
       else if (act === 'exportset') { const o = clone(S); delete o.apiKey; delete o.pin; download('ecosort-settings.json', JSON.stringify({ format: 'ecosort-settings', version: 1, settings: o }, null, 2)); }
       else if (act === 'importset') { pickFile(obj => { if (obj.format !== 'ecosort-settings') throw new Error('ไม่ใช่ไฟล์การตั้งค่า EcoSort'); const keep = { apiKey: S.apiKey, pin: S.pin }; S = Object.assign(clone(DEFAULTS), obj.settings, keep); saveSettings(); renderBins(); applyI18n(); showTab('settings'); toast('นำเข้าการตั้งค่าแล้ว'); }); }
-      else if (act === 'factory') { if (confirm('ล้างข้อมูลทั้งหมดในเครื่องนี้ รวมถึงการสอน AI สถิติ และการตั้งค่า?') && confirm('ยืนยันอีกครั้ง: ข้อมูลจะหายถาวร')) { localStorage.removeItem(SKEY); await Promise.all([DB.del('dataset'), DB.clear('events'), DB.clear('survey'), DB.del('evalRecs'), DB.clear('tts')]).catch(() => {}); location.reload(); } }
+      else if (act.startsWith('pf')) { await perfAct(act, b); }
+      else if (act === 'factory') { if (confirm('ล้างข้อมูลทั้งหมดในเครื่องนี้ รวมถึงการสอน AI สถิติ และการตั้งค่า?') && confirm('ยืนยันอีกครั้ง: ข้อมูลจะหายถาวร')) { localStorage.removeItem(SKEY); await Promise.all([DB.del('dataset'), DB.clear('events'), DB.clear('survey'), DB.del('evalRecs'), DB.clear('tts'), DB.del('perf'), DB.del('uptime')]).catch(() => {}); location.reload(); } }
     } catch (err) { console.error(err); toast('ผิดพลาด: ' + (err.message || err), 5000); }
   });
 
   main.addEventListener('input', e => {
     const el = e.target;
+    if (perfInput(el, false)) return;
     if (el.dataset.set) {
       const k = el.dataset.set; let v = el.type === 'checkbox' ? el.checked : el.value;
       if (el.type === 'range') v = +v;
@@ -2359,6 +2396,8 @@ function bindAdmin() {
   });
   main.addEventListener('change', e => {
     const el = e.target;
+    if (perfInput(el, true)) return;
+    if (el.dataset.set === 'tariff' && state.adminTab === 'perf') loadPerf({ soft: true });
     if (el.dataset.act === 'itembin') { const it = itemById(selItem); if (it) { it.bin = el.value; saveSettings(); refreshTrainUI(); } }
     if (el.id === 'camSel') { S.cameraId = el.value; saveSettings(); startCamera().catch(err => toast(camErrorText(err), 5000)); }
     if (el.id === 'modelSize') { S.modelSize = el.value; saveSettings(); }
@@ -2367,7 +2406,7 @@ function bindAdmin() {
       const g = [...imp.groups.values()][+el.closest('tr').dataset.g];
       if (g) { const v = el.value; if (v === 'skip') g.map = { mode: 'skip' }; else if (v === 'new') { const sg = suggestMap(g.name); g.map = sg.mode === 'new' ? sg : { mode: 'new', th: g.name || 'รายการใหม่', en: g.name || 'New item', bin: 'blue' }; } else g.map = { mode: 'item', item: v.slice(5) }; $('#impMap').innerHTML = impMapHTML(); }
     }
-    if (el.dataset.set && el.tagName === 'SELECT') { S[el.dataset.set] = el.value; saveSettings(); if (/^voice/.test(el.dataset.set)) fillVoiceSelects(); }
+    if (el.dataset.set && el.tagName === 'SELECT') { S[el.dataset.set] = el.value; saveSettings(); if (/^voice/.test(el.dataset.set)) fillVoiceSelects(); if (el.dataset.set === 'site' && state.adminTab === 'perf') loadPerf(); }
   });
 }
 function pickFile(cb) {
@@ -2422,6 +2461,590 @@ function registerSW() {
   navigator.serviceWorker.register('sw.js').then(() => { state.sw = true; }).catch(() => { state.sw = false; });
 }
 
+/* =====================================================================
+   หาประสิทธิภาพและประสิทธิผล (Admin tab "perf")
+   - ตารางการหาประสิทธิภาพตามคุณลักษณะเฉพาะ 7 ข้อ (ดึงผลอัตโนมัติจากการทดสอบความแม่นยำ บันทึกการใช้งาน และบันทึกการทำงานต่อเนื่อง)
+   - พลังงานและต้นทุนพลังงานต่อหน่วย (บันทึกค่าจากมิเตอร์วัดกำลังไฟฟ้า USB)
+   - ตารางการหาประสิทธิผล (สุ่มตรวจขยะผิดถังก่อน/หลังติดตั้ง ความเสถียร ความพึงพอใจ แบบรับรอง GuideBot)
+   ===================================================================== */
+var PF_DEFAULT = () => ({
+  spec: { h: '', stable: false, note1: '', addNew: false, voice: { th: { n: 10, ok: '' }, en: { n: 10, ok: '' } }, voiceIdx: { th: 0, en: 0 }, offlineVoice: false, audit: null, offline: null },
+  energy: [], audits: [], certs: {}, base: { name: '', w: '', hours: '' }, draft: {}, adraft: {}
+});
+var PF = PF_DEFAULT();
+var savePF = debounce(() => { DB.set('perf', PF).catch(() => {}); }, 300);
+async function loadPF() {
+  try {
+    const o = await DB.get('perf');
+    if (o && typeof o === 'object') {
+      const d = PF_DEFAULT();
+      const spec = Object.assign(d.spec, o.spec || {});
+      spec.voice = { th: Object.assign(d.spec.voice.th, o.spec?.voice?.th || {}), en: Object.assign(d.spec.voice.en, o.spec?.voice?.en || {}) };
+      spec.voiceIdx = Object.assign(d.spec.voiceIdx, o.spec?.voiceIdx || {});
+      PF = Object.assign(d, o, { spec, base: Object.assign(d.base, o.base || {}) });
+      ['energy', 'audits'].forEach(k => { if (!Array.isArray(PF[k])) PF[k] = []; });
+    }
+  } catch {}
+}
+var DEFAULT_IDS = new Set(DEFAULT_ITEMS.map(i => i.id));
+var p2 = n => String(n).padStart(2, '0');
+var dayKey = ts => { const d = new Date(ts); return `${d.getFullYear()}-${p2(d.getMonth() + 1)}-${p2(d.getDate())}`; };
+var hhmm = ts => { const d = new Date(ts); return `${p2(d.getHours())}:${p2(d.getMinutes())}`; };
+var num = v => { const x = parseFloat(String(v ?? '').replace(',', '.')); return Number.isFinite(x) ? x : null; };
+var f1 = (x, d = 1) => x == null || !Number.isFinite(x) ? '-' : x.toLocaleString('th-TH', { minimumFractionDigits: d, maximumFractionDigits: d });
+var thDate = key => { if (!key) return '-'; const [y, m, d] = key.split('-').map(Number); return `${d}/${m}/${y + 543}`; };
+function toTs(date, time) {
+  if (!date || !time) return null;
+  const [y, m, d] = date.split('-').map(Number), [hh, mm] = time.split(':').map(Number);
+  if (![y, m, d, hh, mm].every(Number.isFinite)) return null;
+  return new Date(y, m - 1, d, hh, mm, 0, 0).getTime();
+}
+function setPath(obj, path, v) { const ks = path.split('.'); let o = obj; ks.slice(0, -1).forEach(k => { if (typeof o[k] !== 'object' || o[k] === null) o[k] = {}; o = o[k]; }); o[ks[ks.length - 1]] = v; }
+function getPath(obj, path) { return path.split('.').reduce((o, k) => (o == null ? undefined : o[k]), obj); }
+function stat(arr) { const a = arr.filter(x => Number.isFinite(x)); const n = a.length; if (!n) return null; const m = a.reduce((s, x) => s + x, 0) / n; const sd = n > 1 ? Math.sqrt(a.reduce((s, x) => s + (x - m) ** 2, 0) / (n - 1)) : 0; return { n, m, sd }; }
+var levelTH = m => m >= 4.51 ? 'มากที่สุด' : m >= 3.51 ? 'มาก' : m >= 2.51 ? 'ปานกลาง' : m >= 1.51 ? 'น้อย' : 'น้อยที่สุด';
+var BADGE = { pass: 'ผ่าน', fail: 'ไม่ผ่าน', wip: 'ยังไม่ครบ', na: 'ยังไม่ทดสอบ' };
+var badge = (s, txt) => `<span class="pf-b ${s}">${txt || BADGE[s]}</span>`;
+var sitesList = () => (Array.isArray(S.sites) && S.sites.length ? S.sites : ['มาลัยฟาร์ม']);
+var siteOpts = sel => sitesList().map(s => `<option value="${esc(s)}" ${s === sel ? 'selected' : ''}>${esc(s)}</option>`).join('');
+
+/* ---------- continuous-operation log (heartbeat every minute while the station runs) ---------- */
+var UP = { data: null, framesAt: 0, wasRunning: false, errors: 0, timer: 0 };
+window.addEventListener('error', () => { UP.errors++; });
+window.addEventListener('unhandledrejection', () => { UP.errors++; });
+async function upData() { if (!UP.data) { try { UP.data = (await DB.get('uptime')) || {}; } catch { UP.data = {}; } } return UP.data; }
+async function heartbeat() {
+  if (!state.started) return;
+  const all = await upData();
+  const t = Date.now(), k = dayKey(t);
+  const d = all[k] || (all[k] = { start: t, end: t, beats: 0, frames: 0, stalls: 0, gaps: 0, maxGap: 0, errors: 0, t0: null, tmax: 0, tlast: 0, site: S.site });
+  if (d.beats && t - d.end > 150000) { d.gaps++; d.maxGap = Math.max(d.maxGap, t - d.end); }
+  const fr = (state.frames || 0) - UP.framesAt; UP.framesAt = state.frames || 0;
+  const running = !!(state.loopOn && state.view === 'kiosk' && !document.hidden && AI.ready && state.stream && !state.importing);
+  if (running && UP.wasRunning && fr === 0 && t - (state.lastFrameAt || t) > 60000 && !isSpeaking()) d.stalls++;   // AI loop processed no frame for over a minute while it should be running
+  UP.wasRunning = running;
+  d.frames += Math.max(0, fr); d.beats++; d.end = t; d.site = S.site;
+  d.errors += UP.errors; UP.errors = 0;
+  try { if (window.tf) { const n = tf.memory().numTensors; if (d.t0 == null) d.t0 = n; d.tmax = Math.max(d.tmax, n); d.tlast = n; } } catch {}
+  DB.set('uptime', all).catch(() => {});
+}
+function startHeartbeat() { if (UP.timer) return; UP.framesAt = state.frames || 0; UP.timer = setInterval(heartbeat, 60000); setTimeout(heartbeat, 5000); }
+function upDays(up) {
+  return Object.entries(up || {}).sort((a, b) => a[0] < b[0] ? -1 : 1).map(([date, d]) => {
+    const hours = (d.end - d.start) / 3.6e6;
+    const ok = d.stalls === 0 && d.gaps === 0;
+    return Object.assign({ date, hours, ok, ok8: ok && hours >= 7.95 }, d);
+  });
+}
+
+/* ---------- voice clarity test sentences ---------- */
+function voiceSentences(lang) {
+  return S.items.filter(i => i.id !== BG && binById(i.bin)?.on).slice(0, 10).map(it => {
+    const b = binById(it.bin);
+    return fmt(lang === 'en' ? S.tplEn : S.tplTh, { item: it[lang] || it.th, bin: b.name[lang], type: b.type[lang] });
+  });
+}
+
+/* ---------- privacy / offline audit ---------- */
+async function pfAudit(sec = 30) {
+  if (!AI.ready || !state.stream) { toast('ต้องเปิดสถานีและให้กล้องทำงานก่อน', 4000); return; }
+  if (state.pfAuditing) return;
+  const box = $('#pfAuditOut');
+  const offline = !navigator.onLine;
+  const seen = []; let obs = null;
+  try { performance.clearResourceTimings(); performance.setResourceTimingBufferSize?.(2000); } catch {}
+  try { obs = new PerformanceObserver(l => l.getEntries().forEach(e => seen.push(e))); obs.observe({ type: 'resource' }); } catch {}
+  const t0 = performance.now(), tStart = Date.now();
+  let frames = 0;
+  state.pfAuditing = true;
+  try {
+    while (performance.now() - t0 < sec * 1000) {
+      const p = await predictFrame(); if (p) frames++;
+      if (box) box.innerHTML = `<p class="muted">กำลังทดสอบ… จำแนกภาพแล้ว ${frames} ภาพ เหลือ ${Math.max(0, Math.ceil(sec - (performance.now() - t0) / 1000))} วินาที</p>`;
+      await sleep(Math.max(40, S.interval));
+    }
+  } finally { state.pfAuditing = false; }
+  await sleep(300);
+  try { obs && obs.disconnect(); } catch {}
+  let entries = seen;
+  if (!obs) { try { entries = performance.getEntriesByType('resource'); } catch { entries = []; } }
+  const reqs = entries.filter(e => e.startTime >= t0 && !/^(data|blob):/.test(e.name)).map(e => { let host = ''; try { host = new URL(e.name).host; } catch {} return { host, type: e.initiatorType }; });
+  const other = reqs.filter(r => r.host !== 'generativelanguage.googleapis.com');   // Gemini = ข้อความ (GuideBot/เสียง) ไม่ใช่ภาพ
+  const res = { t: tStart, sec, frames, offline, reqs: reqs.length, text: reqs.length - other.length, other: other.length, hosts: [...new Set(other.map(r => r.host))] };
+  PF.spec.audit = res;
+  if (offline && frames > 0) PF.spec.offline = res;
+  savePF();
+  if (!frames) toast('ยังจำแนกภาพไม่ได้: สอนพื้นหลังและขยะก่อน หรือเปิดโหมดพื้นฐาน', 5000);
+  loadPerf();
+}
+
+/* ---------- efficiency: 7 specifications ---------- */
+function perfSpecs(ctx) {
+  const out = [];
+  // 1 structure
+  {
+    const h = num(PF.spec.h), st = !!PF.spec.stable;
+    const inRange = h != null && h >= 110 && h <= 130;
+    const status = h == null ? 'na' : !inRange ? 'fail' : st ? 'pass' : 'wip';
+    out.push({ k: 's1', no: 1, name: 'แท็บเล็ตบนขาตั้งเหนือถัง 5 สี หน้าจอสูง 110–130 ซม. ตั้งได้มั่นคง', crit: 'สูง 110–130 ซม. ไม่โยก/ไม่ล้ม', status,
+      result: h == null ? '-' : `สูง ${f1(h, 0)} ซม.${st ? ' ไม่โยก' : ''}`,
+      info: `<p class="muted">วัดจากพื้นถึงกึ่งกลางหน้าจอด้วยตลับเมตร แล้วดันขาตั้งด้านข้างเบา ๆ ทั้ง 4 ทิศ ถ่ายรูปขณะวัดเก็บไว้แนบภาคผนวก</p>`,
+      form: `<div class="pf-form"><div class="field"><label>ความสูงหน้าจอจากพื้น (ซม.)</label><input type="number" inputmode="decimal" step="0.5" data-pf="spec.h" value="${esc(PF.spec.h)}"></div>
+        <div class="field" style="grid-column:span 2"><label>หมายเหตุ</label><input type="text" data-pf="spec.note1" value="${esc(PF.spec.note1)}" placeholder="เช่น ขาตั้งรุ่น… ฐานกว้าง… ซม."></div></div>
+        <label class="switch"><span>ดันขาตั้งด้านข้างแล้วไม่โยกและไม่ล้ม</span><input type="checkbox" data-pf="spec.stable" ${st ? 'checked' : ''}></label>` });
+  }
+  // 2 classes
+  {
+    const items = S.items.filter(i => i.id !== BG);
+    const trained = items.filter(i => classCount(i.id) > 0 && binById(i.bin)?.on);
+    const binsOn = S.bins.filter(b => b.on).length;
+    const custom = items.filter(i => !DEFAULT_IDS.has(i.id) && classCount(i.id) > 0);
+    const addOk = custom.length > 0 || !!PF.spec.addNew;
+    const status = !trained.length ? 'na' : (trained.length >= 12 && binsOn >= 5 && addOk) ? 'pass' : 'wip';
+    const missing = items.filter(i => DEFAULT_IDS.has(i.id) && classCount(i.id) === 0).map(i => i.th);
+    out.push({ k: 's2', no: 2, name: 'จำแนกขยะได้ 12 ชนิด จัดเข้าถัง 5 สี และเพิ่มชนิดใหม่ได้', crit: 'ครบ 12 ชนิด เพิ่มชนิดใหม่ได้', status,
+      result: `${trained.length} ชนิด / ถัง ${binsOn} สี${addOk ? ' / เพิ่มใหม่ได้' : ''}`,
+      info: `<ul class="pf-list"><li>ชนิดขยะที่สอนแล้วและใช้งานอยู่: <b>${trained.length}</b> ชนิด (เกณฑ์ 12)</li><li>ถังที่เปิดใช้งาน: <b>${binsOn}</b> สี</li>
+        <li>ชนิดใหม่ที่ผู้ดูแลเพิ่มและสอนแล้ว: <b>${custom.length}</b>${custom.length ? ` (${custom.map(i => esc(i.th)).join(', ')})` : ''}</li>
+        ${missing.length ? `<li>ยังไม่ได้สอน: ${missing.map(esc).join(', ')}</li>` : ''}</ul>`,
+      form: `<label class="switch"><span>ทดลองเพิ่มชนิดขยะใหม่ในแท็บ "สอน AI" แล้วสถานีจำแนกได้<small>ระบบตรวจให้อัตโนมัติเมื่อมีรายการใหม่ที่สอนแล้ว ใช้ช่องนี้กรณีลบรายการทดลองไปแล้ว</small></span><input type="checkbox" data-pf="spec.addNew" ${PF.spec.addNew ? 'checked' : ''}></label>` });
+  }
+  // 3 accuracy
+  {
+    const R = state.evalRecs || [];
+    const by = {}; R.forEach(r => { const o = by[r.y] || (by[r.y] = { n: 0, ok: 0 }); o.n++; if (r.y === r.p) o.ok++; });
+    const correct = R.filter(r => r.y === r.p).length, acc = R.length ? correct / R.length : 0;
+    const c30 = Object.values(by).filter(o => o.n >= 30).length;
+    const status = !R.length ? 'na' : acc >= 0.85 ? (c30 >= 12 ? 'pass' : 'wip') : (c30 >= 12 ? 'fail' : 'wip');
+    const rows = Object.entries(by).sort((a, b) => a[1].ok / a[1].n - b[1].ok / b[1].n).map(([id, o]) => `<tr><th class="rowh">${esc(itemById(id)?.th || id)}</th><td>${o.n}</td><td>${o.ok}</td><td>${f1(o.ok / o.n * 100)}</td></tr>`).join('');
+    out.push({ k: 's3', no: 3, name: 'ความแม่นยำในการจำแนกไม่ต่ำกว่าร้อยละ 85', crit: '≥ ร้อยละ 85', status,
+      result: R.length ? `ร้อยละ ${f1(acc * 100)} (${R.length} ภาพ)` : '-',
+      info: `<p class="muted">ดึงผลจากแท็บ "ทดสอบความแม่นยำ" ใช้ขยะชิ้นจริงที่ไม่เคยใช้สอน ชนิดละไม่น้อยกว่า 30 ภาพ อย่างน้อย 12 ชนิด (ทดสอบครบ ${c30}/12 ชนิด)</p>
+        ${rows ? `<div class="table-wrap"><table class="cm"><tr><th class="rowh">ชนิด (เรียงจากต่ำไปสูง)</th><th>ทดสอบ</th><th>ถูกต้อง</th><th>ร้อยละ</th></tr>${rows}</table></div>` : ''}`,
+      form: `<div class="inline"><button type="button" class="btn" data-act="pftab" data-tab="eval">ไปที่ทดสอบความแม่นยำ</button></div>` });
+  }
+  // 4 latency
+  {
+    const lat = ctx.ev.filter(e => e.type === 'sort' && e.ms > 0).map(e => e.ms).sort((a, b) => a - b);
+    const n = lat.length, mean = n ? lat.reduce((a, b) => a + b, 0) / n : 0;
+    const q = p => n ? lat[Math.min(n - 1, Math.floor(p * (n - 1)))] : 0;
+    const under = n ? lat.filter(x => x < 1000).length / n : 0;
+    const status = !n ? 'na' : n < 100 ? (mean < 1000 ? 'wip' : 'fail') : mean < 1000 ? 'pass' : 'fail';
+    out.push({ k: 's4', no: 4, name: 'เวลาตั้งแต่กล้องจับภาพจนเริ่มพูดแนะนำน้อยกว่า 1 วินาที', crit: '< 1 วินาที (≥ 100 ครั้ง)', status,
+      result: n ? `เฉลี่ย ${f1(mean / 1000, 2)} วินาที (${n} ครั้ง)` : '-',
+      info: `<div class="kpis"><div class="kpi"><b>${n}</b><span>ครั้งที่บันทึก (เกณฑ์ ≥ 100)</span></div><div class="kpi"><b>${n ? f1(mean / 1000, 2) : '-'}</b><span>เฉลี่ย (วินาที)</span></div>
+        <div class="kpi"><b>${n ? f1(q(0.5) / 1000, 2) : '-'}</b><span>มัธยฐาน (วินาที)</span></div><div class="kpi"><b>${n ? f1(q(0.95) / 1000, 2) : '-'}</b><span>เปอร์เซ็นไทล์ 95</span></div>
+        <div class="kpi"><b>${n ? f1(under * 100, 0) + '%' : '-'}</b><span>เร็วกว่า 1 วินาที</span></div></div>
+        <p class="muted">บันทึกอัตโนมัติทุกครั้งที่สถานีแนะนำขยะ นับจากเฟรมแรกที่เห็นขยะจนเสียงเริ่มพูด</p>`, form: '' });
+  }
+  // 5 voice
+  {
+    const v = PF.spec.voice;
+    const r = lg => { const n = num(v[lg].n) || 0, ok = num(v[lg].ok); return ok == null || !n ? null : ok / (n * 10); };
+    const th = r('th'), en = r('en');
+    const status = th == null && en == null ? 'na' : (th != null && en != null) ? (th >= 0.9 && en >= 0.9 ? 'pass' : 'fail') : 'wip';
+    const player = lg => { const list = voiceSentences(lg); const i = (PF.spec.voiceIdx[lg] || 0) % Math.max(1, list.length);
+      return `<div class="panel pf-voice"><strong>${lg === 'th' ? 'ภาษาไทย' : 'ภาษาอังกฤษ'}</strong>
+        <div class="inline" style="margin:8px 0"><button type="button" class="btn primary" data-act="pfvplay" data-lang="${lg}">▶ เล่นประโยคที่ ${i + 1}/${list.length}</button><button type="button" class="btn small" data-act="pfvreset" data-lang="${lg}">เริ่มใหม่</button></div>
+        <p class="muted mono" id="pfvNow-${lg}">${esc(list[i] || '')}</p>
+        <div class="pf-form"><div class="field"><label>จำนวนผู้ฟัง (คน)</label><input type="number" inputmode="numeric" data-pf="spec.voice.${lg}.n" value="${esc(v[lg].n)}"></div>
+        <div class="field"><label>ประโยคที่ฟังเข้าใจถูกต้อง (รวม)</label><input type="number" inputmode="numeric" data-pf="spec.voice.${lg}.ok" value="${esc(v[lg].ok)}" placeholder="เต็ม ${(num(v[lg].n) || 0) * 10}"></div></div>
+        <p id="pfi-s5${lg}">${(lg === 'th' ? th : en) == null ? '' : `ฟังเข้าใจร้อยละ <b>${f1((lg === 'th' ? th : en) * 100)}</b>`}</p></div>`; };
+    out.push({ k: 's5', no: 5, name: 'เสียงแนะนำภาษาไทยและภาษาอังกฤษได้ยินชัดเจนที่ระยะ 1 เมตร', crit: 'ฟังเข้าใจ ≥ ร้อยละ 90', status,
+      result: th == null && en == null ? '-' : `ไทย ${th == null ? '-' : f1(th * 100)} / อังกฤษ ${en == null ? '-' : f1(en * 100)}`,
+      info: `<p class="muted">ให้ผู้ฟังยืนห่างสถานี 1 เมตร เล่นประโยคทีละประโยค (ภาษาละ 10 ประโยค) ผู้ฟังเขียนชื่อขยะและสีถังที่ได้ยินลงกระดาษ แล้วนับจำนวนประโยคที่ตอบถูกของทุกคนรวมกัน</p>`,
+      form: `<div class="grid2">${player('th')}${player('en')}</div>` });
+  }
+  // 6 continuous operation
+  {
+    const days = upDays(ctx.up);
+    const pass8 = days.filter(d => d.ok8).length, stalls = days.reduce((a, d) => a + d.stalls, 0);
+    const status = !days.length ? 'na' : stalls > 0 ? 'fail' : pass8 >= 3 ? 'pass' : 'wip';
+    const rows = days.slice(-14).reverse().map(d => `<tr><th class="rowh">${thDate(d.date)}</th><td>${esc(d.site || '-')}</td><td>${hhmm(d.start)}–${hhmm(d.end)}</td><td>${f1(d.hours)}</td><td>${d.frames.toLocaleString()}</td><td>${d.stalls}</td><td>${d.gaps}</td><td>${d.t0 ?? '-'} → ${d.tmax || '-'}</td><td>${d.ok8 ? badge('pass', 'ครบ 8 ชม.') : d.ok ? badge('wip', 'ไม่ถึง 8 ชม.') : badge('fail', 'มีค้าง/หยุด')}</td></tr>`).join('');
+    out.push({ k: 's6', no: 6, name: 'ทำงานต่อเนื่องได้ไม่น้อยกว่า 8 ชั่วโมงต่อวันโดยไม่ค้าง', crit: 'ค้าง 0 ครั้ง ครบ 8 ชม. 3 วัน', status,
+      result: days.length ? `ครบ 8 ชม. ${pass8} วัน ค้าง ${stalls} ครั้ง` : '-',
+      info: `<p class="muted">บันทึกอัตโนมัติทุก 1 นาทีขณะสถานีเปิดใช้งาน "ค้าง" = AI ไม่ประมวลผลภาพเลยตลอด 1 นาทีทั้งที่หน้าสถานีเปิดอยู่ "หยุด" = แอปถูกปิดหรือเครื่องพักหน้าจอเกิน 2.5 นาที ตัวเลข tensor ที่คงที่แสดงว่าไม่มีหน่วยความจำรั่ว</p>
+        ${rows ? `<div class="table-wrap"><table class="cm"><tr><th class="rowh">วันที่</th><th>สถานที่</th><th>เวลา</th><th>ชม.</th><th>เฟรมที่ประมวลผล</th><th>ค้าง</th><th>หยุด</th><th>tensor (เริ่ม→สูงสุด)</th><th>ผล</th></tr>${rows}</table></div>` : '<p class="muted">ยังไม่มีบันทึก เปิดสถานีทิ้งไว้แล้วข้อมูลจะเริ่มเก็บเอง</p>'}`, form: '' });
+  }
+  // 7 offline & privacy
+  {
+    const a = PF.spec.audit, off = PF.spec.offline, vOff = !!PF.spec.offlineVoice;
+    const status = a && a.other > 0 ? 'fail' : (off && vOff && a && a.other === 0) ? 'pass' : (a || off) ? 'wip' : 'na';
+    const swOn = !!(navigator.serviceWorker && navigator.serviceWorker.controller);
+    const ln = r => r ? `${dstr(r.t)} | ${r.offline ? 'ออฟไลน์' : 'ออนไลน์'} | จำแนก ${r.frames} ภาพใน ${r.sec} วินาที | ส่งข้อมูลออกนอกเครื่อง ${r.other} รายการ${r.text ? ` (ข้อความถึง Gemini ${r.text} รายการ)` : ''}${r.hosts?.length ? ' ไปยัง ' + esc(r.hosts.join(', ')) : ''}` : 'ยังไม่ได้ทดสอบ';
+    out.push({ k: 's7', no: 7, name: 'จำแนกและพูดแนะนำได้เมื่อไม่มีอินเทอร์เน็ต และภาพไม่ถูกส่งออกนอกเครื่อง', crit: 'ทำงานออฟไลน์ / ไม่ส่งภาพ', status,
+      result: a ? `ออฟไลน์${off ? 'ได้' : ' ยังไม่ทดสอบ'} / ส่งออก ${a.other} รายการ` : '-',
+      info: `<ul class="pf-list"><li>ตัวช่วยออฟไลน์ (Service Worker): <b>${swOn ? 'ทำงาน' : 'ไม่ทำงาน'}</b>${swOn ? '' : ' (ต้องเปิดผ่านเว็บไซต์ https และเคยเปิดออนไลน์สำเร็จ 1 ครั้ง)'}</li>
+        <li>สถานะเครือข่ายตอนนี้: <b>${navigator.onLine ? 'ออนไลน์' : 'ออฟไลน์'}</b></li>
+        <li>ทดสอบล่าสุด: ${ln(a)}</li><li>ทดสอบขณะออฟไลน์: ${ln(off)}</li></ul>
+        <p class="muted">ระบบจำแนกภาพจากกล้อง 30 วินาที และใช้ Resource Timing ของเบราว์เซอร์นับคำขอเครือข่ายทุกรายการที่เกิดขึ้นระหว่างนั้น ทดสอบครั้งแรกขณะออนไลน์ แล้วปิด Wi-Fi และทดสอบอีกครั้ง</p>`,
+      form: `<div class="inline"><button type="button" class="btn primary" data-act="pfaudit">ทดสอบการรับส่งข้อมูล 30 วินาที</button><button type="button" class="btn" data-act="pfvoff">พูดประโยคทดสอบ</button></div>
+        <div id="pfAuditOut"></div>
+        <label class="switch"><span>ปิดอินเทอร์เน็ตแล้วยังได้ยินเสียงแนะนำ</span><input type="checkbox" data-pf="spec.offlineVoice" ${vOff ? 'checked' : ''}></label>` });
+  }
+  return out;
+}
+
+/* ---------- energy ---------- */
+function countSorts(ev, start, end, site) { return ev.filter(e => e.type === 'sort' && e.t >= start && e.t <= end && (!e.site || !site || e.site === site)).length; }
+function energySummary(ctx) {
+  const tariff = num(S.tariff);
+  const rows = PF.energy.slice().sort((a, b) => a.start - b.start).map(e => {
+    const h = (e.end - e.start) / 3.6e6, wh = num(e.wh), sorts = num(e.sorts) || 0, ac = num(e.ac);
+    return Object.assign({}, e, { h, whN: wh, sortsN: sorts, avgW: h > 0 && wh != null ? wh / h : null, whPer: sorts && wh != null ? wh / sorts : null, bahtPer: sorts && wh != null && tariff != null ? wh / sorts / 1000 * tariff : null, effc: ac && wh != null ? wh / (ac * 1000) : null, acN: ac });
+  });
+  const m = k => { const s = stat(rows.map(r => r[k])); return s ? s.m : null; };
+  const hours = m('h'), whDay = m('whN'), sortsDay = m('sortsN');
+  const st = { n: rows.length, hours, whDay, sortsDay, avgW: hours ? whDay / hours : null, whPer: sortsDay ? whDay / sortsDay : null };
+  st.bahtPer = st.whPer != null && tariff != null ? st.whPer / 1000 * tariff : null;
+  st.bahtDay = whDay != null && tariff != null ? whDay / 1000 * tariff : null;
+  const bw = num(PF.base.w), bh = num(PF.base.hours) ?? hours;
+  const base = bw == null ? null : { w: bw, hours: bh, whDay: bh != null ? bw * bh : null };
+  if (base) { base.whPer = base.whDay != null && sortsDay ? base.whDay / sortsDay : null; base.bahtPer = base.whPer != null && tariff != null ? base.whPer / 1000 * tariff : null; base.bahtDay = base.whDay != null && tariff != null ? base.whDay / 1000 * tariff : null; }
+  const perSite = sitesList().map(s => { const r = rows.filter(x => x.site === s); const a = stat(r.map(x => x.whN)), b = stat(r.map(x => x.sortsN)), c = stat(r.map(x => x.h)); return { site: s, n: r.length, whDay: a?.m, sorts: b?.m, hours: c?.m }; });
+  return { rows, st, base, tariff, perSite };
+}
+function energyLive(ctx) {
+  const d = PF.draft;
+  if (!d.date || !d.t0 || d.t1) return '';
+  const s = toTs(d.date, d.t0); if (!s) return '';
+  const mins = Math.max(0, Math.round((Date.now() - s) / 60000));
+  return `<div class="note ok">กำลังวัด: เริ่ม ${esc(d.t0)} น. ผ่านไป ${Math.floor(mins / 60)} ชม. ${mins % 60} นาที สถานีแนะนำขยะไปแล้ว ${countSorts(ctx.ev, s, Date.now(), d.site || S.site)} ครั้ง</div>`;
+}
+function energyTableHTML(en) {
+  if (!en.rows.length) return '<p class="muted">ยังไม่มีบันทึก</p>';
+  return `<div class="table-wrap"><table class="cm pf-tbl"><tr><th class="rowh">วันที่</th><th>สถานที่</th><th>เวลา</th><th>ชม.</th><th>Wh (USB)</th><th>W เฉลี่ย</th><th>คัดแยก (ครั้ง)</th><th>Wh/ครั้ง</th><th>บาท/ครั้ง</th><th>kWh (ปลั๊ก)</th><th>แบต %</th><th></th></tr>
+  ${en.rows.map(r => `<tr><th class="rowh">${thDate(r.date)}</th><td>${esc(r.site)}</td><td>${hhmm(r.start)}–${hhmm(r.end)}</td><td>${f1(r.h)}</td><td>${f1(r.whN, 2)}</td><td>${f1(r.avgW, 2)}</td><td>${r.sortsN}</td><td>${f1(r.whPer, 3)}</td><td>${r.bahtPer == null ? '-' : r.bahtPer.toFixed(5)}</td><td>${r.acN == null ? '-' : f1(r.acN, 3)}</td><td>${esc(r.b0 ?? '')}→${esc(r.b1 ?? '')}${num(r.b1) != null && num(r.b0) != null && num(r.b1) < num(r.b0) ? ' ⚠' : ''}</td><td><button type="button" class="btn small danger" data-act="pfedel" data-id="${esc(r.id)}" aria-label="ลบ">ลบ</button></td></tr>`).join('')}</table></div>
+  ${en.rows.some(r => num(r.b1) != null && num(r.b0) != null && num(r.b1) < num(r.b0)) ? '<p class="note">⚠ แบตเตอรี่ตอนจบต่ำกว่าตอนเริ่ม แสดงว่าแบตจ่ายไฟช่วยด้วย ค่าที่มิเตอร์อ่านได้จึงต่ำกว่าพลังงานที่ใช้จริง ควรวัดวันนั้นใหม่</p>' : ''}`;
+}
+function energySumHTML(en) {
+  const s = en.st, b = en.base;
+  const cell = (x, d) => x == null ? '-' : f1(x, d);
+  const baht = x => x == null ? '-' : x.toFixed(5);
+  const ratio = b && b.whDay && s.whDay ? b.whDay / s.whDay : null;
+  return `<div class="table-wrap"><table class="cm pf-tbl"><tr><th class="rowh">รายการ (ค่าเฉลี่ยต่อวัน จาก ${s.n} วัน)</th><th>EcoSort GuideBot</th><th>${esc(PF.base.name || 'เครื่องเปรียบเทียบ')}</th></tr>
+    <tr><th class="rowh">กำลังไฟฟ้าเฉลี่ยขณะทำงาน (W)</th><td>${cell(s.avgW, 2)}</td><td>${b ? cell(b.w, 1) : '-'}</td></tr>
+    <tr><th class="rowh">ชั่วโมงเปิดใช้งานต่อวัน</th><td>${cell(s.hours)}</td><td>${b ? cell(b.hours) : '-'}</td></tr>
+    <tr><th class="rowh">พลังงานต่อวัน (Wh)</th><td>${cell(s.whDay, 1)}</td><td>${b ? cell(b.whDay, 1) : '-'}</td></tr>
+    <tr><th class="rowh">จำนวนครั้งที่คัดแยกต่อวัน</th><td>${cell(s.sortsDay, 0)}</td><td>${b ? cell(s.sortsDay, 0) : '-'}</td></tr>
+    <tr><th class="rowh">พลังงานต่อการคัดแยก 1 ครั้ง (Wh)</th><td>${cell(s.whPer, 3)}</td><td>${b ? cell(b.whPer, 3) : '-'}</td></tr>
+    <tr><th class="rowh">ค่าไฟฟ้าต่อการคัดแยก 1 ครั้ง (บาท)</th><td>${baht(s.bahtPer)}</td><td>${b ? baht(b.bahtPer) : '-'}</td></tr>
+    <tr><th class="rowh">ค่าไฟฟ้าต่อวัน (บาท)</th><td>${cell(s.bahtDay, 2)}</td><td>${b ? cell(b.bahtDay, 2) : '-'}</td></tr></table></div>
+    ${en.tariff == null ? '<p class="note">ใส่ค่าไฟฟ้าต่อหน่วยด้านบนก่อน ระบบจึงจะคำนวณเป็นบาทได้</p>' : ''}
+    ${ratio ? `<p class="note ok">สถานีใช้พลังงานน้อยกว่า${esc(PF.base.name || 'เครื่องเปรียบเทียบ')} ${f1(ratio)} เท่า</p>` : ''}`;
+}
+function energyHTML(ctx, en) {
+  const d = PF.draft;
+  return `<div class="panel">
+    <p class="muted" style="margin-top:0">ต่อสาย: เต้ารับ → ปลั๊กวัดไฟ (ถ้ามี) → หัวชาร์จ → <b>มิเตอร์ USB</b> → สายชาร์จ → แท็บเล็ต ชาร์จแบตให้เต็มก่อนเริ่ม ตั้งความสว่างจอคงที่ทุกวัน แล้วกด "เริ่มวัดตอนนี้" พร้อมรีเซ็ตค่า Wh บนมิเตอร์ ตอนปิดสถานีกด "จบตอนนี้" แล้วกรอกค่า Wh ที่อ่านได้ ระบบนับจำนวนครั้งที่คัดแยกให้เอง</p>
+    <div id="pfLive">${energyLive(ctx)}</div>
+    <div class="pf-form">
+      <div class="field"><label>วันที่</label><input type="date" data-pf="draft.date" value="${esc(d.date || '')}"></div>
+      <div class="field"><label>สถานที่</label><select data-pf="draft.site">${siteOpts(d.site || S.site)}</select></div>
+      <div class="field"><label>เวลาเริ่ม</label><input type="time" data-pf="draft.t0" value="${esc(d.t0 || '')}"></div>
+      <div class="field"><label>เวลาสิ้นสุด</label><input type="time" data-pf="draft.t1" value="${esc(d.t1 || '')}"></div>
+      <div class="field"><label>พลังงานจากมิเตอร์ USB (Wh)</label><input type="number" inputmode="decimal" step="0.01" data-pf="draft.wh" value="${esc(d.wh || '')}"></div>
+      <div class="field"><label>ปลั๊กวัดไฟ (kWh) ถ้ามี</label><input type="number" inputmode="decimal" step="0.001" data-pf="draft.ac" value="${esc(d.ac || '')}"></div>
+      <div class="field"><label>แบตเตอรี่ตอนเริ่ม (%)</label><input type="number" inputmode="numeric" data-pf="draft.b0" value="${esc(d.b0 || '')}"></div>
+      <div class="field"><label>แบตเตอรี่ตอนจบ (%)</label><input type="number" inputmode="numeric" data-pf="draft.b1" value="${esc(d.b1 || '')}"></div>
+      <div class="field"><label>ความสว่างจอ (%)</label><input type="number" inputmode="numeric" data-pf="draft.bright" value="${esc(d.bright || '')}"></div>
+      <div class="field"><label>จำนวนครั้งที่คัดแยก</label><input type="number" inputmode="numeric" data-pf="draft.sorts" value="${esc(d.sorts || '')}" placeholder="เว้นว่าง = นับอัตโนมัติ"></div>
+      <div class="field" style="grid-column:1/-1"><label>หมายเหตุ</label><input type="text" data-pf="draft.note" value="${esc(d.note || '')}" placeholder="เช่น อากาศร้อน ฝนตก ปิดเร็ว"></div>
+    </div>
+    <div class="inline"><button type="button" class="btn" data-act="pfestart">เริ่มวัดตอนนี้</button><button type="button" class="btn" data-act="pfeend">จบตอนนี้</button><button type="button" class="btn primary" data-act="pfesave">บันทึกผลรอบนี้</button><button type="button" class="btn small" data-act="pfeclear">ล้างฟอร์ม</button></div>
+  </div>
+  <div id="pfEnergyTbl">${energyTableHTML(en)}</div>
+  <div class="panel" style="margin-top:14px"><strong>เครื่องที่ใช้เปรียบเทียบ (เช่น ถังคัดแยกอัตโนมัติ)</strong>
+    <div class="pf-form" style="margin-top:8px">
+      <div class="field" style="grid-column:span 2"><label>ชื่อ/รุ่น และแหล่งข้อมูล</label><input type="text" data-pf="base.name" value="${esc(PF.base.name)}" placeholder="เช่น ถังคัดแยกอัตโนมัติ รุ่น… (ข้อมูลจากผู้ผลิต)"></div>
+      <div class="field"><label>กำลังไฟฟ้า (W)</label><input type="number" inputmode="decimal" data-pf="base.w" value="${esc(PF.base.w)}"></div>
+      <div class="field"><label>ชั่วโมงต่อวัน</label><input type="number" inputmode="decimal" data-pf="base.hours" value="${esc(PF.base.hours)}" placeholder="เท่ากับสถานี"></div>
+    </div></div>
+  <div id="pfEnergySum">${energySumHTML(en)}</div>`;
+}
+
+/* ---------- effectiveness ---------- */
+function auditSummary() {
+  const per = sitesList().map(site => {
+    const r = PF.audits.filter(a => a.site === site);
+    const agg = ph => { const x = r.filter(a => a.phase === ph); const tot = x.reduce((s, a) => s + (num(a.total) || 0), 0), w = x.reduce((s, a) => s + (num(a.wrong) || 0), 0); return { days: x.length, tot, w, pct: tot ? w / tot * 100 : null }; };
+    const b = agg('before'), a = agg('after');
+    return { site, b, a, drop: b.pct != null && a.pct != null ? b.pct - a.pct : null, rel: b.pct && a.pct != null ? (b.pct - a.pct) / b.pct * 100 : null };
+  });
+  const all = ph => { const x = PF.audits.filter(a => a.phase === ph); const tot = x.reduce((s, a) => s + (num(a.total) || 0), 0), w = x.reduce((s, a) => s + (num(a.wrong) || 0), 0); return tot ? w / tot * 100 : null; };
+  const b = all('before'), a = all('after');
+  return { per, b, a, drop: b != null && a != null ? b - a : null };
+}
+function auditTableHTML(au) {
+  const list = PF.audits.slice().sort((x, y) => (x.date < y.date ? -1 : 1));
+  return `<div class="table-wrap"><table class="cm pf-tbl"><tr><th class="rowh">พื้นที่</th><th>ก่อนติดตั้ง (ร้อยละ)</th><th>หลังติดตั้ง (ร้อยละ)</th><th>ลดลง (จุดร้อยละ)</th><th>ลดลงเทียบก่อน (%)</th></tr>
+    ${au.per.map(p => `<tr><th class="rowh">${esc(p.site)}</th><td>${f1(p.b.pct)}${p.b.days ? ` <small>(${p.b.days} วัน)</small>` : ''}</td><td>${f1(p.a.pct)}${p.a.days ? ` <small>(${p.a.days} วัน)</small>` : ''}</td><td>${f1(p.drop)}</td><td>${f1(p.rel)}</td></tr>`).join('')}
+    <tr><th class="rowh">รวมทุกพื้นที่</th><td><b>${f1(au.b)}</b></td><td><b>${f1(au.a)}</b></td><td><b>${f1(au.drop)}</b></td><td><b>${au.b ? f1((au.b - au.a) / au.b * 100) : '-'}</b></td></tr></table></div>
+    ${list.length ? `<details class="pf-d" data-k="alist"><summary><span>บันทึกการสุ่มตรวจรายวัน (${list.length} รายการ)</span></summary><div class="in"><div class="table-wrap"><table class="cm pf-tbl"><tr><th class="rowh">วันที่</th><th>สถานที่</th><th>ช่วง</th><th>ทั้งหมด (ชิ้น)</th><th>ผิดถัง (ชิ้น)</th><th>ร้อยละ</th><th>หมายเหตุ</th><th></th></tr>
+    ${list.map(a => `<tr><th class="rowh">${thDate(a.date)}</th><td>${esc(a.site)}</td><td>${a.phase === 'before' ? 'ก่อนติดตั้ง' : 'หลังติดตั้ง'}</td><td>${esc(a.total)}</td><td>${esc(a.wrong)}</td><td>${f1(num(a.wrong) / num(a.total) * 100)}</td><td>${esc(a.note || '')}</td><td><button type="button" class="btn small danger" data-act="pfadel" data-id="${esc(a.id)}">ลบ</button></td></tr>`).join('')}</table></div></div></details>` : ''}`;
+}
+function satStats(sv) {
+  const g = who => { const r = sv.filter(x => !who || x.who === who); const dims = ['ease', 'useful', 'intent'].map(k => stat(r.map(x => +x[k]))); return { n: r.length, dims, all: stat(r.flatMap(x => [+x.ease, +x.useful, +x.intent])) }; };
+  return { tourist: g('tourist'), staff: g('staff') };
+}
+function perfEff(ctx, en) {
+  const au = auditSummary();
+  const days = upDays(ctx.up);
+  const okDays = days.filter(d => d.ok).length;
+  const sat = satStats(ctx.sv);
+  const certN = sitesList().filter(s => PF.certs[s]).length;
+  const chats = {}; ctx.ev.filter(e => e.type === 'chat').forEach(e => { const k = e.site || 'ไม่ระบุ'; chats[k] = (chats[k] || 0) + 1; });
+  const chatSites = sitesList().filter(s => chats[s] > 0).length;
+  const totalChats = Object.values(chats).reduce((a, b) => a + b, 0);
+  const rows = [
+    { no: 1, name: 'ลดการทิ้งขยะผิดถัง', crit: 'หลังติดตั้งต่ำกว่าก่อนติดตั้ง', result: au.b == null || au.a == null ? '-' : `ร้อยละ ${f1(au.b)} → ${f1(au.a)}`, status: au.b == null || au.a == null ? (PF.audits.length ? 'wip' : 'na') : au.a < au.b ? 'pass' : 'fail' },
+    { no: 2, name: 'ความเสถียรในการใช้งานจริง', crit: 'ทำงานครบทุกวันที่เปิดให้บริการ', result: days.length ? `${okDays}/${days.length} วัน` : '-', status: !days.length ? 'na' : okDays === days.length ? 'pass' : 'fail' },
+    { no: 3, name: 'ความพึงพอใจของนักท่องเที่ยว', crit: 'x̄ ≥ 3.51', result: sat.tourist.all ? `x̄ = ${sat.tourist.all.m.toFixed(2)} (n = ${sat.tourist.n})` : '-', status: !sat.tourist.all ? 'na' : sat.tourist.all.m >= 3.51 ? (sat.tourist.n >= 100 ? 'pass' : 'wip') : 'fail' },
+    { no: 4, name: 'นำไปใช้งานจริงพร้อมแบบรับรอง', crit: '3 แห่ง', result: `${certN} แห่ง`, status: certN >= 3 ? 'pass' : certN ? 'wip' : 'na' },
+    { no: 5, name: 'ให้ความรู้ผ่าน GuideBot', crit: 'มีการถามตอบในทุกพื้นที่', result: `${totalChats} ครั้ง (${chatSites}/${sitesList().length} แห่ง)`, status: !totalChats ? 'na' : chatSites >= sitesList().length ? 'pass' : 'wip' }
+  ];
+  return { au, rows, sat, chats, days, okDays, certN };
+}
+function effTableHTML(eff) {
+  return `<div class="table-wrap"><table class="cm pf-tbl"><tr><th class="rowh">ประเด็น</th><th>เกณฑ์</th><th>ผล</th><th>บรรลุ</th></tr>
+  ${eff.rows.map(r => `<tr><th class="rowh">${r.no}. ${r.name}</th><td>${r.crit}</td><td>${r.result}</td><td class="c">${badge(r.status)}</td></tr>`).join('')}</table></div>`;
+}
+function satHTML(eff) {
+  const s = eff.sat, row = (lbl, st) => `<tr><th class="rowh">${lbl}</th><td>${st ? st.m.toFixed(2) : '-'}</td><td>${st ? st.sd.toFixed(2) : '-'}</td><td>${st ? levelTH(st.m) : '-'}</td></tr>`;
+  return `<div class="table-wrap"><table class="cm pf-tbl"><tr><th class="rowh">รายการ</th><th>x̄</th><th>S.D.</th><th>ระดับ</th></tr>
+    ${row(`ความพึงพอใจของนักท่องเที่ยว (n = ${s.tourist.n})`, s.tourist.all)}
+    ${row('&nbsp;&nbsp;– ด้านความง่ายในการใช้งาน', s.tourist.dims[0])}${row('&nbsp;&nbsp;– ด้านประโยชน์ในการคัดแยกขยะและความรู้', s.tourist.dims[1])}${row('&nbsp;&nbsp;– ด้านความตั้งใจใช้และแนะนำผู้อื่น', s.tourist.dims[2])}
+    ${row(`ความพึงพอใจของผู้ดูแลสถานที่ (n = ${s.staff.n})`, s.staff.all)}</table></div>
+    <p class="muted">คำนวณจากแบบประเมินบนหน้าจอสถานี (ปุ่มดาว) S.D. แบบตัวอย่าง (n − 1) แปลความหมายตามเกณฑ์ 4.51–5.00 มากที่สุด 3.51–4.50 มาก 2.51–3.50 ปานกลาง</p>`;
+}
+function effHTML(ctx, eff) {
+  const a = PF.adraft;
+  return `<h4 style="margin-top:8px">3.1 อัตราการทิ้งขยะผิดถัง (สุ่มตรวจก่อนและหลังติดตั้ง)</h4>
+  <div class="panel"><p class="muted" style="margin-top:0">สุ่มตรวจถังทั้ง 5 ใบ วันละ 1 ครั้ง นับขยะทั้งหมดและชิ้นที่อยู่ผิดถัง 5 วันก่อนติดตั้งสถานี และ 5 วันหลังติดตั้ง ในแต่ละสถานที่</p>
+    <div class="pf-form">
+      <div class="field"><label>วันที่</label><input type="date" data-pf="adraft.date" value="${esc(a.date || '')}"></div>
+      <div class="field"><label>สถานที่</label><select data-pf="adraft.site">${siteOpts(a.site || S.site)}</select></div>
+      <div class="field"><label>ช่วง</label><select data-pf="adraft.phase"><option value="before" ${a.phase !== 'after' ? 'selected' : ''}>ก่อนติดตั้ง</option><option value="after" ${a.phase === 'after' ? 'selected' : ''}>หลังติดตั้ง</option></select></div>
+      <div class="field"><label>ขยะทั้งหมด (ชิ้น)</label><input type="number" inputmode="numeric" data-pf="adraft.total" value="${esc(a.total || '')}"></div>
+      <div class="field"><label>อยู่ผิดถัง (ชิ้น)</label><input type="number" inputmode="numeric" data-pf="adraft.wrong" value="${esc(a.wrong || '')}"></div>
+      <div class="field"><label>หมายเหตุ</label><input type="text" data-pf="adraft.note" value="${esc(a.note || '')}"></div>
+    </div>
+    <div class="inline"><button type="button" class="btn primary" data-act="pfasave">บันทึกผลสุ่มตรวจ</button></div></div>
+  <div id="pfAuditTbl">${auditTableHTML(eff.au)}</div>
+  <h4>3.2 แบบรับรองการนำไปใช้งานจริง</h4>
+  <div class="panel">${sitesList().map(s => `<label class="switch"><span>${esc(s)}<small>ได้รับแบบรับรองที่ลงนามแล้ว</small></span><input type="checkbox" data-pfcert="${esc(s)}" ${PF.certs[s] ? 'checked' : ''}></label>`).join('')}</div>
+  <h4>3.3 ความพึงพอใจ</h4>
+  <div id="pfSat">${satHTML(eff)}</div>
+  <h4>3.4 ตารางการหาประสิทธิผล</h4>
+  <div id="pfEffTbl">${effTableHTML(eff)}</div>`;
+}
+
+/* ---------- page ---------- */
+function specTableHTML(specs) {
+  return `<div class="table-wrap"><table class="cm pf-tbl"><tr><th class="rowh">คุณลักษณะเฉพาะ</th><th>เกณฑ์</th><th>ผลการทดสอบ</th><th>ผล</th></tr>
+  ${specs.map(s => `<tr><th class="rowh pf-wrap">${s.no}. ${s.name}</th><td>${s.crit}</td><td>${s.result}</td><td class="c">${badge(s.status)}</td></tr>`).join('')}</table></div>`;
+}
+function kpisHTML(P) {
+  const nPass = P.specs.filter(s => s.status === 'pass').length, ePass = P.eff.rows.filter(r => r.status === 'pass').length;
+  const au = P.eff.au;
+  return `<div class="kpis">
+    <div class="kpi"><b>${nPass}/7</b><span>คุณลักษณะเฉพาะที่ผ่านเกณฑ์</span></div>
+    <div class="kpi"><b>${ePass}/5</b><span>ประเด็นประสิทธิผลที่บรรลุ</span></div>
+    <div class="kpi"><b>${P.en.st.whDay == null ? '-' : f1(P.en.st.whDay, 1)}</b><span>พลังงานเฉลี่ย (Wh/วัน)</span></div>
+    <div class="kpi"><b>${P.en.st.bahtPer == null ? '-' : (P.en.st.bahtPer * 100).toFixed(3)}</b><span>ค่าไฟต่อการคัดแยก (สตางค์/ครั้ง)</span></div>
+    <div class="kpi"><b>${au.b == null || au.a == null ? '-' : f1(au.b) + '→' + f1(au.a)}</b><span>ทิ้งผิดถัง ก่อน→หลัง (%)</span></div>
+  </div>`;
+}
+function perfParts(ctx) { const specs = perfSpecs(ctx); const en = energySummary(ctx); const eff = perfEff(ctx, en); return { specs, en, eff }; }
+function tabPerf() {
+  return `<h3>หาประสิทธิภาพและประสิทธิผล</h3>
+  <p class="lead">บันทึกผลทดสอบตามคุณลักษณะเฉพาะ 7 ข้อ ต้นทุนพลังงานจากมิเตอร์วัดกำลังไฟฟ้า USB และผลการใช้งานจริงในแต่ละสถานที่ ระบบดึงผลจากการทดสอบความแม่นยำ บันทึกการใช้งาน และแบบประเมินมาคำนวณให้อัตโนมัติ ข้อมูลเก็บในเครื่องนี้ ส่งออกเป็นตารางสำหรับรายงาน ว-สอศ-3 ได้ที่หัวข้อ 4</p>
+  <div id="pfOut"><p class="muted">กำลังโหลด…</p></div>`;
+}
+async function perfCtx() {
+  const [ev, sv, up] = await Promise.all([DB.all('events').catch(() => []), DB.all('survey').catch(() => []), upData()]);
+  return { ev, sv, up };
+}
+async function loadPerf({ soft = false } = {}) {
+  const box = $('#pfOut'); if (!box) return;
+  const ctx = await perfCtx();
+  const P = perfParts(ctx);
+  state.pfCtx = ctx;
+  if (soft && $('#pfKpis')) {
+    const set = (id, h) => { const el = $('#' + id); if (el) el.innerHTML = h; };
+    set('pfKpis', kpisHTML(P)); set('pfSpecTbl', specTableHTML(P.specs));
+    P.specs.forEach(s => { set('pfb-' + s.k, badge(s.status)); set('pfi-' + s.k, s.info); });
+    const v = PF.spec.voice; ['th', 'en'].forEach(lg => { const n = num(v[lg].n) || 0, ok = num(v[lg].ok); set('pfi-s5' + lg, ok == null || !n ? '' : `ฟังเข้าใจร้อยละ <b>${f1(ok / (n * 10) * 100)}</b>`); });
+    set('pfLive', energyLive(ctx)); set('pfEnergyTbl', energyTableHTML(P.en)); set('pfEnergySum', energySumHTML(P.en));
+    const openA = $('#pfAuditTbl details[open]');
+    set('pfAuditTbl', auditTableHTML(P.eff.au)); if (openA) { const d = $('#pfAuditTbl details'); if (d) d.open = true; }
+    set('pfSat', satHTML(P.eff)); set('pfEffTbl', effTableHTML(P.eff));
+    return;
+  }
+  const open = new Set($$('#pfOut details[open]').map(d => d.dataset.k));
+  const main = $('#adminMain'); const st = main ? main.scrollTop : 0;
+  box.innerHTML = `
+  <div class="panel"><div class="pf-form">
+    <div class="field"><label>สถานที่ที่ติดตั้งเครื่องนี้ตอนนี้</label><select data-set="site">${siteOpts(S.site)}</select><small>บันทึกการใช้งานใหม่จะผูกกับสถานที่นี้</small></div>
+    <div class="field" style="grid-column:span 2"><label>รายชื่อสถานที่ทดลองใช้ (คั่นด้วย ,)</label><input type="text" id="pfSites" value="${esc(sitesList().join(', '))}"></div>
+    <div class="field"><label>ค่าไฟฟ้าต่อหน่วย (บาท/kWh)</label><input type="number" inputmode="decimal" step="0.01" data-set="tariff" value="${esc(S.tariff ?? '')}" placeholder="ดูจากบิลค่าไฟ"></div>
+  </div><div id="pfKpis">${kpisHTML(P)}</div></div>
+  <h4>1. ตารางการหาประสิทธิภาพ (คุณลักษณะเฉพาะ 7 ข้อ)</h4>
+  <div id="pfSpecTbl">${specTableHTML(P.specs)}</div>
+  <p class="muted" style="margin:12px 0 8px">แตะแต่ละข้อเพื่อดูรายละเอียด ทดสอบ และกรอกผล</p>
+  ${P.specs.map(s => `<details class="pf-d" data-k="${s.k}"><summary><span>ข้อ ${s.no} ${s.name}</span><span id="pfb-${s.k}">${badge(s.status)}</span></summary><div class="in"><div id="pfi-${s.k}">${s.info}</div>${s.form}</div></details>`).join('')}
+  <h4>2. พลังงานและต้นทุนพลังงานต่อหน่วย (มิเตอร์วัดกำลังไฟฟ้า USB)</h4>
+  ${energyHTML(ctx, P.en)}
+  <h4>3. ประสิทธิผลจากการใช้งานจริง</h4>
+  ${effHTML(ctx, P.eff)}
+  <h4>4. ส่งออกผลสำหรับรายงาน</h4>
+  <div class="panel"><div class="inline">
+    <button type="button" class="btn primary" data-act="pfprint">พิมพ์/บันทึก PDF สรุปผล</button>
+    <button type="button" class="btn" data-act="pfhtml"><svg class="i"><use href="#i-down"/></svg>ดาวน์โหลดสรุปผล (HTML)</button>
+    <button type="button" class="btn" data-act="pfcsv"><svg class="i"><use href="#i-down"/></svg>พลังงาน (CSV)</button>
+    <button type="button" class="btn" data-act="pfacsv"><svg class="i"><use href="#i-down"/></svg>สุ่มตรวจ (CSV)</button>
+    <button type="button" class="btn" data-act="pfucsv"><svg class="i"><use href="#i-down"/></svg>การทำงานต่อเนื่อง (CSV)</button>
+  </div><div class="inline" style="margin-top:10px">
+    <button type="button" class="btn" data-act="pfjson"><svg class="i"><use href="#i-down"/></svg>สำรองข้อมูลการทดสอบ (JSON)</button>
+    <button type="button" class="btn" data-act="pfimport"><svg class="i"><use href="#i-up"/></svg>รวมข้อมูลจากเครื่องอื่น (JSON)</button>
+    <button type="button" class="btn danger" data-act="pfreset">ล้างข้อมูลการทดสอบ</button>
+  </div><p class="muted">ถ้าใช้แท็บเล็ตหลายเครื่อง ให้สำรองข้อมูลจากแต่ละเครื่องแล้วนำมารวมในเครื่องเดียวก่อนพิมพ์สรุปผล</p></div>`;
+  $$('#pfOut details').forEach(d => { if (open.has(d.dataset.k)) d.open = true; });
+  if (main) main.scrollTop = st;
+  clearInterval(state.pfTimer);
+  state.pfTimer = setInterval(() => { if (state.adminTab !== 'perf' || state.view !== 'admin') { clearInterval(state.pfTimer); return; } if (PF.draft.t0 && !PF.draft.t1) perfCtx().then(c => { const el = $('#pfLive'); if (el) el.innerHTML = energyLive(c); }); }, 30000);
+}
+
+/* ---------- printable summary ---------- */
+function perfReportHTML(P, ctx) {
+  const T = (cap, head, rows) => `<p class="cap"><b>${cap}</b></p><table><tr>${head.map(h => `<th>${h}</th>`).join('')}</tr>${rows.map(r => `<tr>${r.map((c, i) => `<td${i ? ' class="c"' : ''}>${c}</td>`).join('')}</tr>`).join('')}</table>`;
+  const st = s => BADGE[s];
+  const R = state.evalRecs || []; const by = {}; R.forEach(r => { const o = by[r.y] || (by[r.y] = { n: 0, ok: 0 }); o.n++; if (r.y === r.p) o.ok++; });
+  const accRows = Object.entries(by).map(([id, o]) => { const it = itemById(id); const b = it && binById(it.bin); return [esc(it?.th || id), esc(b ? b.name.th : '-'), o.n, o.ok, f1(o.ok / o.n * 100)]; });
+  const okAll = R.filter(r => r.y === r.p).length;
+  if (R.length) accRows.push(['<b>รวม</b>', '', `<b>${R.length}</b>`, `<b>${okAll}</b>`, `<b>${f1(okAll / R.length * 100)}</b>`]);
+  const en = P.en, b = en.base, c = (x, d) => x == null ? '-' : f1(x, d), bt = x => x == null ? '-' : x.toFixed(5);
+  const days = upDays(ctx.up);
+  return `<style>
+    #printArea,.pf-print{font-family:'IBM Plex Sans Thai Looped','Sarabun',sans-serif;color:#000;font-size:13pt}
+    .pf-print h1{font-size:17pt;margin:0 0 4px} .pf-print .sub{margin:0 0 14px;color:#333}
+    .pf-print table{border-collapse:collapse;width:100%;margin:4px 0 16px;page-break-inside:auto}
+    .pf-print th,.pf-print td{border:1px solid #444;padding:4px 7px;vertical-align:top;text-align:left}
+    .pf-print td.c{text-align:center} .pf-print th{background:#eee} .pf-print tr{page-break-inside:avoid}
+    .pf-print .cap{margin:14px 0 2px}
+  </style><div class="pf-print">
+  <h1>สรุปผลการหาประสิทธิภาพและประสิทธิผล สถานีคัดแยกขยะอัจฉริยะ EcoSort GuideBot</h1>
+  <p class="sub">สร้างเมื่อ ${dstr(Date.now())} | สถานที่ทดลอง: ${esc(sitesList().join(', '))}</p>
+  ${T('ตารางการหาประสิทธิภาพตามคุณลักษณะเฉพาะ', ['คุณลักษณะเฉพาะ', 'เกณฑ์', 'ผลการทดสอบ', 'ผล'], P.specs.map(s => [`${s.no}. ${s.name}`, s.crit, s.result, st(s.status)]))}
+  ${accRows.length ? T('ผลการทดสอบความแม่นยำรายชนิดขยะ', ['ชนิดขยะ', 'ถัง', 'ทดสอบ (ภาพ)', 'ถูกต้อง', 'ร้อยละ'], accRows) : ''}
+  ${T('ต้นทุนพลังงานต่อการคัดแยกขยะ 1 ครั้ง' + (en.tariff != null ? ` (ค่าไฟฟ้า ${f1(en.tariff, 2)} บาท/หน่วย)` : ''), ['รายการ', 'EcoSort GuideBot', esc(PF.base.name || 'เครื่องเปรียบเทียบ')], [
+    ['กำลังไฟฟ้าเฉลี่ยขณะทำงาน (W)', c(en.st.avgW, 2), b ? c(b.w, 1) : '-'], ['ชั่วโมงเปิดใช้งานต่อวัน', c(en.st.hours), b ? c(b.hours) : '-'],
+    ['พลังงานต่อวัน (Wh)', c(en.st.whDay, 1), b ? c(b.whDay, 1) : '-'], ['จำนวนครั้งที่คัดแยกต่อวัน', c(en.st.sortsDay, 0), b ? c(en.st.sortsDay, 0) : '-'],
+    ['พลังงานต่อการคัดแยก 1 ครั้ง (Wh)', c(en.st.whPer, 3), b ? c(b.whPer, 3) : '-'], ['ค่าไฟฟ้าต่อการคัดแยก 1 ครั้ง (บาท)', bt(en.st.bahtPer), b ? bt(b.bahtPer) : '-']])}
+  ${en.rows.length ? T('บันทึกการวัดพลังงานด้วยมิเตอร์ USB', ['วันที่', 'สถานที่', 'เวลา', 'ชม.', 'Wh', 'W เฉลี่ย', 'ครั้ง', 'Wh/ครั้ง', 'แบต %'], en.rows.map(r => [thDate(r.date), esc(r.site), `${hhmm(r.start)}–${hhmm(r.end)}`, f1(r.h), f1(r.whN, 2), f1(r.avgW, 2), r.sortsN, f1(r.whPer, 3), `${esc(r.b0 ?? '')}→${esc(r.b1 ?? '')}`])) : ''}
+  ${T('อัตราการทิ้งขยะผิดถังก่อนและหลังติดตั้งสถานี', ['พื้นที่ทดลอง', 'ก่อนติดตั้ง (ร้อยละ)', 'หลังติดตั้ง (ร้อยละ)', 'ลดลง (จุดร้อยละ)'], [...P.eff.au.per.map(p => [esc(p.site), f1(p.b.pct), f1(p.a.pct), f1(p.drop)]), ['<b>รวม</b>', `<b>${f1(P.eff.au.b)}</b>`, `<b>${f1(P.eff.au.a)}</b>`, `<b>${f1(P.eff.au.drop)}</b>`]])}
+  ${T('ตารางการหาประสิทธิผลของสถานีในการใช้งานจริง', ['ประเด็น', 'เกณฑ์', 'ผล', 'บรรลุ'], P.eff.rows.map(r => [`${r.no}. ${r.name}`, r.crit, r.result, st(r.status)]))}
+  ${T('ความพึงพอใจของผู้ใช้', ['รายการ', 'x̄', 'S.D.', 'ระดับ'], [['นักท่องเที่ยว (n = ' + P.eff.sat.tourist.n + ')', P.eff.sat.tourist.all], ['– ด้านความง่ายในการใช้งาน', P.eff.sat.tourist.dims[0]], ['– ด้านประโยชน์ในการคัดแยกขยะและความรู้', P.eff.sat.tourist.dims[1]], ['– ด้านความตั้งใจใช้และแนะนำผู้อื่น', P.eff.sat.tourist.dims[2]], ['ผู้ดูแลสถานที่ (n = ' + P.eff.sat.staff.n + ')', P.eff.sat.staff.all]].map(([l, s]) => [l, s ? s.m.toFixed(2) : '-', s ? s.sd.toFixed(2) : '-', s ? levelTH(s.m) : '-']))}
+  ${days.length ? T('บันทึกการทำงานต่อเนื่อง', ['วันที่', 'สถานที่', 'เวลา', 'ชม.', 'ค้าง', 'หยุด', 'ผล'], days.map(d => [thDate(d.date), esc(d.site || '-'), `${hhmm(d.start)}–${hhmm(d.end)}`, f1(d.hours), d.stalls, d.gaps, d.ok8 ? 'ครบ 8 ชม.' : d.ok ? 'ไม่ถึง 8 ชม.' : 'มีค้าง/หยุด'])) : ''}
+  </div>`;
+}
+
+/* ---------- actions ---------- */
+async function perfAct(act, b) {
+  const ctx = state.pfCtx || await perfCtx();
+  if (act === 'pftab') { showTab(b.dataset.tab); return; }
+  if (act === 'pfvplay' || act === 'pfvreset') {
+    const lg = b.dataset.lang, list = voiceSentences(lg);
+    if (!list.length) { toast('ยังไม่มีรายการขยะ'); return; }
+    if (act === 'pfvreset') { PF.spec.voiceIdx[lg] = 0; savePF(); loadPerf(); return; }
+    const i = (PF.spec.voiceIdx[lg] || 0) % list.length;
+    say(list[i], { lang: lg, force: true, kind: 'test' });
+    PF.spec.voiceIdx[lg] = (i + 1) % list.length; savePF();
+    const nxt = PF.spec.voiceIdx[lg];
+    b.textContent = `▶ เล่นประโยคที่ ${nxt + 1}/${list.length}`;
+    const now_ = $('#pfvNow-' + lg); if (now_) now_.textContent = `กำลังเล่น: ${list[i]}`;
+    return;
+  }
+  if (act === 'pfvoff') { const it = S.items.find(i => i.id !== BG && binById(i.bin)?.on); if (it) say(nudgeText(it, binById(it.bin), 'th'), { lang: 'th', force: true, kind: 'test' }); return; }
+  if (act === 'pfaudit') { await pfAudit(+b.dataset.sec || 30); return; }
+  if (act === 'pfestart') { const t = Date.now(); PF.draft = { date: dayKey(t), t0: hhmm(t), site: S.site, bright: PF.draft.bright || '', b0: PF.draft.b0 || '100' }; savePF(); toast('เริ่มรอบวัดแล้ว อย่าลืมรีเซ็ตค่า Wh บนมิเตอร์'); loadPerf(); return; }
+  if (act === 'pfeend') {
+    const d = PF.draft; const t = Date.now();
+    if (!d.date) d.date = dayKey(t);
+    d.t1 = hhmm(t);
+    const s = toTs(d.date, d.t0);
+    if (s) d.sorts = String(countSorts(ctx.ev, s, t, d.site || S.site));
+    savePF(); loadPerf(); toast('กรอกค่า Wh ที่อ่านจากมิเตอร์และแบตเตอรี่ตอนจบ แล้วกดบันทึก'); return;
+  }
+  if (act === 'pfesave') {
+    const d = PF.draft; const s = toTs(d.date, d.t0); let e = toTs(d.date, d.t1);
+    if (!s || !e) { toast('กรอกวันที่ เวลาเริ่ม และเวลาสิ้นสุดก่อน'); return; }
+    if (e <= s) e += 86400000;                                  // ข้ามเที่ยงคืน
+    const wh = num(d.wh); if (wh == null || wh <= 0) { toast('กรอกพลังงานที่อ่านได้จากมิเตอร์ (Wh)'); return; }
+    const site = d.site || S.site;
+    const sorts = d.sorts !== undefined && String(d.sorts).trim() !== '' ? num(d.sorts) : countSorts(ctx.ev, s, e, site);
+    PF.energy.push({ id: 'e' + Date.now().toString(36), date: d.date, site, start: s, end: e, wh, ac: num(d.ac), b0: d.b0 ?? '', b1: d.b1 ?? '', bright: d.bright ?? '', sorts: sorts ?? 0, note: d.note || '' });
+    PF.draft = { site, bright: d.bright || '' }; savePF(); toast('บันทึกผลการวัดพลังงานแล้ว'); loadPerf(); return;
+  }
+  if (act === 'pfeclear') { PF.draft = { site: S.site }; savePF(); loadPerf(); return; }
+  if (act === 'pfedel') { if (confirm('ลบบันทึกพลังงานรายการนี้?')) { PF.energy = PF.energy.filter(x => x.id !== b.dataset.id); savePF(); loadPerf({ soft: true }); } return; }
+  if (act === 'pfasave') {
+    const a = PF.adraft; const tot = num(a.total), w = num(a.wrong);
+    if (!a.date) { toast('เลือกวันที่ก่อน'); return; }
+    if (tot == null || tot <= 0 || w == null || w < 0 || w > tot) { toast('ตรวจจำนวนขยะทั้งหมดและจำนวนที่ผิดถังอีกครั้ง'); return; }
+    PF.audits.push({ id: 'a' + Date.now().toString(36), date: a.date, site: a.site || S.site, phase: a.phase === 'after' ? 'after' : 'before', total: tot, wrong: w, note: a.note || '' });
+    PF.adraft = { site: a.site || S.site, phase: a.phase || 'before' }; savePF(); toast('บันทึกผลสุ่มตรวจแล้ว'); loadPerf(); return;
+  }
+  if (act === 'pfadel') { if (confirm('ลบผลสุ่มตรวจรายการนี้?')) { PF.audits = PF.audits.filter(x => x.id !== b.dataset.id); savePF(); loadPerf({ soft: true }); } return; }
+  if (act === 'pfprint' || act === 'pfhtml') {
+    const c2 = await perfCtx(); const html = perfReportHTML(perfParts(c2), c2);
+    if (act === 'pfhtml') { download('ecosort-performance-summary.html', `<!DOCTYPE html><html lang="th"><head><meta charset="utf-8"><title>สรุปผลการหาประสิทธิภาพ EcoSort GuideBot</title></head><body>${html}</body></html>`, 'text/html'); return; }
+    let pa = $('#printArea'); if (!pa) { pa = document.createElement('div'); pa.id = 'printArea'; document.body.append(pa); }
+    pa.innerHTML = html; setTimeout(() => { try { window.print(); } catch { toast('เครื่องนี้พิมพ์จากแอปไม่ได้ ใช้ปุ่มดาวน์โหลดสรุปผลแทน', 5000); } }, 100);
+    return;
+  }
+  if (act === 'pfcsv') { const en = energySummary(ctx); download('ecosort-energy.csv', csv([['date', 'site', 'start', 'end', 'hours', 'wh_usb', 'avg_w', 'sorts', 'wh_per_sort', 'baht_per_sort', 'kwh_plug', 'charger_eff', 'battery_start', 'battery_end', 'brightness', 'note'], ...en.rows.map(r => [r.date, r.site, hhmm(r.start), hhmm(r.end), r.h.toFixed(3), r.whN, r.avgW?.toFixed(3) ?? '', r.sortsN, r.whPer?.toFixed(4) ?? '', r.bahtPer?.toFixed(6) ?? '', r.acN ?? '', r.effc?.toFixed(3) ?? '', r.b0, r.b1, r.bright, r.note])]), 'text/csv'); return; }
+  if (act === 'pfacsv') { download('ecosort-wrong-bin-audit.csv', csv([['date', 'site', 'phase', 'total', 'wrong', 'wrong_pct', 'note'], ...PF.audits.map(a => [a.date, a.site, a.phase, a.total, a.wrong, (a.wrong / a.total * 100).toFixed(2), a.note])]), 'text/csv'); return; }
+  if (act === 'pfucsv') { download('ecosort-uptime.csv', csv([['date', 'site', 'start', 'end', 'hours', 'frames', 'stalls', 'gaps', 'max_gap_min', 'errors', 'tensors_start', 'tensors_max', 'ok_8h'], ...upDays(ctx.up).map(d => [d.date, d.site || '', hhmm(d.start), hhmm(d.end), d.hours.toFixed(2), d.frames, d.stalls, d.gaps, (d.maxGap / 60000).toFixed(1), d.errors, d.t0 ?? '', d.tmax, d.ok8 ? 1 : 0])]), 'text/csv'); return; }
+  if (act === 'pfjson') { download(`ecosort-perf-${dayKey(Date.now())}.json`, JSON.stringify({ format: 'ecosort-perf', version: 1, perf: PF, uptime: await upData(), evalRecs: state.evalRecs }, null, 1)); return; }
+  if (act === 'pfimport') {
+    pickFile(async obj => {
+      if (obj.format !== 'ecosort-perf') throw new Error('ไม่ใช่ไฟล์ข้อมูลการทดสอบ EcoSort');
+      const o = obj.perf || {};
+      const merge = (a, b) => { const ids = new Set(a.map(x => x.id)); return a.concat((b || []).filter(x => !ids.has(x.id))); };
+      PF.energy = merge(PF.energy, o.energy); PF.audits = merge(PF.audits, o.audits);
+      Object.entries(o.certs || {}).forEach(([k, v]) => { if (v) PF.certs[k] = true; });
+      if (!PF.base.w && o.base) PF.base = Object.assign(PF.base, o.base);
+      if (o.spec) { ['h', 'note1'].forEach(k => { if (!PF.spec[k] && o.spec[k]) PF.spec[k] = o.spec[k]; }); ['stable', 'addNew', 'offlineVoice'].forEach(k => { PF.spec[k] = PF.spec[k] || !!o.spec[k]; });
+        ['th', 'en'].forEach(lg => { if (o.spec.voice?.[lg]?.ok !== '' && o.spec.voice?.[lg]?.ok != null && (PF.spec.voice[lg].ok === '' || PF.spec.voice[lg].ok == null)) PF.spec.voice[lg] = o.spec.voice[lg]; });
+        if (o.spec.offline && !PF.spec.offline) PF.spec.offline = o.spec.offline; if (o.spec.audit && (!PF.spec.audit || o.spec.audit.t > PF.spec.audit.t)) PF.spec.audit = o.spec.audit; }
+      const up = await upData(); Object.entries(obj.uptime || {}).forEach(([k, d]) => { if (!up[k] || (d.beats || 0) > (up[k].beats || 0)) up[k] = d; }); DB.set('uptime', up).catch(() => {});
+      if (Array.isArray(obj.evalRecs) && obj.evalRecs.length && confirm(`ไฟล์มีผลทดสอบความแม่นยำ ${obj.evalRecs.length} ภาพ ต้องการรวมเข้ากับผลในเครื่องนี้ด้วยหรือไม่?`)) { state.evalRecs = state.evalRecs.concat(obj.evalRecs); DB.set('evalRecs', state.evalRecs).catch(() => {}); }
+      savePF(); toast('รวมข้อมูลแล้ว'); loadPerf();
+    });
+    return;
+  }
+  if (act === 'pfreset') {
+    if (!confirm('ล้างข้อมูลการทดสอบในแท็บนี้ทั้งหมด? (บันทึกพลังงาน ผลสุ่มตรวจ ผลทดสอบข้อ 1, 5, 7 และบันทึกการทำงานต่อเนื่อง) ควรสำรองข้อมูลก่อน')) return;
+    PF = PF_DEFAULT(); UP.data = {}; await Promise.all([DB.set('perf', PF), DB.set('uptime', {})]).catch(() => {}); loadPerf(); return;
+  }
+}
+function perfInput(el, isChange) {
+  if (el.dataset.pf) {
+    let v = el.type === 'checkbox' ? el.checked : el.value;
+    setPath(PF, el.dataset.pf, v); savePF();
+    if (isChange || el.type === 'checkbox' || el.tagName === 'SELECT') loadPerf({ soft: true });
+    return true;
+  }
+  if (el.dataset.pfcert != null) { PF.certs[el.dataset.pfcert] = el.checked; savePF(); loadPerf({ soft: true }); return true; }
+  if (el.id === 'pfSites' && isChange) {
+    const list = [...new Set(el.value.split(',').map(s => s.trim()).filter(Boolean))];
+    if (!list.length) { el.value = sitesList().join(', '); return true; }
+    S.sites = list; if (!list.includes(S.site)) S.site = list[0]; saveSettings(); loadPerf(); return true;
+  }
+  return false;
+}
+
 /* ---------------- boot ---------------- */
 function bindUI() {
   $('#startBtn').addEventListener('click', startStation);
@@ -2473,6 +3096,7 @@ async function startStation() {
   $('#start').hidden = true;
   updateModeBadge();
   if (!state.loopOn) { state.loopOn = true; loop(); }
+  startHeartbeat();
   setTimeout(() => warmPhrases(true), 6000);
 }
 async function boot() {
@@ -2480,6 +3104,7 @@ async function boot() {
   registerSW();
   try { navigator.storage?.persist?.(); } catch {}
   DB.get('evalRecs').then(r => { if (Array.isArray(r)) state.evalRecs = r; }).catch(() => {});
+  loadPF();
   aiPromise = initAI();
 }
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
